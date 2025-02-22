@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import PageContainer from "../components/pageContainer.jsx"
-import { useParams } from "react-router-dom"
+import { useParams, Navigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { centerData } from "../data/centerdata.js"
 
@@ -80,10 +80,15 @@ function CenterContent() {
   let [centerDataIndex, setCenterDataIndex] = useState(
     centerData[id]
   )
+  const validIds = ["0", "1", "2", "3", "4"]
 
   useEffect(()=>{
     setCenterDataIndex(centerData[id])
   }, [id])
+
+  if (!validIds.includes(id)) {
+    return <Navigate to="/404" replace />
+  }
 
   return (
     <Centercontent>

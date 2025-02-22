@@ -1,39 +1,44 @@
 import './App.css'
-import Navbar from './components/navbar'
-import { Route, Routes } from 'react-router-dom'
-import Test from './components/test'
+import Navbar from './components/navbar.jsx'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { navList } from './data/navlist'
-import Home from './routes/home'
-import About from './routes/about'
-import Center from './routes/center'
-import Notice from './routes/notice'
-import Reserve from './routes/reserve'
-import Admin from './routes/admin'
-import Footer from './components/footer'
+import Home from './routes/home.jsx'
+import About from './routes/about.jsx'
+import Center from './routes/center.jsx'
+import Admin from './routes/admin.jsx'
+import Footer from './components/footer.jsx'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Appointment from './routes/appointment'
+import Appointment from './routes/appointment.jsx'
 import Examination from './routes/examination'
 import NotFoundPage from './routes/NotFoundPage'
+import Community from './routes/community'
+import { isAllowedPath } from './filter'
+import { OutsideLink } from './components/outsideLink.jsx'
 
 function App() {
-  // 404 페이지 작업 해야됨
+  
+  const location = useLocation()
+  const isAllowedRoute = isAllowedPath(location.pathname)
+
   return(
     <>
-      <Navbar/>
-      <Routes>
-        
-        <Route path='/' element={<Home/>} />
-        <Route path='/about/:id' element={<About item={navList[0]}/>} />
-        <Route path='/center/:id' element={<Center item={navList[1]}/>} />
-        <Route path='/appointment/:id' element={<Appointment item={navList[2]}/>} />
-        <Route path='/examination/:id' element={<Examination item={navList[3]}/>} />
-        <Route path='/notice/*' element={<Notice item={navList[4]}/>} />
-        <Route path='/reserve' element={<Reserve item={navList[5]}/>} />
-        <Route path='/api/admin/*' element={<Admin/>}/>
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <Footer/>
+    {
+      isAllowedRoute ? <>
+        <Navbar/>
+        <Routes> 
+          <Route path='/' element={<Home/>} />
+          <Route path='/about/:id' element={<About item={navList[0]}/>} />
+          <Route path='/appointment/:id' element={<Appointment item={navList[1]}/>} />
+          <Route path='/center/:id' element={<Center item={navList[2]}/>} />
+          <Route path='/examination/:id' element={<Examination item={navList[3]}/>} />
+          <Route path='/community/:id/*' element={<Community item={navList[4]}/>} />
+          <Route path='/api/admin/*' element={<Admin/>}/>
+        </Routes>
+        <Footer/>
+        <OutsideLink/>
+      </> : <NotFoundPage/>
+    }
     </>
   )
 }

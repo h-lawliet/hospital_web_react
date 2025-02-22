@@ -41,13 +41,10 @@ const SidebarItem = ({ item, index, openSubMenu, setOpenSubMenu }) => {
       {item.detail.length !== 1 && (
         <SubMenuContainer isSubOpen={isSubOpen}>
           {item.detail.map((subItem, subIndex) => (
-            <SubMenuItem key={subIndex}>
-              <a
-                href={item.link + "/" + subIndex}
-                style={{ textDecoration: "none", color: "inherit", width: "100%" }}
-              >
-                {subItem}    
-              </a>
+            <SubMenuItem key={subIndex} onClick={()=>{
+              window.open(`${item.link}/${subIndex}`, "_self")
+            }}>
+              {subItem}    
             </SubMenuItem>
           ))}
         </SubMenuContainer>

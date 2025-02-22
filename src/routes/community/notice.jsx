@@ -1,12 +1,11 @@
 import styled from "styled-components"
-import PageContainer from "../components/pageContainer.jsx"
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom"
-import { NoticeDetail } from "./noticeDetail.jsx"
+import api from "../../api.js"
+import NoticeDetail from "./noticeDetail.jsx"
 
 // 나중에 페이지네이션 작업 필요할지도 모름. (공지사항 많아지면)
-function NoticeContent() {
+function Notice() {
   
   let [noticeList, setNoticeList] = useState([])
   let [isSmall, setIsSmall] = useState(false)
@@ -27,7 +26,7 @@ function NoticeContent() {
 
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/notice", {withCredentials: true}).then((res)=>{
+    api.get("/notice", {withCredentials: true}).then((res)=>{
       setNoticeList(res.data)
     }).catch((err)=>{
       console.log(err)
@@ -218,7 +217,7 @@ function NoticeContent() {
             temp.map((element, i)=>{
               return(
                 <div className="notice-list-item" onClick={()=>{
-                  navigate(`/notice/${element._id}`)
+                  navigate(`/community/2/${element._id}`)
                 }}>
                   <span id="notice-title">{element.title}</span>
                   {
@@ -239,16 +238,10 @@ function NoticeContent() {
           
         </StyledNotice>
       }/>
-      <Route path=":id" element={
+      <Route path=":subId" element={
         <NoticeDetail/>
       }/>
     </Routes>
-  )
-}
-
-function Notice(props) {
-  return (
-    <PageContainer item={props.item} content={<NoticeContent/>}/>
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 const CreateNotice = (props) => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const CreateNotice = (props) => {
     formData.append("content", editorRef.current.innerHTML); // 내용 추가
     images.forEach((image) => formData.append("images", image)); // 이미지 추가
     try {
-      const response = await axios.post("http://localhost:3000/notice/create", formData, {
+      const response = await api.post("/notice/create", formData, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true
       });

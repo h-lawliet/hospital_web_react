@@ -1,0 +1,15 @@
+@media (max-width: 600px) {
+
+  #map {
+    width: 100%;
+    aspect-ratio: 1;
+  }
+}
+
+@media (min-width: 600px) {
+
+  #map {
+    width: 100%;
+    aspect-ratio: 1.5;
+  }
+}

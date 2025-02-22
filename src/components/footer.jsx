@@ -23,7 +23,8 @@ function Footer() {
     .copyright {
       font-weight: 100;
       font-size: 15px;
-      opacity: 0.8;
+      opacity: 0.7;
+      padding-top: 15px;
     }
     .footer-logo {
       width: 200px;
@@ -46,6 +47,7 @@ function Footer() {
       }
       .copyright {
         font-size: 14px;
+        padding-top: 12px;
       }
       .footer-logo {
         width: 160px;
@@ -64,6 +66,8 @@ function Footer() {
       }
       .copyright {
         font-size: 11px;
+        padding-top: 10px;
+        line-height: 17px;
       }
       .footer-logo {
         width: 140px;

@@ -17,6 +17,8 @@ function Greeting() {
 
     .greeting-title {
       text-align: center;
+      color: rgb(0, 51, 161);
+      font-weight: 700;
 
       @media (max-width: 600px) {
         font-size: 16px;
@@ -27,9 +29,7 @@ function Greeting() {
       }
 
       @media (min-width: 1200px) {
-        font-size: calc(0.08vw + 18px);
-        font-weight: 600;
-        color: rgb(0, 51, 161);
+        font-size: calc(0.08vw + 19px);
       }
     }
 

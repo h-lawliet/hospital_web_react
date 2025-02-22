@@ -1,7 +1,6 @@
 import styled from "styled-components"
-import PageContainer from "../components/pageContainer"
 import { useState } from "react"
-import axios from "axios"
+import api from "../../api.js"
 
 const Reservecontent = styled.div`
   display: flex;
@@ -55,7 +54,7 @@ const Reservecontent = styled.div`
   .submit-btn {
     display: inline-block;
     padding: 10px 20px;
-    border-radius: 6px;
+    border-radius: 10px;
     color: rgb(0, 51, 161);
     margin-top: 2vh;
     border: 1px solid rgb(0, 51, 161);
@@ -63,6 +62,7 @@ const Reservecontent = styled.div`
     background: linear-gradient(to left, rgb(0, 51, 161) 50%, white 50%);
     background-size: 250% 100%;
     transition: background-position 0.5s ease-in-out;
+    margin-left: 2px;
   }
 
   .submit-btn:hover {
@@ -117,7 +117,7 @@ const Reservecontent = styled.div`
     .submit-btn {
       display: inline-block;
       padding: 10px 20px;
-      border-radius: 6px;
+      border-radius: 8px;
       color: rgb(0, 51, 161);
       margin-top: 2vh;
       margin-left: 2px;
@@ -134,8 +134,8 @@ const Reservecontent = styled.div`
     }
   }
 `
-
-function ReserveContent() {
+ 
+function Reserve() {
 
   let [name, setName] = useState("")
   let [phone, setPhone] = useState("")
@@ -146,7 +146,7 @@ function ReserveContent() {
   const handleSubmit = async () => {
  
     try {
-      const response = await axios.post("http://localhost:3000/reserve/create", 
+      const response = await api.post("/reserve/create", 
         {
           name, phone, content
         },
@@ -154,7 +154,7 @@ function ReserveContent() {
           headers: { "Content-Type": "application/json" }, // JSON 방식으로 전송
           withCredentials: true,
         }
-      );
+      )
       if(response.data.state === 0) {
         console.log(response)
         alert(response.data.message)
@@ -173,8 +173,7 @@ function ReserveContent() {
       console.error("업로드 실패:", error);
       alert("서버 에러. 관리자에게 문의하세요: "+error)
     }
-  };
-
+  }
 
 
 
@@ -209,8 +208,4 @@ function ReserveContent() {
   )
 }
 
-export default function Reserve(props) {
-  return(
-    <PageContainer item={props.item} content={<ReserveContent/>}/>
-  )
-}
+export default Reserve

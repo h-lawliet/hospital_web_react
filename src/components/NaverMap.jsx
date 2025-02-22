@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
+import "./map.css"
 
 const NaverMap = () => {
   useEffect(() => {
     const initMap = () => {
       const map = new naver.maps.Map("map", {
         center: new naver.maps.LatLng(37.2744044, 127.0300147),
-        zoom: 13,
+        zoom: 14,
       });
 
       // 마커 추가
@@ -27,11 +28,7 @@ const NaverMap = () => {
     }
   }, []);
 
-  return <div id="map" style={{
-    width: "100%",
-    aspectRatio: "1.5",
-    marginTop: "10vh"
-  }} />;
+  return <div id="map"/>;
 };
 
 export default NaverMap;

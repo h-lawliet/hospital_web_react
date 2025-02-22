@@ -1,9 +1,8 @@
-import { useParams } from "react-router-dom"
+import { useParams, Navigate } from "react-router-dom"
 import styled from "styled-components"
 import PageContainer from "../components/pageContainer.jsx"
 import Members from "./about/members.jsx"
 import Greeting from "./about/greeting.jsx"
-import Research from "./about/research.jsx"
 import NaverMap from "../components/NaverMap.jsx"
 import Facility from "./about/facility.jsx"
 
@@ -27,10 +26,10 @@ function Destination() {
       color: rgb(0, 51, 161);
       padding-top: 30px;
       margin: 0;
-      font-size: calc(19px + 0.05vw);
+      font-size: calc(20px + 0.05vw);
     }
     & > p {
-      font-size: calc(16px + 0.03vw);
+      font-size: calc(15px + 0.03vw);
       margin: 0;
       padding-top: 8px;
     }
@@ -62,7 +61,9 @@ function Destination() {
       <p><span>KBS 수원센터 / 수원고용복지플러스센터, 동수원사거리</span>정거장 하차</p>
       
     </StyledDestination>
+    <div style={{paddingTop: "60px"}}>
     <NaverMap/>
+    </div>
     </>
   )
   // 배포 후 url 등록해야됨
@@ -78,13 +79,13 @@ function AboutContent() {
   } else if (id == 1) {
     return <Members/>
   } else if (id == 2) {
-    return <Research/>
-  } else if (id == 3) {
     return <Worktime/>
-  } else if (id == 4) {
+  } else if (id == 3) {
     return <Destination/>
-  } else {
+  } else if (id == 4) {
     return <Facility/>
+  } else {
+    return <Navigate to="/404" replace />
   }
 }
 

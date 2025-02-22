@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import DOMPurify from "dompurify";
 import { useLocation, useNavigate } from "react-router-dom";
+import api from "../api";
 
 const Container = styled.div`
   width: 100%;
@@ -81,7 +82,7 @@ const Box = styled.div`
       padding: 10px;
     }
     .box-title {
-      width: calc(100% - 20px);
+      width: 100%;
       font-size: 14px;
       font-weight: 500;
       margin: 0;
@@ -116,8 +117,8 @@ const ResponsiveSlider = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/notice", { withCredentials: true })
+    api
+      .get("/notice", { withCredentials: true })
       .then((res) => {
         setNoticeList(res.data.sort((a, b) => b._id.localeCompare(a._id)));
       })
@@ -165,7 +166,7 @@ const ResponsiveSlider = () => {
     <Container>
       <SliderWrapper translateX={-index * (100 / itemsPerPage)}>
         {boxes.map((e, i) => (
-          <Box key={i} $isSmallScreen={isSmallScreen} onClick={() => navigate("/notice/" + e._id)}>
+          <Box key={i} $isSmallScreen={isSmallScreen} onClick={() => navigate("/community/2/" + e._id)}>
             <div className="box-container">
               <div className="box-title">{e.title}</div>
               <p className="box-content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(e.content) }}></p>

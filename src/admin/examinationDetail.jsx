@@ -1,18 +1,14 @@
-import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components"
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
 import api from "../api";
 
 
-const StyledDiv = styled.div`
-  textarea {
-    width: 100%;
-    height: 100px;
-  }
-`
 
-const CreateExamination = (props) => {
-  const navigate = useNavigate();
+const ExaminationDetail = ({user}) => {
+  let { id } = useParams()
+  let navigate = useNavigate()
+  const location = useLocation()
+
   let [title, setTitle] = useState("")
   let [room, setRoom] = useState("")
   let [purpose, setPurpose] = useState("")
@@ -20,7 +16,27 @@ const CreateExamination = (props) => {
   let [time, setTime] = useState("")
   let [caution, setCaution] = useState("")
   let [result, setResult] = useState("")
-  const [imageFile, setImageFile] = useState(null);
+  let [formerImage, setFormerImage] = useState(null)
+  const [imageFile, setImageFile] = useState(null)
+
+  useEffect(()=>{
+    if (user) {
+      api.get(`/examination/${id}`, {withCredentials: true}).then((res)=>{
+        setTitle(res.data.title || "")
+        setRoom(res.data.room || "")
+        setPurpose(res.data.purpose || "")
+        setMethod(res.data.method || "")
+        setTime(res.data.time || "")
+        setCaution(res.data.caution || "")
+        setResult(res.data.result || "")
+        setImageFile(res.data.image || null)
+        setFormerImage(res.data.image || null)
+      }).catch((err)=>{
+        console.log(err)
+        alert(err + "관리자에게 문의바랍니다. (010-8681-0930)")
+      })
+    }
+  }, [user, location])
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -29,7 +45,9 @@ const CreateExamination = (props) => {
     }
   };
 
-  const handleSubmit = async () => {
+
+
+  const handleModify = async () => {
     
     const formData = new FormData()
     formData.append("title", title)
@@ -41,12 +59,12 @@ const CreateExamination = (props) => {
     formData.append("result", result)
     formData.append("image", imageFile)
     try {
-      const response = await api.post("/examination/create", formData,
+      const response = await api.put(`/examination/${id}`, formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true
         }
-      );
+      )
       if(response.data.state === 0) {
         console.log(response)
         alert(response.data.message)
@@ -62,7 +80,7 @@ const CreateExamination = (props) => {
         alert(response.data.message)
       }
     } catch (error) {
-      console.error("업로드 실패:", error);
+      console.error("업로드 실패:", error)
       alert("서버 에러. 관리자에게 문의바랍니다: "+error)
     }
   }
@@ -70,14 +88,30 @@ const CreateExamination = (props) => {
   return (
     <>
     {
-      props.user ? <>
-      <StyledDiv>
+      user ? <>
+      <div>
         <br/>
         <br/>
         <br/>
         <hr/>
+        
+        {
+          
+          imageFile == formerImage ? (
+            <>
+              <div>현재 이미지 : </div>
+              <img 
+                src={imageFile} 
+                style={{ width: "200px", height: "auto" }} 
+                alt="Examination Image" 
+              />
+            </>
+          ) : (
+            null
+          )
+        } <br/>
         사진(1장) : <input type="file" accept="image/*" onChange={handleImageChange}/>
-        {imageFile && <p>{imageFile.name}</p>}<br/>
+        {imageFile && <p>새 이미지 : {imageFile.name}</p>}<br/>
         검사 제목 : <textarea type="text" name="title" value={title} onChange={(e)=>{
           setTitle(e.target.value)
         }}/><br/>
@@ -100,8 +134,8 @@ const CreateExamination = (props) => {
           setResult(e.target.value)
         }}/><br/>
 
-        <button onClick={handleSubmit} style={{ marginTop: "10px" }}>글쓰기</button>
-      </StyledDiv>
+        <button onClick={handleModify} style={{ marginTop: "10px" }}>글쓰기</button>
+      </div>
       </> : <><br/><br/><div>로그인이 필요합니다.</div></>
     }
     </>
@@ -109,4 +143,4 @@ const CreateExamination = (props) => {
   );
 };
 
-export default CreateExamination
+export default ExaminationDetail

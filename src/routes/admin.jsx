@@ -1,22 +1,19 @@
 import { useState, useEffect } from "react"
-import axios from "axios"
-import { Link, Router, Route, Routes, BrowserRouter, useLocation } from "react-router-dom"
+import { Link, Router, Route, Routes, BrowserRouter, useLocation, useNavigate } from "react-router-dom"
 import Login from "../admin/login.jsx"
 import AdminNotice from "../admin/AdminNotice.jsx"
 import AdminExamination from "../admin/AdminExamination.jsx"
-import CreateNotice from "../admin/CreateNotice.jsx"
-import NoticeDetail from "../admin/noticeDetail.jsx"
-import CreateExamination from "../admin/CreateExamination.jsx"
+import AdminReserve from "../admin/AdminReserve.jsx"
+import AdminResearch from "../admin/AdminResearch.jsx"
+import api from "../api.js"
 
 function Admin() {
 
-  const location = useLocation()
-
-  let [examinationList, setExaminationList] = useState([])
   let [user, setUser] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/check", {withCredentials: true}).then((res)=>{
+    api.get("/check", {withCredentials: true}).then((res)=>{
       if (res.data.loggedIn) setUser(res.data.user)
     }).catch((err)=>{
       console.log(err)
@@ -24,7 +21,7 @@ function Admin() {
   }, [])
 
   const handleLogout = async () => {
-    await axios.post("http://localhost:3000/logout", {}, { withCredentials: true });
+    await api.post("/logout", {}, { withCredentials: true });
     setUser(null);
     navigate("/api/admin")
   };
@@ -34,23 +31,66 @@ function Admin() {
     <div style={{
       margin: "30px 50px"
     }}>
-      <strong>홍지만신경과 관리자 페이지</strong><br/>
-      기타 문의사항이 있으시면 010-8681-0930 또는 카카오톡아이디 h_lawliet로 언제든 편하게 문의주세요!<br/><br/><br/>
-      <Link to="/api/admin">관리자 홈</Link><br/>
-      <Link to="/api/admin/notice">공지사항 항목 편집</Link><br/>
-      <Link to="/api/admin/examination">검사안내 항목 편집</Link><br/>
-      {!user && <Link to="/api/admin/login">로그인</Link>}
-      {user && <button onClick={handleLogout}>로그아웃</button>}
+      <h1>홍지만신경과 관리자 페이지</h1><br/><br/>
+      <div>
+        <Link style={{
+          textDecoration: "none",
+          color: "blue",
+          fontSize: "17px",
+        }} to="/api/admin">관리자 홈</Link><br/><br/>
+        {user && <><Link style={{
+          textDecoration: "none",
+          color: "blue", 
+          fontSize: "17px",
+        }} to="/api/admin/notice">공지사항 항목 편집</Link><br/><br/></>}
+        {user && <><Link style={{
+          textDecoration: "none",
+          color: "blue",
+          fontSize: "17px"
+        }} to="/api/admin/examination">검사안내 항목 편집</Link><br/><br/></>}
+        {user && <><Link style={{
+          textDecoration: "none",
+          color: "blue",
+          fontSize: "17px"
+        }} to="/api/admin/research">논문(연구활동) 항목 편집</Link><br/><br/></>}
+        {user && <><Link style={{
+          textDecoration: "none",
+          color: "blue",
+          fontSize: "17px"
+        }} to="/api/admin/reserve">예약자 관리</Link><br/><br/></>}
+        {!user && <Link style={{
+          textDecoration: "none",
+          color: "blue",
+          fontSize: "17px"
+        }} to="/api/admin/login">로그인</Link>}
+        {user && <span style={{
+          cursor: "pointer",
+          fontSize: "17px",
+          color: "blue"
+        }} onClick={handleLogout}>로그아웃</span>}
+      </div>
       
 
       <Routes>
         <Route path="" element={
-          <><br/><br/><p>관리자 홈화면 ദ്ദി^ᴗ ̫ ᴗ^₎</p></>
+          <div>
+          {
+            user ? <>
+              <br/><br/><hr/><h3>환영합니다! 홍지만 신경과 관리자 페이지입니다.</h3><br/>
+              <p>이곳에서는 상단의 파란색 메뉴를 통해 이동하셔서 <strong>공지사항 관리, 검사안내 관리, 연구활동 편집, 예약자 관리</strong>가 가능합니다.
+              모바일로 이용하실 경우 화면이 깨질 수 있어 pc로 이용하시는것을 추천드립니다.</p>
+              <p>기타 문의사항이 있으시면 010-8681-0930 또는 카카오톡 아이디 h_lawliet로 언제든 편하게 문의주세요!</p><br/>
+            </> : <>
+              <br/><br/><hr/><h3>로그인 후 이용 가능합니다.</h3>
+            </>
+          }
+          </div>
         }/>
-        <Route path="notice/*" element={<AdminNotice user={user} setUser={setUser}/>}/>
-        <Route path="examination" element={<AdminExamination user={user} setUser={setUser} examinationList={examinationList}/>}/>
+        <Route path="notice/*" element={<AdminNotice user={user}/>}/>
+        <Route path="examination/*" element={<AdminExamination user={user}/>}/>
+        <Route path="reserve/*" element={<AdminReserve user={user}/>}/>
+        <Route path="research/*" element={<AdminResearch user={user}/>}/>
         <Route path="login" element={<Login setUser={setUser}/>}/>
-        <Route path="examination/write" element={<CreateExamination user={user}/>}/>
       </Routes>
     </div>
   )

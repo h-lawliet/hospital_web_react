@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import PageContainer from "../components/pageContainer.jsx"
-import { useParams } from "react-router-dom"
+import { useParams, Navigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { appointmentData } from "../data/appointmentdata.js"
 
@@ -68,6 +68,11 @@ function AppointmentContent() {
   useEffect(()=>{
     setAppointmentDataIndex(appointmentData[id])
   }, [id])
+
+  const validIds = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+  if (!validIds.includes(id)) {
+    return <Navigate to="/404" replace />
+  }
 
   return (
     <Appointmentcontent>

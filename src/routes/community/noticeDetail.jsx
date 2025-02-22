@@ -1,26 +1,32 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import styled from "styled-components"
-import axios from "axios"
+import api from "../../api.js"
 
 const Noticedetail = styled.div`
 
 `
 
 
-export function NoticeDetail() {
+function NoticeDetail() {
+
+  const navigate = useNavigate()
 
   let [noticeData, setNoticeData] = useState({})
-  let {id} = useParams()
+  let {subId} = useParams()
 
   useEffect(()=>{
-    axios.get(`http://localhost:3000/notice/${id}`)
-    .then(async (res)=>{
-      await setNoticeData(res.data)
+    api.get(`/notice/${subId}`)
+    .then((res)=>{
+      if (res.data.state === 0) {
+        setNoticeData(res.data.content)
+      } else {
+        navigate("/404")
+      }
     }).catch((err)=>{
       console.log(err)
     })
-  }, [id])
+  }, [subId])
 
   return (
     <Noticedetail>
@@ -38,3 +44,5 @@ export function NoticeDetail() {
     </Noticedetail>
   )
 }
+
+export default NoticeDetail

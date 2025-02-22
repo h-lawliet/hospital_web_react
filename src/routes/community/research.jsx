@@ -1,57 +1,34 @@
 import styled from "styled-components";
-import axios from "axios"
 import { useEffect, useState } from "react";
-
-const BarData = [
-  {
-    year: 2024,
-    number: 4
-  },
-  {
-    year: 2023,
-    number: 5
-  },
-  {
-    year: 2022,
-    number: 13
-  },
-  {
-    year: 2021,
-    number: 8
-  },
-  {
-    year: 2020,
-    number: 11
-  },
-  {
-    year: 2019,
-    number: 9
-  },
-  {
-    year: 2018,
-    number: 13
-  },
-  {
-    year: 2017,
-    number: 6
-  },
-]
+import api from "../../api.js";
 
 const Graph = styled.div`
   display: flex;
   flex-direction: row;
   margin-left: 3vw;
   margin-right: 3vw;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   height: 330px;
   padding-top: 10vh;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* IE, Edge */
+  -ms-overflow-style: none;
+  
+  /* Firefox */
+  scrollbar-width: none;
+
   .y-axis {
     width: 15px;
+    flex-shrink: 0;
     margin-bottom: 30px;
     border-right: 1px solid #e5e5e5;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: space-between;
   }
   .y-axis > div {
@@ -261,6 +238,7 @@ function Research() {
   let [ResearchData, setResearchData] = useState([])
   let [filtered, setFiltered] = useState([])
   let [isSmall, setIsSmall] = useState(false)
+  let [BarData, setBarData] = useState([])
 
   const highlight = "Ji Man Hong"
 
@@ -278,7 +256,7 @@ function Research() {
   }, [filtered])
 
   useEffect(()=>{
-    axios.get("http://localhost:3000/research", {withCredentials: true}).then((res)=>{
+    api.get("/research", {withCredentials: true}).then((res)=>{
       setResearchData(res.data)
     }).catch((err)=>{
       console.log(err)
@@ -291,12 +269,29 @@ function Research() {
     .sort((a, b) => a._id.localeCompare(b._id)))
   }, [selectedYear, ResearchData])
 
+  useEffect(()=>{
+    const yearCounts = ResearchData.reduce((acc, item) => {
+      acc[item.year] = (acc[item.year] || 0) + 1
+      return acc
+    }, {})
+
+    const result = Object.entries(yearCounts).map(([year, number]) => ({
+      year,
+      number
+    }))
+
+    setBarData(result.reverse())
+
+    if (result.length > 0) {
+      setSelectedYear(result[0].year)
+    }
+  }, [ResearchData])
 
   return(
     <>
     <Graph>
       <div className="y-axis">
-        <div>0</div><div>5</div><div>10</div><div>15</div>
+        <div>15</div><div>10</div><div>5</div><div>0</div>
       </div>
       {
         BarData.map((e, i)=>{
@@ -344,9 +339,16 @@ function Research() {
             <div className="research-item">
               <div id="journal">{e.journal}</div>
               <div id="info">
-                <span>DOI: {e.doi}</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span>IF: {e.impact}</span>
+                {e.doi ? <span>DOI: {e.doi}</span> : <span>DOI: -</span>}
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                {e.impact ? <span>IF: {e.impact}</span> : <span>IF: -</span>}
               </div>
-              <div id="title"><a href={e.url} target="blank">{e.title}</a></div>
+              <div id="title">
+              {
+                e.url ? <a href={e.url} target="blank">{e.title}</a> : 
+                <span>{e.title}</span>
+              }
+              </div>
               <div id="author">
               {e.author.split(new RegExp(`(${highlight})`, "gi")).map((part, index) =>
                 part.toLowerCase() === highlight.toLowerCase() ? (

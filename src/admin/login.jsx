@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 const Login = ({ setUser }) => {
   const [id, setId] = useState("");
@@ -12,8 +12,8 @@ const Login = ({ setUser }) => {
 
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:3000/login",
+      const res = await api.post(
+        "/login",
         { id, password },
         { withCredentials: true }
       );
@@ -27,6 +27,7 @@ const Login = ({ setUser }) => {
 
   return (
     <div>
+      <br/><br/><hr/>
       <h2>로그인</h2>
       <h4>로그인 정보는 2시간 동안 유지되며 2시간이 지나면 자동 로그아웃됩니다</h4>
       <form onSubmit={handleLogin}>

@@ -71,8 +71,9 @@ export const StyledNavbar = styled.nav`
     }
 
     .dropdown-menu li {
-      width: calc(100% - 2em);
-      padding: 1em 1em;
+      width: calc(100% - 30px);
+      line-height: 50px;
+      padding: 0 15px;
     }
 
     .dropdown-menu li:hover {
@@ -190,7 +191,8 @@ export const StyledSidebar = styled.div`
 `;
 
 export const Item = styled.div`
-  padding: 15px 20px;
+  padding: 0 20px;
+  line-height: 55px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -205,7 +207,7 @@ export const Item = styled.div`
 `;
   
 export const SubMenuContainer = styled.div`
-  max-height: ${({ isSubOpen }) => (isSubOpen ? '508px' : '0')};
+  max-height: ${({ isSubOpen }) => (isSubOpen ? '550px' : '0')};
   overflow: hidden;
   transition: max-height 0.5s ease;
   background-color: rgb(0, 65, 200);
@@ -215,9 +217,9 @@ export const SubMenuContainer = styled.div`
 `;
 
 export const SubMenuItem = styled.div`
-  padding: 15px 30px;
+  padding: 0 30px;
   cursor: pointer;
-
+  line-height: 55px;
 
   &:hover {
     background-color: rgb(0, 51, 161);

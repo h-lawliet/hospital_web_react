@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom"
+import { useParams, Navigate } from "react-router-dom"
 import styled from "styled-components"
 import PageContainer from "../components/pageContainer.jsx"
 import { useEffect, useState } from "react"
-import axios from "axios"
+import api from "../api.js"
 
 
 const StyledExam = styled.div`
@@ -194,13 +194,18 @@ function ExaminationContent({item}) {
 
   useEffect(()=>{
     setIndex(item.detail[id])
-    axios.get("http://localhost:3000/examination", {withCredentials: true}).then((res)=>{
+    api.get("/examination", {withCredentials: true}).then((res)=>{
       setExamination(res.data.filter(item => item.room === index))
     }).catch((err)=>{
       console.log(err)
       alert(err + "관리자에게 문의하세요")
     })
   }, [id, index, selectedMenu])
+
+  const validIds = ["0", "1", "2", "3", "4", "5", "6", "7"]
+  if (!validIds.includes(id)) {
+    return <Navigate to="/404" replace />
+  }
 
   return(
     <StyledExam>

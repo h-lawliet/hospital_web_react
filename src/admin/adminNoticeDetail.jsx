@@ -1,13 +1,13 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import DOMPurify from "dompurify";
+import api from "../api";
 
 
 // 이미지 리스트 받아오기
 // post 요청 수정
 
-const NoticeDetail = ({user}) => {
+const AdminNoticeDetail = ({user}) => {
   let { id } = useParams(); // URL에서 ID 가져오기
   let navigate = useNavigate();
   const location = useLocation()
@@ -16,10 +16,11 @@ const NoticeDetail = ({user}) => {
   // 해당 ID의 공지사항 찾기
   useEffect(()=>{
     if (user) {
-      axios.get(`http://localhost:3000/notice/${id}`, {withCredentials: true}).then((res)=>{
+      api.get(`/notice/${id}`, {withCredentials: true}).then((res)=>{
         setNotice(res.data)
       }).catch((err)=>{
         console.log(err)
+        alert(err + "관리자에게 문의바랍니다. (010-8681-0930)")
       })
     }
   }, [user, location])
@@ -63,7 +64,7 @@ const NoticeDetail = ({user}) => {
     formData.append("content", editorRef.current.innerHTML); // 내용 추가
     images.forEach((image) => formData.append("images", image)); // 이미지 추가
     try {
-      const response = await axios.post("http://localhost:3000/admin/notice/modify", formData, {
+      const response = await api.post("/notice/modify", formData, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true
       });
@@ -151,4 +152,4 @@ const NoticeDetail = ({user}) => {
   );
 };
 
-export default NoticeDetail
+export default AdminNoticeDetail
