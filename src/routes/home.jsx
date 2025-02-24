@@ -64,6 +64,22 @@ function Home() {
       width: 60px;
       background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
     }
+
+    .home-member-btn, .special-clinic-btn {
+      border: 1px solid rgb(0, 51, 161);
+    }
+
+    .home-member-btn:hover {
+      color: rgb(0, 51, 161);
+      background-color: rgb(255, 255, 255);
+      margin-bottom: 5px;
+    }
+
+    .special-clinic-btn: hover {
+      color: rgb(0, 51, 161);
+      background-color: rgb(255, 255, 255);
+      margin-bottom: 5px;
+    }
     
     .special-clinic-container {
       display: grid;
