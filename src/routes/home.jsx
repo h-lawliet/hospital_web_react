@@ -108,6 +108,14 @@ function Home() {
     @media (min-width: 1200px) {
       padding: 0 10vw;
 
+      & > h2 {
+        font-size: calc(20px + 0.05vw);
+      }
+      & > p {
+        font-size: calc(16px + 0.05vw);
+        line-height: calc(27px + 0.05vw);
+      }
+
       .home-member-container {
         display: flex;
         padding-top: 0;
@@ -198,12 +206,6 @@ function Home() {
         color: #FFFFFF;
         padding: 9px 15px;
       }
-      .special-clinic-btn:hover {
-        // background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
-        // // background-color: rgb(0, 51, 161);
-        // border: none;
-        // color: rgb(244, 240, 240);
-      }
       .special-clinic-btn > a {
         color: inherit;
         text-decoration: none;
@@ -281,6 +283,14 @@ function Home() {
 
     @media (max-width: 1200px) and (min-width: 600px) {
       padding: 0 4vw;
+
+      & > h2 {
+        font-size: calc(18px + 0.05vw);
+      }
+      & > p {
+        font-size: calc(16px + 0.05vw);
+        line-height: 25px;
+      }
 
       .home-member-container {
         display: flex;
@@ -458,6 +468,7 @@ function Home() {
       }
       & > p {
         font-size: calc(13px + 0.05vw);
+        line-height: 20px;
       }
 
       padding: 0 4vw;
