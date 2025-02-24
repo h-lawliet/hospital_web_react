@@ -3,6 +3,7 @@ import ImageSlider from "../components/imageSlide"
 import { useState } from "react"
 import ResponsiveSlider from "../components/homeNoticeSlide"
 import NaverMap from "../components/NaverMap"
+import { HomeMovie } from "../components/homemovie"
 
 function Home() {
 
@@ -59,10 +60,29 @@ function Home() {
     margin-bottom: 10vh;
     
     .line-deco {
-      margin-top: 70px;
+      margin-top: 60px;
+      margin-bottom: 10px;
       height: 3.5px;
+      min-height: 3.5px;
+      max-height: 3.5px;
       width: 60px;
       background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
+    }
+
+    .home-member-btn, .special-clinic-btn {
+      border: 1px solid rgb(0, 51, 161);
+    }
+
+    .home-member-btn:hover {
+      color: rgb(0, 51, 161);
+      background-color: rgb(255, 255, 255);
+      margin-bottom: 5px;
+    }
+
+    .special-clinic-btn: hover {
+      color: rgb(0, 51, 161);
+      background-color: rgb(255, 255, 255);
+      margin-bottom: 5px;
     }
     
     .special-clinic-container {
@@ -87,6 +107,14 @@ function Home() {
     
     @media (min-width: 1200px) {
       padding: 0 10vw;
+
+      & > h2 {
+        font-size: calc(20px + 0.05vw);
+      }
+      & > p {
+        font-size: calc(16px + 0.05vw);
+        line-height: calc(27px + 0.05vw);
+      }
 
       .home-member-container {
         display: flex;
@@ -178,12 +206,6 @@ function Home() {
         color: #FFFFFF;
         padding: 9px 15px;
       }
-      .special-clinic-btn:hover {
-        // background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
-        // // background-color: rgb(0, 51, 161);
-        // border: none;
-        // color: rgb(244, 240, 240);
-      }
       .special-clinic-btn > a {
         color: inherit;
         text-decoration: none;
@@ -261,6 +283,14 @@ function Home() {
 
     @media (max-width: 1200px) and (min-width: 600px) {
       padding: 0 4vw;
+
+      & > h2 {
+        font-size: calc(18px + 0.05vw);
+      }
+      & > p {
+        font-size: calc(16px + 0.05vw);
+        line-height: 25px;
+      }
 
       .home-member-container {
         display: flex;
@@ -438,6 +468,7 @@ function Home() {
       }
       & > p {
         font-size: calc(13px + 0.05vw);
+        line-height: 20px;
       }
 
       padding: 0 4vw;
@@ -634,7 +665,7 @@ function Home() {
       .home-member-content {
         flex-grow: 1;
         text-align: center;
-        
+        margin: 5px 0;
       }
 
       .home-member-content > h4 {
@@ -814,6 +845,7 @@ function Home() {
         <h2>의료진 소개</h2>
         <div className="home-member-container">
           <div className="home-member-content">
+            {/* <img src="/images/only_logo.png" className="home-member-content-img"/> */}
             <img src="/images/only_logo.png" className="home-member-content-img"/>
             <h4>전국 유일 모야모야 특화 병원</h4>
             <h3>홍지만신경과의원</h3>
@@ -829,8 +861,14 @@ function Home() {
         </div>
 
         <div className="line-deco"/>
+        <h2>영상 (서비스 예정)</h2>
+        <p>아직 꾸미지는 않았고 영상 들어오면 꾸밀 예정이에요</p>
+        <HomeMovie></HomeMovie>
+
+        <div className="line-deco"/>
         <h2>특화센터 소개</h2>
-        <p>홍지만신경과에는 개쩌는 특수센터가 있으니까 많이많이 오십셔</p>
+        <p>대학병원 수준의 집중치료실과 영상실을 통합한 시스템을 갖추어, 초기 진단부터 치료까지 한 곳에서 신속하게 진행할 수 있습니다. 
+          이를 통해 신경학적 악화, 섬망, 내과적 합병증 등의 위험 요소를 최소화하며 환자의 치료 결과를 현저하게 향상시킵니다.</p>
         <div className="special-clinic-container">
           {
             clinicList.map((e, i)=>{

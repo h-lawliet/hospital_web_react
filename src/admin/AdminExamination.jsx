@@ -14,7 +14,7 @@ const AdminExamination = ({ user }) => {
   useEffect(()=>{
     if (user) {
       api.get("/examination", {withCredentials: true}).then((res)=>{
-        setExaminationList(res.data)
+        setExaminationList(res.data.reverse())
         setRenderer(0)
       }).catch((err)=>{
         console.log(err)
@@ -59,7 +59,7 @@ const AdminExamination = ({ user }) => {
                           }
                         }).catch((err)=>{
                           console.log(err)
-                          alert(err + "관리자에게 문의바랍니다. (010-8681-0930)")
+                          alert(err + "관리자에게 문의바랍니다.")
                         })
                       } else {
                         console.log("로그인 필요")
