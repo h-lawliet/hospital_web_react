@@ -862,7 +862,7 @@ function Home() {
 
         <div className="line-deco"/>
         <h2>영상 (서비스 예정)</h2>
-        <p>영상도 있으니까 보고가십쇼</p>
+        <p>아직 꾸미지는 않았고 영상 들어오면 꾸밀 예정이에요</p>
         <HomeMovie></HomeMovie>
 
         <div className="line-deco"/>
