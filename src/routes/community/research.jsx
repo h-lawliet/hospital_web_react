@@ -2,6 +2,23 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import api from "../../api.js";
 
+const ResearchTop = styled.div`
+  .line-deco {
+    margin-top: 60px;
+    margin-bottom: 10px;
+    height: 3.5px;
+    min-height: 3.5px;
+    max-height: 3.5px;
+    width: 60px;
+    background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
+  }
+
+  & > p {
+    line-height: 30px;
+    color: rgb(41, 40, 40);
+    font-size: calc()
+  }
+`
 const Graph = styled.div`
   display: flex;
   flex-direction: row;
@@ -289,24 +306,12 @@ function Research() {
 
   return(
     <>
-    <Graph>
-      <div className="y-axis">
-        <div>15</div><div>10</div><div>5</div><div>0</div>
-      </div>
-      {
-        BarData.map((e, i)=>{
-          return(
-            <div className="graph-item" style={{
-              height: `${e.number * 20 + 30}px`,
-              marginTop: `${300-e.number*20}px`
-            }}>
-              <div className="graph-year">{e.year}</div>
-              <div className="colored"></div>
-            </div>
-          )
-        })
-      }
-    </Graph>
+    <ResearchTop>
+    <div className="line-deco"></div>
+    <p>홍지만 박사는 국내 최초로 지역 뇌졸중 프로그램인 “아주뇌졸중 프로그램”을 개발 및 보급하였으며, 
+      모야모야병 및 뇌혈관 재생 분야에서는 세계 최초의 최소침습 시술을 개발하고 보급하는 등 혁신적인 성과를 이루어왔습니다. 
+      또한, 신경집중치료 분야(예: 저체온 냉동치료)와 뇌세포 보호 연구 분야에서도 세계적인 연구를 지속적으로 진행해 왔습니다.</p>
+    </ResearchTop>
 
     <ScrollYear>
       <div className="scroll-wrap">
@@ -367,6 +372,24 @@ function Research() {
       }
       
     </ResearchList>
+    <Graph>
+      <div className="y-axis">
+        <div>15</div><div>10</div><div>5</div><div>0</div>
+      </div>
+      {
+        BarData.map((e, i)=>{
+          return(
+            <div className="graph-item" style={{
+              height: `${e.number * 20 + 30}px`,
+              marginTop: `${300-e.number*20}px`
+            }}>
+              <div className="graph-year">{e.year}</div>
+              <div className="colored"></div>
+            </div>
+          )
+        })
+      }
+    </Graph>
     </>
   )
 }

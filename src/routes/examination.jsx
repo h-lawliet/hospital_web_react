@@ -195,7 +195,7 @@ function ExaminationContent({item}) {
   useEffect(()=>{
     setIndex(item.detail[id])
     api.get("/examination", {withCredentials: true}).then((res)=>{
-      setExamination(res.data.filter(item => item.room === index))
+      setExamination(res.data.filter(item => item.room.replace(/\s+/g, "") == index))
     }).catch((err)=>{
       console.log(err)
       alert(err + "관리자에게 문의하세요")
