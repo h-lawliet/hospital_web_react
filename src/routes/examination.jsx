@@ -195,22 +195,20 @@ function ExaminationContent({item}) {
   useEffect(()=>{
     setIndex(item.detail[id])
     api.get("/examination", {withCredentials: true}).then((res)=>{
-      setExamination(res.data.filter(item => item.room.replace(/\s+/g, "") == index))
+      setExamination(res.data.filter(item => item.room.trim() === index))
     }).catch((err)=>{
       console.log(err)
       alert(err + "관리자에게 문의하세요")
     })
   }, [id, index, selectedMenu])
 
-  const validIds = ["0", "1", "2", "3", "4", "5", "6", "7"]
-  if (!validIds.includes(id)) {
-    return <Navigate to="/404" replace />
-  }
-
   return(
     <StyledExam>
       <div className="line-deco"/>
-      <h3><span className="heading-title">{item.detail[id]}</span>에서 진행하는 검사들입니다</h3>
+      {examination.length > 1 ? 
+        <h3><span className="heading-title">{item.detail[id]}</span>에서 진행하는 검사들입니다</h3> : 
+        <h3><span className="heading-title">{item.detail[id]}</span>에서 진행하는 검사입니다</h3>
+      }
       <div className="exam-menu">
       {
         examination.map((e, i)=>{

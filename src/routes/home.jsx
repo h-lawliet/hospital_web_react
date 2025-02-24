@@ -69,14 +69,20 @@ function Home() {
       background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
     }
 
-    & > h2 {
-      font-size: calc(25px + 0.05vw);
-      margin: 0;
-      padding: 15px 0;
+    .home-member-btn, .special-clinic-btn {
+      border: 1px solid rgb(0, 51, 161);
     }
-    & > p {
-      font-size: calc(16px + 0.05vw);
-      line-height: calc(27px + 0.05vw);
+
+    .home-member-btn:hover {
+      color: rgb(0, 51, 161);
+      background-color: rgb(255, 255, 255);
+      margin-bottom: 5px;
+    }
+
+    .special-clinic-btn: hover {
+      color: rgb(0, 51, 161);
+      background-color: rgb(255, 255, 255);
+      margin-bottom: 5px;
     }
     
     .special-clinic-container {
