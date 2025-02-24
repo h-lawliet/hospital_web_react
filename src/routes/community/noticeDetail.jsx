@@ -37,6 +37,8 @@ function NoticeDetail() {
         <div id="time">
           {noticeData.time}
         </div>
+        {noticeData.content}
+        <img src={noticeData.image}/>
         <div id="views">
           {noticeData.views}
         </div>
