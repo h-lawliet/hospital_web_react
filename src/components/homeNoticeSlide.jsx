@@ -96,14 +96,16 @@ const Box = styled.div`
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      margin: 1vh 0;
+      margin: 17px 0;
+      word-break: break-word;
       width: calc(100% - 20px);
       font-size: calc(12px + 0.05vw);
     }
     .box-time {
       position: absolute;
       font-size: calc(12px + 0.05vw);
-      bottom: 10px;
+      bottom: 12px;
+      left: 12px;
       color: rgb(190, 185, 185);
       margin: 0;
     }

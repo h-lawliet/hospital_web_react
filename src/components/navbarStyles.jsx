@@ -95,6 +95,7 @@ export const StyledNavbar = styled.nav`
       color: rgb(0, 0, 0);
       font-weight: 800;
     }
+
   `
 
 export const StyledHamburger = styled.div`

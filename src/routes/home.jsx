@@ -846,7 +846,7 @@ function Home() {
         <div className="home-member-container">
           <div className="home-member-content">
             {/* <img src="/images/only_logo.png" className="home-member-content-img"/> */}
-            <img src="/images/only_logo.png" className="home-member-content-img"/>
+            <img src="/images/logo/only_logo.png" className="home-member-content-img"/>
             <h4>전국 유일 모야모야 특화 병원</h4>
             <h3>홍지만신경과의원</h3>
             <p className="home-member-text">신경계 질환으로 일상을 잃은 환자들이 다시 평범한 삶으로 돌아갈 수 있도록 항상 최선을 다하겠습니다</p>

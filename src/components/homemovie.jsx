@@ -13,8 +13,12 @@ const SliderContainer = styled.div`
   position: relative;
   
   .movie-slider-thumbnail {
-    aspect-ratio: 1.7;
     cursor: pointer;
+    width: 100%;
+  }
+
+  .slick-slide {
+    aspect-ratio: 1.7;
   }
   
   .movie-slider-main {
@@ -25,12 +29,13 @@ const SliderContainer = styled.div`
 
   .movie-slider-main.active {
     display: block;
+    width: 100%;
   }
 
   .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 5%;
+    right: 5%;
     background: rgba(0, 0, 0, 0.7);
     color: white;
     border: none;

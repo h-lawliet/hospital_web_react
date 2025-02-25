@@ -14,6 +14,7 @@ const CarouselContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  max-width: 100vw;
   z-index: 50;
 `;
 
@@ -23,6 +24,8 @@ const SlideImage = styled(motion.img)`
   left: 0;
   width: 100%;
   height: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
   object-fit: cover;
 `;
 
