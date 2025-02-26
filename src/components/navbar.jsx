@@ -93,7 +93,7 @@ const Navbar = () => {
                 }}
               >
                 <img
-                  src="/images/logo/logo_navbar.png"
+                  src="/images/logo/logo_navbar_main.png"
                   style={{ height: "50%", width: "auto" }}
                   alt="logo"
                 />
@@ -142,7 +142,7 @@ const Navbar = () => {
               }}
             >
               <img
-                src="/images/logo_main_pc.png"
+                src="/images/logo/logo_navbar_main.png"
                 style={{ height: "50%", width: "auto" }}
                 alt="logo"
               />

@@ -464,11 +464,11 @@ function Home() {
     @media (min-width: 400px) and (max-width: 600px) {
 
       & > h2 {
-        font-size: calc(16px + 0.05vw);
+        font-size: calc(19px + 0.05vw);
       }
       & > p {
-        font-size: calc(13px + 0.05vw);
-        line-height: 20px;
+        font-size: calc(14px + 0.05vw);
+        line-height: 22px;
       }
 
       padding: 0 4vw;
@@ -649,11 +649,11 @@ function Home() {
 
     @media (max-width: 400px) {
       & > h2 {
-        font-size: calc(16px + 0.05vw);
+        font-size: calc(18px + 0.05vw);
       }
       & > p {
-        font-size: calc(12px + 0.05vw);
-        line-height: 20px;
+        font-size: calc(13px + 0.05vw);
+        line-height: 21px;
       }
 
       padding: 0 4vw;
@@ -665,7 +665,7 @@ function Home() {
       .home-member-content {
         flex-grow: 1;
         text-align: center;
-        margin: 5px 0;
+        margin: 5px 3px;
       }
 
       .home-member-content > h4 {
@@ -685,7 +685,7 @@ function Home() {
         margin: 5px 0;
       }
       .home-member-name {
-        font-size: 12px;
+        font-size: 11.5px;
         margin: 4px 0;
         font-weight: 700;
       }
@@ -702,7 +702,7 @@ function Home() {
       .home-member-btn {
         display: inline-block;
         cursor: pointer;
-        font-size: 11px;
+        font-size: 12px;
         border-radius: 15px;
         color: rgb(255, 255, 255);
         padding: 5px 11px;
@@ -848,7 +848,7 @@ function Home() {
             {/* <img src="/images/only_logo.png" className="home-member-content-img"/> */}
             <img src="/images/logo/only_logo.png" className="home-member-content-img"/>
             <h4>전국 유일 모야모야 특화 병원</h4>
-            <h3>홍지만신경과의원</h3>
+            <h3>홍지만신경과</h3>
             <p className="home-member-text">신경계 질환으로 일상을 잃은 환자들이 다시 평범한 삶으로 돌아갈 수 있도록 항상 최선을 다하겠습니다</p>
             <p className="home-member-name">대표원장 홍지만 / 원장 김홍남</p>
             <div className="home-member-btn">
