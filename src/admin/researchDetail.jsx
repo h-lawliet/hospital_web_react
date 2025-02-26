@@ -26,7 +26,7 @@ function ResearchDetail({ user }) {
         setUrl(res.data.url || "")
       }).catch((err)=>{
         console.log(err)
-        alert(err + "관리자에게 문의바랍니다. (010-8681-0930)")
+        alert(err + "관리자에게 문의바랍니다.")
       })
     }
   }, [user])

@@ -37,6 +37,8 @@ function AdminResearch({ user }) {
     }
   }, [ResearchData])
 
+  console.log(user)
+
   return (
     <Routes>
       <Route path="" element={
@@ -70,21 +72,19 @@ function AdminResearch({ user }) {
                       color: "inherit"
                     }} to={`/api/admin/research/${e._id}`}>수정하기</Link></button>&nbsp;
                     <button onClick={()=>{
-                      if (user) {
-                        api.delete(`/research/${e._id}`, {withCredentials: true}).then((res)=>{
-                          if (res.data.state === 0) {
-                            alert(res.data.message)
-                            setRenderer(1)
-                          } else {
-                            alert(res.data.message + ": 관리자에게 문의바랍니다")
-                          }
-                        }).catch((err)=>{
-                          console.log(err)
-                          alert(err + "관리자에게 문의바랍니다")
-                        })
-                      } else {
-                        console.log("로그인 필요")
-                      }
+                      api.delete(`/research/${e._id}`, {withCredentials: true}).then((res)=>{
+                        if (res.data.state === 0) {
+                          alert(res.data.message)
+                          setRenderer(1)
+                        } else if (res.data.state === 1) {
+                          alert ("로그인 후 이용해주세요")
+                        } else {
+                          alert(res.data.message + ": 관리자에게 문의바랍니다")
+                        }
+                      }).catch((err)=>{
+                        console.log(err)
+                        alert(err + "관리자에게 문의바랍니다")
+                      })
                     }}>삭제하기</button>
                   </div>
                 )
