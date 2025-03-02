@@ -17,10 +17,10 @@ const AdminNoticeDetail = ({user}) => {
   useEffect(()=>{
     if (user) {
       api.get(`/notice/${id}`, {withCredentials: true}).then((res)=>{
-        setNotice(res.data)
+        setNotice(res.data.content)
       }).catch((err)=>{
         console.log(err)
-        alert(err + "관리자에게 문의바랍니다. (010-8681-0930)")
+        alert(err + "관리자에게 문의바랍니다.")
       })
     }
   }, [user, location])
