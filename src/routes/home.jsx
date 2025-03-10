@@ -1,46 +1,14 @@
 import styled from "styled-components"
 import ImageSlider from "../components/imageSlide"
 import { useState } from "react"
-import ResponsiveSlider from "../components/homeNoticeSlide"
+// import ResponsiveSlider from "../components/homeNoticeSlide"
 import NaverMap from "../components/NaverMap"
 import { HomeMovie } from "../components/homemovie"
+import { centerData } from "../data/centerdata"
 
 function Home() {
 
-  let [clinicList] = useState(
-    [
-      {
-        title: "모야모야 특화센터",
-        content: "최고 전문의의 효과적인 예방법과 차별화된 비수술·최소침습시술로 모야모야 병기에 따른 최적 맞춤치료!",
-        image: "/images/image1.jpg",
-        path: "/center/0"
-      },
-      {
-        title: "뇌졸중 특화센터",
-        content: "전문적팀으로 정확한 진단과 차별화된 집중치료 모니터링으로 고위험 환자에서도 최적 맞춤치료!",
-        image: "/images/image1.jpg",
-        path: "/center/1"
-      },
-      {
-        title: "두통·어지럼증센터",
-        content: "최고 전문의의 효과적인 진단과 차별화된 치료시스템으로 개인화된 최적의 맞춤치료!",
-        image: "/images/image1.jpg",
-        path: "/center/2"
-      },
-      {
-        title: "뇌졸중·치매 통합 예방센터",
-        content: "최고 전문의의 친절한 설명과 함께 차별화된 뇌졸중·치매를 통합하는 개인위험도에 따른 최적의 예방치료!",
-        image: "/images/image1.jpg",
-        path: "/center/3"
-      },
-      {
-        title: "운동 · 이완센터",
-        content: "자세, 체성분, 운동능력 분석으로 차별화된 운동치료로 최적의 맞춤치료!",
-        image: "/images/image1.jpg",
-        path: "/center/4"
-      }
-    ]
-  )
+  let [clinicList] = useState(centerData)
 
   const HomePictureFrame = styled.div`
 
@@ -845,8 +813,7 @@ function Home() {
         <h2>의료진 소개</h2>
         <div className="home-member-container">
           <div className="home-member-content">
-            {/* <img src="/images/only_logo.png" className="home-member-content-img"/> */}
-            <img src="/images/logo/only_logo.png" className="home-member-content-img"/>
+            {/* <img src="/images/logo/only_logo.png" className="home-member-content-img"/> */}
             <h4>전국 유일 모야모야 특화 병원</h4>
             <h3>홍지만신경과</h3>
             <p className="home-member-text">신경계 질환으로 일상을 잃은 환자들이 다시 평범한 삶으로 돌아갈 수 있도록 항상 최선을 다하겠습니다</p>
@@ -875,14 +842,14 @@ function Home() {
               return (
                 <div key={i} className="special-clinic-content">
                   {/* 무조건 가로가 더 긴 사진이여야됨. */}
-                  <div className="special-clinic-img" style={{backgroundImage: `url(${e.image})`}}/>
+                  <div className="special-clinic-img" style={{backgroundImage: `url(${e.homeImg})`}}/>
                   <div className="special-clinic-text">
-                    <h3>{e.title}</h3>
-                    <p>{e.content}</p>
+                    <h3>{e.hometitle}</h3>
+                    <p>{e.title}</p>
                     <div id="button-container">
                       <div className="special-clinic-btn">
                         <a href={e.path}>
-                          &gt;&gt;&nbsp;{e.title.length > 13 ? <>뇌졸중 · 치매 통합센터</> : e.title}
+                          &gt;&gt;&nbsp;{e.hometitle.length > 13 ? <>뇌졸중 · 치매 통합센터</> : e.hometitle}
                         </a>
                       </div>
                     </div>
@@ -894,9 +861,12 @@ function Home() {
           
         </div>
 
+        {/*
+        공지사항 폐기
         <div className="line-deco"/>
         <h2>병원 공지사항</h2>
         <ResponsiveSlider/>
+        */}
 
         <div className="line-deco"/>
         <h2>진료 안내</h2>
