@@ -9,7 +9,7 @@ export const isAllowedPath = (path) => {
   }
 
   if (segments[0] === "center") {
-    return segments.length === 2 && ["0", "1", "2", "3", "4"].includes(segments[1]);
+    return segments.length === 2 && ["0", "1", "2", "3", "4", "5"].includes(segments[1]);
   }
 
   if (segments[0] === "appointment") {

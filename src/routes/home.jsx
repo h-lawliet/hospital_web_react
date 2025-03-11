@@ -142,58 +142,58 @@ function Home() {
 
       .special-clinic-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-        padding-top: 40px;
+        gap: 17px;
+        padding-top: 12px;
       }
+
       .special-clinic-content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+      }
+
+      .special-clinic-img {
+        width: 100%;
+        aspect-ratio: 1;
+        background-position: center;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        transition: background-size 0.7s ease-in-out;
       }
       .special-clinic-text {
-        padding: 10px 15px;
+        padding: 5px 3px;
         flex-grow: 1;
         background-color: rgb(247, 247, 247);
       }
       .special-clinic-text > h3 {
-        margin: 0.5em 0;
-        font-weight: 600;
-        font-size: calc(17.5px + 0.05vw);
+        margin: 5px 0;
+        font-weight: 500;
+        font-size: 14px;
         color: rgb(0, 51, 161);
+        display: none;
       }
       .special-clinic-text > p {
-        font-size: calc(16px + 0.05vw);
-        line-height: calc(22px + 0.05vw);
-        font-weight: 200;
+        font-size: calc(11px + 0.1vw);
+        line-height: calc(18px + 0.1vw);
+        font-weight: 300;
+        margin: 0;
+        display: none;
       }
       .special-clinic-btn {
         display: inline-block;
         cursor: pointer;
-        font-size: calc(16px + 0.05vw);
-        border-radius: calc(0.05vw + 20px);
-        background-color: rgb(0, 51, 161);
+        font-size: calc(16px + 0.1vw);
+        border-radius: calc(22px + 0.1vw);
         color: #FFFFFF;
-        padding: 9px 15px;
+        padding: 10px 15px;
+        background-color: rgb(0, 51, 161);
+        margin: 10px 0;
       }
       .special-clinic-btn > a {
         color: inherit;
         text-decoration: none;
       }
-
-
-      .special-clinic-content:hover .special-clinic-img {
-        background-size: auto 130%;
-      }
-
-
-
-      .special-clinic-img {
-        height: 32vh;
-        width: 32vh;
-        flex-shrink: 0;
-        background-position: center;
-        transition: background-size 0.7s ease-in-out;
-        background-size: auto 100%;
-        background-repeat: no-repeat;
+      #button-container {
+        text-align: center;
       }
 
       .home-info {
@@ -318,18 +318,17 @@ function Home() {
 
       .special-clinic-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding-top: 10px;
+        gap: 17px;
+        padding-top: 12px;
       }
 
       .special-clinic-content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
       }
 
       .special-clinic-img {
-        width: clamp(200px, 30%, 250px);
-        flex-shrink: 0;
+        width: 100%;
         aspect-ratio: 1;
         background-position: center;
         background-size: auto 100%;
@@ -337,37 +336,40 @@ function Home() {
         transition: background-size 0.7s ease-in-out;
       }
       .special-clinic-text {
-        padding: 5px 10px;
+        padding: 5px 3px;
         flex-grow: 1;
         background-color: rgb(247, 247, 247);
       }
       .special-clinic-text > h3 {
-        margin: 10px 0;
-        padding-bottom: 5px;
-        font-weight: 600;
-        font-size: calc(16px + 0.1vw);
+        margin: 5px 0;
+        font-weight: 500;
+        font-size: 14px;
         color: rgb(0, 51, 161);
+        display: none;
       }
       .special-clinic-text > p {
-        font-size: calc(14px + 0.1vw);
-        line-height: calc(23px + 0.1vw);
+        font-size: calc(11px + 0.1vw);
+        line-height: calc(18px + 0.1vw);
         font-weight: 300;
-        padding-bottom: 15px;
         margin: 0;
+        display: none;
       }
       .special-clinic-btn {
         display: inline-block;
         cursor: pointer;
-        font-size: 15px;
-        border-radius: 15px;
+        font-size: calc(14px + 0.1vw);
+        border-radius: calc(20px + 0.1vw);
         color: #FFFFFF;
-        padding: 6px 10px;
+        padding: 8px 12px;
         background-color: rgb(0, 51, 161);
-        margin-bottom: 5px;
+        margin: 10px 0;
       }
       .special-clinic-btn > a {
         color: inherit;
         text-decoration: none;
+      }
+      #button-container {
+        text-align: center;
       }
 
       .home-info {
