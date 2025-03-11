@@ -15,6 +15,7 @@ import NotFoundPage from './routes/NotFoundPage'
 import Community from './routes/community'
 import { isAllowedPath } from './filter'
 import { OutsideLink } from './components/outsideLink.jsx'
+import ScrollToTop from './scroller.js'
 
 function App() {
   
@@ -26,7 +27,8 @@ function App() {
     {
       isAllowedRoute ? <>
         <Navbar/>
-        <Routes> 
+        <ScrollToTop/>
+        <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/about/:id' element={<About item={navList[0]}/>} />
           <Route path='/appointment/:id' element={<Appointment item={navList[1]}/>} />
