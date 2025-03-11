@@ -10,17 +10,17 @@ const NaverMap = () => {
       });
 
       // 마커 추가
-      const marker = new naver.maps.Marker({
+      new naver.maps.Marker({
         position: new naver.maps.LatLng(37.2744044, 127.0300147),
         map: map,
+        title: "홍지만신경과",
         icon: {
-          url: "/images/logo/jotmang.png",
+          url: "/images/logo/map_logo.png",
           size: new naver.maps.Size(50, 60),
           scaledSize: new naver.maps.Size(50, 60),
           origin: new naver.maps.Point(0, 0),
           anchor: new naver.maps.Point(25, 50)
         },
-        title: "홍지만신경과",
       });
     };
 
