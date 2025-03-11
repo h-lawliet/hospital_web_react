@@ -80,15 +80,10 @@ function CenterContent() {
   let [centerDataIndex, setCenterDataIndex] = useState(
     centerData[id]
   )
-  const validIds = ["0", "1", "2", "3", "4"]
 
   useEffect(()=>{
     setCenterDataIndex(centerData[id])
   }, [id])
-
-  if (!validIds.includes(id)) {
-    return <Navigate to="/404" replace />
-  }
 
   return (
     <Centercontent>

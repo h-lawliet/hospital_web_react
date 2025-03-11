@@ -69,11 +69,6 @@ function AppointmentContent() {
     setAppointmentDataIndex(appointmentData[id])
   }, [id])
 
-  const validIds = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-  if (!validIds.includes(id)) {
-    return <Navigate to="/404" replace />
-  }
-
   return (
     <Appointmentcontent>
       <div className="line-deco"/>

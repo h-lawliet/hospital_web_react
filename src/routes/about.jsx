@@ -82,10 +82,8 @@ function AboutContent() {
     return <Worktime/>
   } else if (id == 3) {
     return <Destination/>
-  } else if (id == 4) {
-    return <Facility/>
   } else {
-    return <Navigate to="/404" replace />
+    return <Facility/>
   }
 }
 
