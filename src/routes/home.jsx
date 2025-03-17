@@ -873,7 +873,7 @@ function Home() {
         <div className="line-deco"/>
         <h2>진료 안내</h2>
         <div className="home-info">
-          <div className="home-info-map"><NaverMap/></div>
+          <div className="home-info-map"><NaverMap scroll={true}/></div>
           <div className="home-info-content">
             <p className="home-info-call-above">예약 및 상담 문의</p>
             <p className="home-info-call"><img src="/images/call_icon.png" id="info-img"/>

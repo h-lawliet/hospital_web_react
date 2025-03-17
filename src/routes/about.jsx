@@ -62,7 +62,7 @@ function Destination() {
       
     </StyledDestination>
     <div style={{paddingTop: "60px"}}>
-    <NaverMap/>
+    <NaverMap scroll={false}/>
     </div>
     </>
   )
