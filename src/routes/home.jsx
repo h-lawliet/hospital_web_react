@@ -5,6 +5,7 @@ import { useState } from "react"
 import NaverMap from "../components/NaverMap"
 import { HomeMovie } from "../components/homemovie"
 import { centerData } from "../data/centerdata"
+import MySwiper from "../components/testslider"
 
 function Home() {
 
@@ -890,6 +891,7 @@ function Home() {
           </div>
         </div>
       </HomeContentFrame>
+      <MySwiper/>
     </>
   )
 }
