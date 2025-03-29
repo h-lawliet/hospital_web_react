@@ -9,6 +9,7 @@ import Admin from './routes/admin.jsx'
 import Footer from './components/footer.jsx'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'fullpage.js/dist/fullpage.css';
 import Appointment from './routes/appointment.jsx'
 import Examination from './routes/examination'
 import NotFoundPage from './routes/NotFoundPage'
@@ -22,10 +23,9 @@ function App() {
   const location = useLocation()
   const isAllowedRoute = isAllowedPath(location.pathname)
 
-  return(
-    <>
-    {
-      isAllowedRoute ? <>
+  if (isAllowedRoute === true) {
+    return (
+      <>
         <Navbar/>
         <ScrollToTop/>
         <Routes>
@@ -39,10 +39,30 @@ function App() {
         </Routes>
         <Footer/>
         <OutsideLink/>
-      </> : <NotFoundPage/>
-    }
-    </>
-  )
+      </>
+    )
+  } else if (isAllowedRoute === "Home") {
+    return (
+      <>
+        <Navbar/>
+        <ScrollToTop/>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/about/:id' element={<About item={navList[0]}/>} />
+          <Route path='/appointment/:id' element={<Appointment item={navList[1]}/>} />
+          <Route path='/center/:id' element={<Center item={navList[2]}/>} />
+          <Route path='/examination/:id' element={<Examination item={navList[3]}/>} />
+          <Route path='/community/:id/*' element={<Community item={navList[4]}/>} />
+          <Route path='/api/admin/*' element={<Admin/>}/>
+        </Routes>
+        <OutsideLink/>
+      </>
+    )
+  } else {
+    return (
+      <NotFoundPage/>
+    )
+  }
 }
 
 export default App

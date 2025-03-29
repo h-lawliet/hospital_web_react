@@ -2,7 +2,7 @@ export const isAllowedPath = (path) => {
   // "/"로 시작하는 경로를 분리하고, 빈 문자열은 제거합니다.
   const segments = path.split('/').filter(Boolean);
 
-  if (segments.length === 0) return true;
+  if (segments.length === 0) return "Home";
 
   if (segments[0] === "about") {
     return segments.length === 2 && ["0", "1", "2", "3", "4"].includes(segments[1]);
