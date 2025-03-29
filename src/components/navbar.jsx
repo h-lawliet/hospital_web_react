@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   StyledHamburger, 
@@ -148,7 +148,7 @@ const Navbar = () => {
               />
             </a>
           </div>
-          <ul className="navbar-menu">
+          <div className="navbar-menu">
             {navList.map((element, i) => (
               <li className="navbar-item" key={i}>
                 <Link to={element.detail.length === 1 ? element.link : element.link + "/0"} onClick>
@@ -167,7 +167,7 @@ const Navbar = () => {
                 )}
               </li>
             ))}
-          </ul>
+          </div>
         </StyledNavbar>
       )}
     </>

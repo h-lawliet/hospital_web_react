@@ -7,25 +7,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import "./homeslider.css";
 
-const MySwiper = () => {
+const HomeSlider = () => {
   return (
+    <>
     <Swiper
-      style={{
-        height: "300px"
-      }}
+      className='home-swiper'
       modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
       spaceBetween={20}
       slidesPerView={1}
-      navigation
+      navigation={true}
       loop={true}
       autoplay={{
-        delay: 3000,
+        delay: 4000,
         disableOnInteraction: false
       }}
-      pagination={{ clickable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
     >
       <SwiperSlide
        style={{
@@ -33,7 +30,7 @@ const MySwiper = () => {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "aqua"
-       }}
+      }}
       >Slide 1</SwiperSlide>
       <SwiperSlide
         style={{
@@ -47,7 +44,11 @@ const MySwiper = () => {
       <SwiperSlide>Slide 4</SwiperSlide>
       
     </Swiper>
+    <div className='scroll-info'>
+      <span className='scroll-info-text'>SCROLL</span>
+    </div>
+    </>
   );
 };
 
-export default MySwiper;
+export default HomeSlider

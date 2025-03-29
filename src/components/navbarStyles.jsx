@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledNavbar = styled.nav`
     display: flex;
     position: fixed;
-    width: 100wh;
+    width: 100%;
     top: 0;
     justify-content: space-between;
     align-items: center;
@@ -16,6 +16,7 @@ export const StyledNavbar = styled.nav`
     @media (max-width: 1200px) {
       padding: 0 4vw;
       justify-content: none;
+      height: 100px;
     }
 
     .navbar-logo {
@@ -25,22 +26,21 @@ export const StyledNavbar = styled.nav`
     }
 
     .navbar-menu {
-      list-style: none;
-      display: flex;
+      position: fixed;
       margin: 0;
       padding: 0;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
+      right: 10vw;
+      height: 12vh;
+      display: flex;
+      flex-direction: row;
     }
 
     .navbar-item {
-      flex: 1;
       display: flex;
       min-width: 80px;
       cursor: pointer;
       height: 100%;
-      margin: 0 0.5rem;
+      margin: 0 1.2vw;
       align-items: center;
       justify-content: center;
       font-size: calc(10px + 0.5vw);
@@ -64,6 +64,7 @@ export const StyledNavbar = styled.nav`
       top: 100%;
       list-style: none;
       padding: 0;
+      margin: 0;
       width: 270%;
       display: none;
       background-color: rgb(44, 43, 43);
@@ -100,8 +101,8 @@ export const StyledNavbar = styled.nav`
 
 export const StyledHamburger = styled.div`
   position: fixed;
-  top: 6vh;
-  right: 4vw;
+  top: 35px;
+  right: calc(4vw + 5px);
   width: 30px;
   height: 30px;
   display: flex;
@@ -109,7 +110,6 @@ export const StyledHamburger = styled.div`
   justify-content: space-between;
   cursor: pointer;
   z-index: 9999;
-  transform: translate(0, -50%);
 
   .bar {
     width: 100%;

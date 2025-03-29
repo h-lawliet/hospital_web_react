@@ -1,6 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import React from 'react';
 
-function Footer() {
+const Footer = React.forwardRef((props, ref) => {
   
   const Footer = styled.div`
     background-color: #222222;
@@ -77,7 +78,7 @@ function Footer() {
     }
   `
   return (
-    <Footer>
+    <Footer ref={ref}>
       <h3>홍지만 신경과</h3>
       <p>
         수원시 팔달구 경수대로546 (인계동)
@@ -95,6 +96,6 @@ function Footer() {
       <img className="footer-logo" src="/images/logo_white.png"/>
     </Footer>
   )
-}
+})
 
 export default Footer

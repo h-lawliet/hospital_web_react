@@ -4,6 +4,8 @@ export const isAllowedPath = (path) => {
 
   if (segments.length === 0) return "Home";
 
+  if (segments[0] === "test") return "Test";
+
   if (segments[0] === "about") {
     return segments.length === 2 && ["0", "1", "2", "3", "4"].includes(segments[1]);
   }

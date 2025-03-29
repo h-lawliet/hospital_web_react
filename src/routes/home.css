@@ -1,0 +1,19 @@
+
+
+/* 기본 섹션: 88vh */
+.section.normal {
+  height: 100%;
+  padding-top: 12vh;
+
+  @media (max-width: 1200px) {
+    padding-top: 100px;
+  }
+}
+
+.section.footer {
+  height: auto;
+}
+
+.fp-watermark {
+  display: none !important;
+}
