@@ -4,6 +4,7 @@ import 'fullpage.js/dist/fullpage.css';
 import "./home.css"
 import Footer from '../components/footer';
 import HomeSlider from '../components/homeslider1';
+import Section2 from './home/section2';
 
 const FullpageComponent = () => {
   const fullpageRef = useRef(null);
@@ -56,14 +57,25 @@ const FullpageComponent = () => {
 
   return (
     <div id="fullpage" ref={fullpageRef}>
-      <div className="section normal">
+      <div className="section fullpage-top">
         <HomeSlider/>
       </div>
-      <div className="section normal">
-        <h1>Section 2</h1>
+      <div className="section fullpage-2">
+        <div className='opacity-cover'/>
+        <div className='fullpage-in-content'>
+          <Section2/>
+        </div>
       </div>
-      <div className="section normal">
-        <h1>Section 3</h1>
+      <div className="section">
+        <div className='fullpage-in-content'>
+          <h1>Section 3</h1>
+        </div>
+      </div>
+      <div className="section">
+        <h1>Section 4</h1>
+      </div>
+      <div className="section">
+        <h1>Section 5</h1>
       </div>
       <div className="section footer">
         <Footer ref={footerRef}/>

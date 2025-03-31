@@ -24,28 +24,17 @@ const HomeSlider = () => {
         disableOnInteraction: false
       }}
     >
-      <SwiperSlide
-       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "aqua"
-      }}
-      >Slide 1</SwiperSlide>
-      <SwiperSlide
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "aqua"
-        }}
-      >Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
+      <SwiperSlide className='home-swiper-content swiper1'>Slide 1</SwiperSlide>
+      <SwiperSlide className='home-swiper-content swiper2'>Slide 2</SwiperSlide>
+      <SwiperSlide className='home-swiper-content swiper3'>Slide 3</SwiperSlide>
+      <SwiperSlide className='home-swiper-content swiper4'>Slide 4</SwiperSlide>
       
     </Swiper>
     <div className='scroll-info'>
-      <span className='scroll-info-text'>SCROLL</span>
+      <div className='scroll-info-text'>S&nbsp;C&nbsp;R&nbsp;O&nbsp;L&nbsp;L</div>
+      <div className='mouse-border'/>
+      <div className='mouse-dot'/>
+      <div class="chevron-down"/>
     </div>
     </>
   );

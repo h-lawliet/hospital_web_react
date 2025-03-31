@@ -1,12 +1,25 @@
-@keyframes scroll {
+@keyframes scroll-dot {
   0% {
-    transform: translateY(0);
+    margin-bottom: 0;
   }
   50% {
-    transform: translateY(-20px);
+    margin-bottom: -7px;
+    opacity: 0;
   }
   100% {
-    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes arrow {
+  0% { 
+    opacity: 0;
+  }
+  50% { 
+    opacity: 1;
+  }
+  100% { 
+    opacity: 0;
   }
 }
 
@@ -19,25 +32,13 @@
   }
 }
 
-.swiper-pagination {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+.home-swiper-content {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(184, 241, 219);
 }
 
-.swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background-color: #ccc;
-  border-radius: 50%;
-  opacity: 1;
-  transition: background-color 0.3s;
-}
 
 .swiper-button-next,
 .swiper-button-prev {
@@ -46,13 +47,47 @@
 
 .scroll-info {
   position: absolute;
-  bottom: 10px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 30px; 
   left: 50%;
   z-index: 1000;
   transform: translateX(-50%);
-  /* animation: scroll 1s ease-in-out infinite; */
+  opacity: 0.2;
+  /* animation: scroll 2s ease-in-out infinite; */
 }
 
 .scroll-info-text {
-  opacity: 0.3;
+  padding-bottom: 5px;
+  display: none;
+}
+
+.mouse-border {
+  width: 20px;
+  height: 36px;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.mouse-dot {
+  position: absolute;
+  width: 6px;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background-color: black;
+  bottom: 40px;
+  animation: scroll-dot 3s ease-in-out infinite;
+}
+
+.chevron-down {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-top: 2px;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  transform: rotate(45deg);
+  position: relative;
+  animation: arrow 1.5s ease-in-out infinite;
 }
