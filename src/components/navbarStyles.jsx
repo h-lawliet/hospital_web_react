@@ -8,7 +8,8 @@ export const StyledNavbar = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 0 10vw;
-    background-color: rgb(245, 241, 241);
+    background-color: rgba(255, 255, 255, 0.96);
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.4);
     height: 12vh;
     z-index: 999;
     border-bottom: none;
@@ -40,13 +41,13 @@ export const StyledNavbar = styled.nav`
       min-width: 80px;
       cursor: pointer;
       height: 100%;
-      margin: 0 1.2vw;
+      margin: 0 1vw;
       align-items: center;
       justify-content: center;
-      font-size: calc(10px + 0.5vw);
-      font-weight: 600;
+      font-size: calc(17px + 0.1vw);
+      font-weight: 500;
       position: relative;
-      color: rgb(118, 118, 118);
+      color: rgb(0, 0, 0);
     }
 
     .navbar-item > a {

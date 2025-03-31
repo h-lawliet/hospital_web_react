@@ -5,6 +5,7 @@ import "./home.css"
 import Footer from '../components/footer';
 import HomeSlider from '../components/homeslider1';
 import Section2 from './home/section2';
+import Section3 from './home/section3';
 
 const FullpageComponent = () => {
   const fullpageRef = useRef(null);
@@ -68,7 +69,7 @@ const FullpageComponent = () => {
       </div>
       <div className="section">
         <div className='fullpage-in-content'>
-          <h1>Section 3</h1>
+          <Section3/>
         </div>
       </div>
       <div className="section">
