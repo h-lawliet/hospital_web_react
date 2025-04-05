@@ -39,12 +39,6 @@
   background-color: rgb(184, 241, 219);
 }
 
-
-.swiper-button-next,
-.swiper-button-prev {
-  display: none !important;
-}
-
 .scroll-info {
   position: absolute;
   display: flex;

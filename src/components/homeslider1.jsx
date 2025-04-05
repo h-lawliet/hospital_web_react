@@ -17,7 +17,7 @@ const HomeSlider = () => {
       modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
       spaceBetween={20}
       slidesPerView={1}
-      navigation={true}
+      navigation={false}
       loop={true}
       autoplay={{
         delay: 4000,

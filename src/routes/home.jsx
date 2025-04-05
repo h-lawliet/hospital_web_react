@@ -6,6 +6,7 @@ import Footer from '../components/footer';
 import HomeSlider from '../components/homeslider1';
 import Section2 from './home/section2';
 import Section3 from './home/section3';
+import Section4 from './home/section4';
 
 const FullpageComponent = () => {
   const fullpageRef = useRef(null);
@@ -34,10 +35,12 @@ const FullpageComponent = () => {
   useEffect(() => {
     new fullpage(fullpageRef.current, {
       licenseKey: 'UA5N9-557K9-VK88I-8JVII-AYFNO',
-      scrollingSpeed: 700,
+      scrollingSpeed: 1000,
+      touchSensitivity: 100,
       autoScrolling: true,
       fitToSection: false,
       autoHeight: true,
+      fitToSectionDelay: 2300,
       afterRender: () => {
         setTimeout(() => {
           adjustFooterHeight();
@@ -73,7 +76,9 @@ const FullpageComponent = () => {
         </div>
       </div>
       <div className="section">
-        <h1>Section 4</h1>
+        <div className='fullpage-in-content'>
+          <Section4/>
+        </div>
       </div>
       <div className="section">
         <h1>Section 5</h1>

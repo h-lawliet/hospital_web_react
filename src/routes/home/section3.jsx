@@ -1,8 +1,19 @@
 import styled from "styled-components";
 import {centerData} from "../../data/centerdata.js"
 import { useNavigate } from "react-router-dom";
+import { useEffect,useRef } from "react";
 
 const ThirdSection = styled.div`
+
+  @keyframes downToUp {
+    0% {
+      transform: translateY(15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   width: 100%;
   display: flex;
   align-items: center;
@@ -18,6 +29,7 @@ const ThirdSection = styled.div`
     margin: 0;
     font-size: calc(22px + 0.1vw);
     color: rgb(0, 51, 161);
+    opacity: 0;
   }
   h2 > span {
     font-weight: 300;
@@ -25,7 +37,13 @@ const ThirdSection = styled.div`
     color: black;
   }
 
+  h2.visible {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+
   h4 {
+    opacity: 0;
     font-weight: 200;
     text-align: center;
     font-size: calc(13px + 0.1vw);
@@ -33,22 +51,38 @@ const ThirdSection = styled.div`
     margin: 13px 10px;
   }
 
+  h4.visible {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+
   .home-center-container {
     padding-top: 10px;
     display: grid;
     height: 70%;
     width: 100%;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 800px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
     grid-gap: 10px;
   }
 
   .home-center-box {
+    opacity: 0;
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
   }
 
-  .home-center-box:hover {
+  .home-center-box.visible {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    animation: downToUp 1s ease-in-out;
+  }
 
+  .home-center-box:hover {
+    
   }
     
 `
@@ -56,11 +90,37 @@ const ThirdSection = styled.div`
 function Section3() {
 
   const navigate = useNavigate()
+  const elementsRef = useRef([])
+
+  useEffect(()=>{
+    
+    const targets = elementsRef.current;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 500);
+        }
+      });
+    }, {
+      threshold: 0.01
+    });
+
+    targets.forEach((el) => el && observer.observe(el));
+
+    return () => {
+      targets.forEach((el) => el && observer.unobserve(el));
+    };
+  })
 
   return (
     <ThirdSection>
-      <h2><span>홍지만신경과</span>&nbsp;&nbsp;특화센터</h2>
-      <h4>대학병원 수준의 집중치료실과 영상실을 통합한 시스템을 갖추어, 초기 진단부터 치료까지 한 곳에서 신속하게 진행할 수 있습니다</h4>
+      <h2 ref={(el) => elementsRef.current[6] = el}><span>홍지만신경과</span>&nbsp;&nbsp;특화센터</h2>
+      <h4
+        ref={(el) => elementsRef.current[7] = el}
+      >대학병원 수준의 집중치료실과 영상실을 통합한 시스템을 갖추어, 초기 진단부터 치료까지 한 곳에서 신속하게 진행할 수 있습니다</h4>
       <div className="home-center-container">
       {
         centerData.map((e, i)=>{
@@ -74,6 +134,7 @@ function Section3() {
                 backgroundSize: "cover"
               }}
               onClick={()=>{navigate(e.path)}}
+              ref={(el) => elementsRef.current[i] = el}
             >
             
             </div>
