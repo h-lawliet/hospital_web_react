@@ -35,7 +35,7 @@ const HomeSlider = () => {
         <div className='opacity-cover-swiper'/>
         <p className='slogan'>전국 유일 모야모야 특화병원</p>
         <h2>홍지만 신경과</h2>
-        <p className='swiper-text'>최고사양 Siemens MAGNETOM Essenza 1.5T MRI</p>
+        <p className='swiper-text'>최신 SIEMENS CT/MR 영상시스템 도입</p>
       </SwiperSlide>
       <SwiperSlide className='home-swiper-content swiper3'>
       <div className='opacity-cover-swiper'/>
