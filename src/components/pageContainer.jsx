@@ -5,6 +5,12 @@ import BoxFooter from "./boxFooter";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  padding-top: 12vh;
+
+  @media (max-width: 1200px) {
+    padding-top: 100px;
+  }
 `
 const zoomIn = keyframes`
   from {
