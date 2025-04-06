@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import styled from "styled-components"
 
 const FifthSection = styled.div`
@@ -93,6 +94,12 @@ const FifthSection = styled.div`
       color: rgb(90, 90, 90);
     }
 
+    #notice {
+      padding-bottom: 6px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
     #time {
       display: inline;
       font-size: 14px;
@@ -114,8 +121,7 @@ const FifthSection = styled.div`
   @media (min-width: 600px) and (max-width: 1200px) {
     .info-img {
       flex: 1;
-      margin-top: 20px;
-      margin-bottom: 10px;
+      margin: 2vh 0;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -123,7 +129,7 @@ const FifthSection = styled.div`
 
     .info-text {
       flex: 1;
-      margin: 1vh 3vw;
+      margin: 1vh 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -135,12 +141,14 @@ const FifthSection = styled.div`
       font-size: 16px;
       font-weight: 500;
       padding-bottom: 10px;
+      padding-left: 20px;
     }
     
     .info-text-phone {
       display: flex;
       align-items: center;
       padding-bottom: 15px;
+      padding-left: 20px;
     }
     .info-text-phone > h4 {
       margin: 0;
@@ -158,6 +166,7 @@ const FifthSection = styled.div`
     .time-container {
       display: flex;
       align-items: center;
+      padding-left: 20px;
     }
 
     .info-heading {
@@ -167,6 +176,13 @@ const FifthSection = styled.div`
       padding: 3px 0;
       font-size: 14px;
       color: rgb(90, 90, 90);
+    }
+
+    #notice {
+      padding-bottom: 10px;
+      font-weight: 700;
+      padding-left: 20px;
+      font-size: 16px;
     }
 
     #time {
@@ -179,11 +195,13 @@ const FifthSection = styled.div`
       color: rgb(238, 81, 81);
       margin: 12px 0;
       font-size: 14px;
+      padding-left: 20px;
     }
 
     #location {
       font-size: 15px;
       margin: 0;
+      padding-left: 20px;
     }
   }
 
@@ -233,6 +251,13 @@ const FifthSection = styled.div`
       width: calc(25px + 0.1vw);
     }
 
+    #notice {
+      padding-bottom: 10px;
+      font-weight: 700;
+      padding-left: 35px;
+      font-size: calc(16px + 0.1vw);
+    }
+
     .time-container {
       display: flex;
       align-items: center;
@@ -271,6 +296,10 @@ const FifthSection = styled.div`
 
 
 function Section5() {
+  
+  useEffect(()=>{
+
+  }, [])
   return (
     <FifthSection>
       <div className="info-img">
@@ -282,6 +311,7 @@ function Section5() {
           <img src="/icon/call_icon.png"/>
           <h4>031-222-3317</h4>
         </div>
+        <div id="notice">외래 진료시간</div>
         <div className="time-container">
           <span className="info-heading">
             <span>평</span>
@@ -304,7 +334,7 @@ function Section5() {
           </span><span id="time">13:00 - 14:00</span>
         </div>
         
-        <p id="rest">* 일요일 · 공휴일 휴진</p>
+        <p id="rest">* 일요일 · 공휴일 휴진 (입원실은 휴무없이 운영합니다)</p>
         <p id="location">수원시 팔달구 경수대로546 (인계동)</p>
       </div>
     </FifthSection>
