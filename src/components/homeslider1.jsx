@@ -47,7 +47,7 @@ const HomeSlider = () => {
       <div className='opacity-cover-swiper'/>
         <p className='slogan'>전국 유일 모야모야 특화병원</p>
         <h2>홍지만 신경과</h2>
-        <p className='swiper-text'>무슨 말 써야될지 잘 모르겠음</p>
+        <p className='swiper-text'>최고 전문의들의 경험과 치료법으로 환자의 호전을 이뤄냅니다</p>
       </SwiperSlide>
       
     </Swiper>
