@@ -35,7 +35,7 @@ const FullpageComponent = () => {
 
   useEffect(() => {
     new fullpage(fullpageRef.current, {
-      licenseKey: 'UA5N9-557K9-VK88I-8JVII-AYFNO',
+      licenseKey: import.meta.env.VITE_FULLPAGE_KEY,
       scrollingSpeed: 700,
       touchSensitivity: 20,
       autoScrolling: true,
