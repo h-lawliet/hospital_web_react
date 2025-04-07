@@ -21,11 +21,13 @@ function Greeting() {
       font-weight: 700;
 
       @media (max-width: 600px) {
-        font-size: 16px;
+        font-size: 17px;
+        line-height: 30px;
       }
 
       @media (max-width: 1200px) and (min-width: 600px) {
-        font-size: 18px;
+        font-size: 19px;
+        line-height: 34px;
       }
 
       @media (min-width: 1200px) {
@@ -77,7 +79,7 @@ function Greeting() {
     <StyledGreeting>
       <div className="greeting-deco"/>
       <div className="greeting-title">
-        " 탁월한 전문성과 최선의 진료로 항상 여러분과 함께하는 홍지만신경과가 되겠습니다 "  
+        탁월한 전문성과 최선의 진료로 항상 여러분과 함께하는 홍지만신경과가 되겠습니다  
       </div>
       <img></img>
       <div className="greeting-content">

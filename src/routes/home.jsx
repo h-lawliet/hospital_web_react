@@ -72,7 +72,7 @@ const FullpageComponent = () => {
 
   return (
     <div id="fullpage" ref={fullpageRef}>
-      <div className="section fullpage-top">
+      <div className="section">
         <HomeSlider/>
       </div>
       <div className="section fullpage-2">
@@ -80,9 +80,7 @@ const FullpageComponent = () => {
         <Section2/>
       </div>
       <div className="section">
-        <div className='fullpage-in-content'>
-          <Section3/>
-        </div>
+        <Section3/>
       </div>
       {/* <div className="section">
         <div className='fullpage-in-content'>

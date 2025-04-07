@@ -14,15 +14,17 @@ const ThirdSection = styled.div`
     }
   }
 
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 88vh;
+  height: 100%;
+  padding: 0 10vw;
+  width: calc(100% - 20vw);
 
   @media (max-width: 1200px) {
-    height: calc(100vh - 100px);
+    padding: 0 4vw;
+    width: calc(100% - 8vw);
   }
 
   h2 {
@@ -62,11 +64,12 @@ const ThirdSection = styled.div`
     height: 70%;
     width: 100%;
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
 
     @media (max-width: 800px) {
       grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
     }
-    grid-gap: 10px;
   }
 
   .home-center-box {
@@ -113,7 +116,7 @@ function Section3() {
     return () => {
       targets.forEach((el) => el && observer.unobserve(el));
     };
-  })
+  }, [])
 
   return (
     <ThirdSection>

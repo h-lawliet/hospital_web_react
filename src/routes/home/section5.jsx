@@ -1,25 +1,24 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import styled from "styled-components"
 
 const FifthSection = styled.div`
-  padding-top: 12vh;
+
+  @keyframes downToUp {
+    0% {
+      transform: translateY(15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   padding-left: 10vw;
   padding-right: 10vw;
-  height: 88vh;
+  height: 100%;
   display: flex;
 
-  @media (max-width: 1200px) {
-    padding-top: 100px;
-    padding-left: 4vw;
-    padding-right: 4vw;
-    height: calc(100vh - 100px);
-  }
-
-  @media (max-aspect-ratio: 1) {
-    flex-direction: column;
-  }
-
   .map-img {
+    opacity: 0;
     width: 100%;
     aspect-ratio: 1.5;
     background-image: url("/images/home/map.png");
@@ -27,6 +26,7 @@ const FifthSection = styled.div`
     background-position: center center;
     background-size: cover;
   }
+
   .info-text {
     flex: 1;
     margin: 3vh 3vw;
@@ -35,6 +35,26 @@ const FifthSection = styled.div`
     justify-content: center;
     overflow: hidden;
   }
+
+  .text-container {
+    opacity: 0;
+  }
+
+  .visible {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    animation: downToUp 1s ease-in-out;
+  }
+
+  @media (max-width: 1200px) {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  @media (max-aspect-ratio: 1) {
+    flex-direction: column;
+  }
+  
 
   @media (max-width: 600px) {
 
@@ -121,7 +141,7 @@ const FifthSection = styled.div`
   @media (min-width: 600px) and (max-width: 1200px) {
     .info-img {
       flex: 1;
-      margin: 2vh 0;
+      margin: 2vh 2vw;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -129,7 +149,7 @@ const FifthSection = styled.div`
 
     .info-text {
       flex: 1;
-      margin: 1vh 0;
+      margin: 2vh 2vw;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -141,14 +161,12 @@ const FifthSection = styled.div`
       font-size: 16px;
       font-weight: 500;
       padding-bottom: 10px;
-      padding-left: 20px;
     }
     
     .info-text-phone {
       display: flex;
       align-items: center;
       padding-bottom: 15px;
-      padding-left: 20px;
     }
     .info-text-phone > h4 {
       margin: 0;
@@ -166,7 +184,6 @@ const FifthSection = styled.div`
     .time-container {
       display: flex;
       align-items: center;
-      padding-left: 20px;
     }
 
     .info-heading {
@@ -181,7 +198,6 @@ const FifthSection = styled.div`
     #notice {
       padding-bottom: 10px;
       font-weight: 700;
-      padding-left: 20px;
       font-size: 16px;
     }
 
@@ -195,21 +211,18 @@ const FifthSection = styled.div`
       color: rgb(238, 81, 81);
       margin: 12px 0;
       font-size: 14px;
-      padding-left: 20px;
     }
 
     #location {
       font-size: 15px;
       margin: 0;
-      padding-left: 20px;
     }
   }
 
   @media (min-width: 1200px) {
     .info-img {
       flex: 1;
-      margin-top: 20px;
-      margin-bottom: 10px;
+      margin: 3vh 1.5vw;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -217,7 +230,7 @@ const FifthSection = styled.div`
 
     .info-text {
       flex: 1;
-      margin: 1vh 0;
+      margin: 3vh 1.5vw;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -225,7 +238,6 @@ const FifthSection = styled.div`
     }
 
     .info-text-top {
-      padding-left: 35px;
       margin: 0;
       font-size: calc(17px + 0.1vw);
       font-weight: 500;
@@ -233,7 +245,6 @@ const FifthSection = styled.div`
     }
     
     .info-text-phone {
-      padding-left: 35px;
       display: flex;
       align-items: center;
       padding-bottom: 15px;
@@ -254,14 +265,12 @@ const FifthSection = styled.div`
     #notice {
       padding-bottom: 10px;
       font-weight: 700;
-      padding-left: 35px;
       font-size: calc(16px + 0.1vw);
     }
 
     .time-container {
       display: flex;
       align-items: center;
-      padding-left: 35px;
     }
 
     .info-heading {
@@ -280,14 +289,12 @@ const FifthSection = styled.div`
     }
 
     #rest {
-      padding-left: 35px;
       color: rgb(238, 81, 81);
       margin: 12px 0;
       font-size: calc(15px + 0.1vw);
     }
 
     #location {
-      padding-left: 35px;
       font-size: calc(16px + 0.1vw);
       margin: 0;
     }
@@ -297,45 +304,71 @@ const FifthSection = styled.div`
 
 function Section5() {
   
+  const elementsRef = useRef([])
+  
   useEffect(()=>{
+    
+    const targets = elementsRef.current;
 
-  }, [])
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 500);
+        }
+      });
+    }, {
+      threshold: 0.01
+    });
+
+    targets.forEach((el) => el && observer.observe(el));
+
+    return () => {
+      targets.forEach((el) => el && observer.unobserve(el));
+    };
+  })
+
+
   return (
     <FifthSection>
       <div className="info-img">
-        <div className="map-img"/>
+        <div className="map-img" ref={(el) => elementsRef.current[0] = el}/>
       </div>
       <div className="info-text">
-        <p className="info-text-top">예약 및 상담 문의</p>
-        <div className="info-text-phone">
-          <img src="/icon/call_icon.png"/>
-          <h4>031-222-3317</h4>
-        </div>
-        <div id="notice">외래 진료시간</div>
-        <div className="time-container">
-          <span className="info-heading">
-            <span>평</span>
-            <span>일</span>
-          </span><span id="time">09:00 - 18:00</span>
-        </div>
-        <div className="time-container">
-          <span className="info-heading">
-            <span>토</span>
-            <span>요</span>
-            <span>일</span>
-          </span><span id="time">09:00 - 13:00</span>
-        </div>
-        <div className="time-container">
-          <span className="info-heading">
-            <span>점</span>
-            <span>심</span>
-            <span>시</span>
-            <span>간</span>
-          </span><span id="time">13:00 - 14:00</span>
+        <div class="text-container" ref={(el) => elementsRef.current[1] = el}>
+          <p className="info-text-top">예약 및 상담 문의</p>
+          <div className="info-text-phone">
+            <img src="/icon/call_icon.png"/>
+            <h4>031-222-3317</h4>
+          </div>
+          <div id="notice">외래 진료시간</div>
+          <div className="time-container">
+            <span className="info-heading">
+              <span>평</span>
+              <span>일</span>
+            </span><span id="time">09:00 - 18:00</span>
+          </div>
+          <div className="time-container">
+            <span className="info-heading">
+              <span>토</span>
+              <span>요</span>
+              <span>일</span>
+            </span><span id="time">09:00 - 13:00</span>
+          </div>
+          <div className="time-container">
+            <span className="info-heading">
+              <span>점</span>
+              <span>심</span>
+              <span>시</span>
+              <span>간</span>
+            </span><span id="time">13:00 - 14:00</span>
+          </div>
+          
+          <p id="rest">* 일요일 · 공휴일 휴진 (입원실은 휴무없이 운영합니다)</p>
+          <p id="location">수원시 팔달구 경수대로546 (인계동)</p>
         </div>
         
-        <p id="rest">* 일요일 · 공휴일 휴진 (입원실은 휴무없이 운영합니다)</p>
-        <p id="location">수원시 팔달구 경수대로546 (인계동)</p>
       </div>
     </FifthSection>
   )

@@ -8,10 +8,11 @@ import Facility from "./about/facility.jsx"
 
 function Worktime() {
   return(
-    <img src="/images/worktime.png" style={{
+    <img src="/images/about/about3.png" style={{
       width: "100%",
       height: "auto",
-      paddingTop: "15vh"
+      paddingTop: "15vh",
+      paddingBottom: "15vh"
     }}/>
   )
   // 임시로 넣어둠

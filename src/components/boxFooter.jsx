@@ -25,7 +25,6 @@ function BoxFooter() {
     <Boxfooter>
       <h3>진료시간 및 연락처</h3>
       <p>
-        <img src="/images/call_icon.png" style={{width: "17px"}}/>
         Tel. 031-222-3317  
       </p>
       <span>

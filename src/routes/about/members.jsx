@@ -75,6 +75,10 @@ const Styledmembers = styled.div`
     color: rgb(115, 113, 113);
     line-height: 2em;
     margin-top: 30px;
+    padding-right: 10px;
+  }
+  li {
+    word-break: break-all;
   }
 
   & > hr {
@@ -151,30 +155,14 @@ function Members() {
       <div className="line-deco"/>
       <h2></h2>
       <div className='member-container'>
-        <motion.div
+        <div
           className='motion-member-img'
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            ease: 'easeInOut',
-            duration: 2,
-            x: { duration: 1 },
-          }}
         ><img className='member-image-1' src='/images/member_img_1.png' style={{
           width: "100%", height: "auto", borderRadius: "20px"
         }}/>
-        </motion.div>
-        <motion.div
+        </div>
+        <div
           className='motion-member-text'
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            ease: 'easeInOut',
-            duration: 2,
-            x: { duration: 1 },
-          }}
         >
         <h3 className='member-name'>홍지만</h3><span className='member-name-2'>대표원장</span>
         <div className='member-name-3'>신경과 전문의 / 뇌졸중 인증의</div>
@@ -194,9 +182,41 @@ function Members() {
           <li>대한신경초음파학회 학술이사 / 연구이사 역임</li>
           <li>現) 전자약 명품화 연구회 부회장</li>
         </ul>
-        </motion.div>
+        </div>
       </div>
       <hr/>
+      <div className='member-container'>
+        <div
+          className='motion-member-text'
+        >
+        <h3 className='member-name'>김홍남</h3><span className='member-name-2'>원장</span>
+        <div className='member-name-3'>신경과 전문의</div>
+        <ul>
+          <li>고려대학교 생명공학 학사</li>
+          <li>아주대학교 의학전문대학원 의무 석사</li>
+          <li>공중보건의 / 우정보건지소장</li>
+          <li>아주대학교 병원 인턴</li>
+          <li>아주대학교 병원 신경과 전공의</li>
+          <li>아주대학교 병원 신경과 뇌졸중 / 신경이안과 전임의</li>
+          <li>대한신경과학회</li>
+          <li>대한뇌졸중학회</li>
+          <li>대한평형의학회</li>
+          <li>대한안신경의학회</li>
+          <li>대한두통학회</li>
+          <li>급성뇌졸중 인증의</li>
+          <li>두통 전문가 과정 수료</li>
+          <li>지도 전문의 교육 이수</li>
+          <li>TPI 교육 이수</li>
+          <li>분당서울대 병원 신경이안과 파견근무</li>
+        </ul>
+        </div>
+        <div
+          className='motion-member-img'
+        ><img className='member-image-1' src='/images/member_img_1.png' style={{
+          width: "100%", height: "auto", borderRadius: "20px"
+        }}/>
+        </div>
+      </div>
     </Styledmembers>
   )
 }
