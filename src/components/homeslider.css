@@ -24,12 +24,7 @@
 }
 
 .home-swiper {
-
-  height: 88vh;
-
-  @media (max-width: 1200px) {
-    height: calc(100vh - 100px);
-  }
+  height: 100%;
 }
 
 .home-swiper-content {

@@ -25,6 +25,7 @@ const SecondSection = styled.div`
     .doctor-img-text {
       position: absolute;
       opacity: 0;
+      padding-right: 4vw;
       transition: opacity 1.2s ease-in-out;
       left: 4vw;
       top: 120px;

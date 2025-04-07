@@ -30,12 +30,20 @@ const FullpageComponent = () => {
       console.warn('Footer DOM or section.footer not ready');
     }
   }, []);
+
+  const updateFullpageHeight = useCallback(() => {
+    const height = window.innerHeight;
+    document.documentElement.style.setProperty('--custom-height', `${height}px`);
+  }, []);
   
   
 
   useEffect(() => {
+
+    updateFullpageHeight();
+
     new fullpage(fullpageRef.current, {
-      licenseKey: import.meta.env.VITE_FULLPAGE_KEY,
+      // licenseKey: import.meta.env.VITE_FULLPAGE_KEY,
       scrollingSpeed: 700,
       touchSensitivity: 20,
       autoScrolling: true,
@@ -48,16 +56,18 @@ const FullpageComponent = () => {
         }, 100);
       }
     });
-  
+    
+    window.addEventListener('resize', updateFullpageHeight);
     window.addEventListener('resize', adjustFooterHeight);
   
     return () => {
+      window.removeEventListener('resize', updateFullpageHeight);
       window.removeEventListener('resize', adjustFooterHeight);
       if (typeof fullpage_api !== 'undefined') {
         fullpage_api.destroy('all');
       }
     };
-  }, [adjustFooterHeight]);
+  }, [adjustFooterHeight, updateFullpageHeight]);
   
 
   return (
@@ -67,9 +77,7 @@ const FullpageComponent = () => {
       </div>
       <div className="section fullpage-2">
         <div className='opacity-cover'/>
-        <div className='fullpage-in-content'>
-          <Section2/>
-        </div>
+        <Section2/>
       </div>
       <div className="section">
         <div className='fullpage-in-content'>
