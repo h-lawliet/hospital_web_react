@@ -6,6 +6,7 @@ import AdminExamination from "../admin/AdminExamination.jsx"
 import AdminReserve from "../admin/AdminReserve.jsx"
 import AdminResearch from "../admin/AdminResearch.jsx"
 import api from "../api.js"
+import "./admin.css"
 
 function Admin() {
 
@@ -28,9 +29,7 @@ function Admin() {
 
 
   return(
-    <div style={{
-      margin: "30px 50px"
-    }}>
+    <div className="admin">
       <h1>홍지만신경과 관리자 페이지</h1><br/><br/>
       <div>
         <Link style={{

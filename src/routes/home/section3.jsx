@@ -83,10 +83,6 @@ const ThirdSection = styled.div`
     transition: opacity 1s ease-in-out;
     animation: downToUp 1s ease-in-out;
   }
-
-  .home-center-box:hover {
-    
-  }
     
 `
 
@@ -116,7 +112,7 @@ function Section3() {
     return () => {
       targets.forEach((el) => el && observer.unobserve(el));
     };
-  }, [])
+  }, )
 
   return (
     <ThirdSection>

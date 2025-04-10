@@ -31,7 +31,7 @@ const SecondSection = styled.div`
       top: 120px;
       z-index: 101;
       max-width: 300px;
-      text-shadow: 2px 2px 3.5px rgba(201, 197, 197, 0.5);
+      text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
     }
     .doctor-img-text.visible {
       opacity: 1;
@@ -94,7 +94,7 @@ const SecondSection = styled.div`
       top: 120px;
       z-index: 101;
       width: clamp(400px, 60%, 800px);
-      text-shadow: 2px 2px 3.5px rgba(201, 197, 197, 0.5);
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
     }
     .doctor-img-text.visible {
       opacity: 1;
@@ -149,7 +149,7 @@ const SecondSection = styled.div`
     .home-doctor-img {
       position: absolute;
       bottom: 0;
-      height: 70%;
+      height: 65%;
       right: 10vw;
       z-index: 100;
       opacity: 0;
@@ -163,8 +163,8 @@ const SecondSection = styled.div`
       left: 10vw;
       top: 120px;
       z-index: 101;
-      width: 57%;
-      text-shadow: 0 0 3.5px rgba(201, 197, 197, 0.5);
+      width: 55%;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
     }
     .doctor-img-text.visible {
       opacity: 1;

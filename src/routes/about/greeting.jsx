@@ -6,19 +6,13 @@ function Greeting() {
     width: 100%;
     position: relative;
     padding-bottom: 50px;
-
-    .greeting-deco {
-      margin-top: 70px;
-      margin-bottom: 70px;
-      height: 3px;
-      width: 60px;
-      background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
-    }
+    padding-top: 70px;
 
     .greeting-title {
       text-align: center;
       color: rgb(0, 51, 161);
       font-weight: 700;
+      padding: 0 10%;
 
       @media (max-width: 600px) {
         font-size: 17px;
@@ -77,7 +71,7 @@ function Greeting() {
 
   return (
     <StyledGreeting>
-      <div className="greeting-deco"/>
+      <div className="line-deco"/>
       <div className="greeting-title">
         탁월한 전문성과 최선의 진료로 항상 여러분과 함께하는 홍지만신경과가 되겠습니다  
       </div>
@@ -122,8 +116,8 @@ function Greeting() {
           저희만의 철학을 바탕으로 저와 직원들은 환자분들의 작은 기적을 함께 만들어 가고자 합니다. 
           환자 한 분 한 분이 다시 평범한 일상으로 돌아가는 그날까지 최선을 다하겠습니다. 
           언제든지 병원을 방문하시거나 전화로 문의 주시면 친절히 상담해 드리겠습니다.<br/>
-          감사합니다.
         </p>
+        <p>감사합니다.</p>
         <div className="greeting-end">
           신경과 전문의 &nbsp; <span id="name">홍지만</span>
           <img/>

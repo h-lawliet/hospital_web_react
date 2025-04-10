@@ -17,7 +17,7 @@ const zoomIn = keyframes`
     background-size: 100% auto;
   }
   to {
-    background-size: 120% auto;
+    background-size: 140% auto;
   }
 `
 
@@ -31,7 +31,7 @@ const PagePicture = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  animation: ${zoomIn} 1s ease-out forwards;
+  animation: ${zoomIn} 2s ease-out forwards;
 
   .pagepicture-cover {
     position: absolute;

@@ -27,31 +27,13 @@ const Styledmembers = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .member-image-1::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 25px;
-    height: 35px;
-    border-top: 2px solid rgb(67, 110, 203);
-    border-left: 2px solid rgb(67, 110, 203);
-  }
-  .member-image-1::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 25px;
-    height: 35px;
-    border-right: 2px solid rgb(67, 110, 203);
-    border-bottom: 2px solid rgb(67, 110, 203);
+    flex: 1;
   }
 
   .motion-member-text {
     display: inline-block;
     position: relative;
+    flex: 1;
   }
 
   .member-name {
@@ -92,6 +74,9 @@ const Styledmembers = styled.div`
       flex-direction: column;
       align-items: center;
     }
+    .member-container.second-container {
+      flex-direction: column-reverse;
+    }
     .line-deco {
       margin-top: 70px;
       height: 3.5px;
@@ -118,6 +103,7 @@ const Styledmembers = styled.div`
       text-align: justify;
       font-size: 14px;
       margin-top: 20px;
+      width: 100%;
     }
 
     .member-name {
@@ -185,7 +171,7 @@ function Members() {
         </div>
       </div>
       <hr/>
-      <div className='member-container'>
+      <div className='member-container second-container'>
         <div
           className='motion-member-text'
         >

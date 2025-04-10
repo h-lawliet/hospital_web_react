@@ -161,9 +161,22 @@ function Facility() {
 
     .line-deco {
       margin-top: 70px;
-      height: 3.5px;
+      margin-bottom: 30px;
+      height: 3px;
+      box-sizing: border-box;
+      display: block;
+      position: relative;
+      min-height: 3px;
+      max-height: 3px;
+      overflow: hidden;
+      align-self: flex-start;
       width: 60px;
       background: linear-gradient(to right, rgb(0, 51, 161), rgb(102, 136, 211));
+    }
+
+    h3 {
+      margin: 0;
+      margin-bottom: 20px;
     }
     .facility-floor {
       width: 100%;
@@ -266,7 +279,12 @@ function Facility() {
 
       <div className="line-deco"/>
       <h3>시설 안내</h3>
-      <p>홍지만 신경과는 각 층이 테마별로 구성되어 어쩌고 저쩌고...</p>
+      <p>저희 병원은 각 층이 특수한 목적을 지닌 테마로 구성되어 있습니다. 1층의 테마는 <strong>11호님의 산책</strong>으로, 
+      운동치료센터가 위치하고 있어 이곳을 이용하시는 분들이 마음껏 걸을 수 있도록 구성하였습니다.
+      2층의 테마는 <strong>11호님의 희망</strong>으로, <strong>대학병원 수준의 집중치료실과 영상실</strong>을 갖추고 있어, 
+      초기 진단부터 치료까지 한곳에서 신속하게 진행할 수 있습니다. 
+      그리고 3층은 <strong>11호님 을 위한 배려</strong>로, 환자분들이 휴식을 취할 수 있는 입원실과 옥상조경이 위치하고 있습니다. 
+      환자와 보호자 모두에게 편안함과 최고의 치료를 제공하도록 많은 고민을 거쳐 설계된 장소입니다.</p>
 
       <ScrollFloor>
         <div className="scroll-wrap-floor">
