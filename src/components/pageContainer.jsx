@@ -46,14 +46,13 @@ const PagePicture = styled.div`
     z-index: 3;
 
     @media (max-width: 600px) {
-      font-size: calc(15px + 3vw);
+      font-size: calc(30px + 1vw);
     }
 
-    font-size: 5vh;
+    font-size: calc(38px + 0.5vw);
     font-weight: 600;
-    // 그림자 효과 수정
     color: white;
-    text-shadow: 2px 2px 5px rgb(88, 87, 87);
+    text-shadow: 0px 0px 5px rgb(0, 0, 0);
   }
 `
 const PageContent = styled.div`

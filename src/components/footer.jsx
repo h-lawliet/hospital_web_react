@@ -90,7 +90,7 @@ const Footer = React.forwardRef((props, ref) => {
         Fax. 031.222.3317
       </p>
       <p className="copyright">
-        Copyright©2025 Dr.Hong's Special Neurology Centre.
+        Copyright©2025 Dr.Hong's Special Neurology Centre.<br/>
         Designed by H_Lawliet
       </p>
       <img className="footer-logo" src="/images/logo_white.png"/>

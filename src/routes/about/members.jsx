@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import LineDeco from '../../components/line';
 
 
 const Styledmembers = styled.div`
@@ -9,12 +10,7 @@ const Styledmembers = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-  }
-  .line-deco {
     margin-top: 70px;
-    height: 3.5px;
-    width: 60px;
-    background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
   }
   
   .motion-member-img {
@@ -77,12 +73,6 @@ const Styledmembers = styled.div`
     .member-container.second-container {
       flex-direction: column-reverse;
     }
-    .line-deco {
-      margin-top: 70px;
-      height: 3.5px;
-      width: 60px;
-      background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
-    }
     
     .motion-member-img {
       width: 80%;
@@ -138,8 +128,6 @@ const Styledmembers = styled.div`
 function Members() {
   return (
     <Styledmembers>
-      <div className="line-deco"/>
-      <h2></h2>
       <div className='member-container'>
         <div
           className='motion-member-img'

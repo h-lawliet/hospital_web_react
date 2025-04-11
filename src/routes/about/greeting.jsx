@@ -12,20 +12,16 @@ function Greeting() {
       text-align: center;
       color: rgb(0, 51, 161);
       font-weight: 700;
-      padding: 0 10%;
+      padding: 0 5%;
 
       @media (max-width: 600px) {
         font-size: 17px;
         line-height: 30px;
       }
 
-      @media (max-width: 1200px) and (min-width: 600px) {
-        font-size: 19px;
-        line-height: 34px;
-      }
-
-      @media (min-width: 1200px) {
-        font-size: calc(0.08vw + 19px);
+      @media (min-width: 600px) {
+        font-size: calc(20px + 0.1vw);
+        line-height: calc(37px + 0.1vw);
       }
     }
 
