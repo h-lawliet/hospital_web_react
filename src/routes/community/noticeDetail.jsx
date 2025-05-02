@@ -105,7 +105,15 @@ function NoticeDetail() {
         </div>
         <hr className="horizontal-line"/>
         {noticeData.imageUrls ? 
-          (noticeData.imageUrls.length !== 0 && <div className="notice-img"><img src={noticeData.imageUrls[0]}/></div>)
+          (noticeData.imageUrls.length !== 0 && <div className="notice-img">
+            {
+              noticeData.imageUrls.map((e, i)=>{
+                return (
+                  <img src={e} key={i}/>
+                )
+              })
+            }
+          </div>)
            : null
         }
         <div

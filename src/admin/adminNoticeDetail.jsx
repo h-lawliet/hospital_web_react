@@ -191,8 +191,14 @@ const AdminNoticeDetail = () => {
                 <li key={index}>{name}&nbsp;&nbsp;<span style={{
                   fontSize: "13px", color: "red", cursor: "pointer"
                 }} onClick={()=>{
-                  const filtered = imagePreviews.filter(x => x !== name)
-                  setImagePreviews(filtered)
+                  const newPreviews = [...imagePreviews]
+                  const newImages = [...images]
+
+                  newPreviews.splice(index, 1)
+                  newImages.splice(index, 1)
+
+                  setImagePreviews(newPreviews)
+                  setImages(newImages)
                 }}>삭제</span></li>
                 </>
               ))}
