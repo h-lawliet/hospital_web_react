@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 
-const Login = ({ setUser }) => {
+const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate()
+  const [user, setUser] = useState(null)
 
   const handleLogin = async (e) => {
 

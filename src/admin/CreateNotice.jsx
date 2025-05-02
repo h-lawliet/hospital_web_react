@@ -1,15 +1,35 @@
-import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import api from "../api";
 
-const CreateNotice = (props) => {
+const CreateNotice = () => {
   const navigate = useNavigate();
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
   
   const [title, setTitle] = useState(""); // 제목 상태 추가
-  const [images, setImages] = useState([]); // 업로드할 이미지 상태
+  const [images, setImages] = useState([]);
+  const [endDate, setEndDate] = useState(null);
   const [imagePreviews, setImagePreviews] = useState([]); // 이미지 파일 이름 미리보기 상태
+  const [user, setUser] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await api.get("/check", { withCredentials: true })
+        if (res.data.loggedIn) {
+          setUser(res.data.user)
+        } else {
+          setUser(null)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    checkUser()
+  }, [location])
 
   // 텍스트 포맷 적용
   const handleFormat = (command, value = null) => {
@@ -40,46 +60,51 @@ const CreateNotice = (props) => {
  
     const formData = new FormData();
     formData.append("title", title); // 제목 추가
+    formData.append("endDate", endDate);
     formData.append("content", editorRef.current.innerHTML); // 내용 추가
     images.forEach((image) => formData.append("images", image)); // 이미지 추가
-    try {
-      const response = await api.post("/notice/create", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-        withCredentials: true
-      });
-      if(response.data.state === 3) {
-        console.log(response)
-        alert(response.data.message)
-        navigate("/api/admin/login")
-      } else if(response.data.state === 2) {
-        console.log(response)
-        alert("관리자에게 문의하세요: "+response.data.message)
-        navigate("/api/admin")
-      } else if(response.data.state === 1) {
-        alert(response.data.message)
+    await api.post("/notice/create", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: true
+    }).then((res)=>{
+      if(res.data.status === 200) {
+        alert(res.data.message)
+        window.location.href = "/api/admin/notice"
+      } else if(res.data.status === 401) {
+        alert("로그인 정보가 만료되었습니다. 다시 로그인해주세요")
+        window.location.href = "/api/admin/login"
+      } else if(res.data.status === 400) {
+        alert(res.data.message)
       } else {
-        alert(response.data.message)
-        navigate("/api/admin/notice")
+        alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
       }
-    } catch (error) {
-      console.error("업로드 실패:", error);
-      alert("서버 에러. 관리자에게 문의하세요: "+error)
-    }
+    }).catch((err)=>{
+      console.log(err)
+      alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+    })
   };
 
   return (
     <>
     {
-      props.user ? <>
-      <div>
+      (user === "admin") ? <>
+        <br/><hr/><br/>
+        {/* 제목 입력 */}
+        <strong>제목</strong> (필수) : <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <br/><br/>
+
+        <strong>팝업 공지사항을 언제까지 표시할까요?</strong> (필수) :&nbsp;
+        <input type="date" value={endDate} onChange={(e)=>setEndDate(e.target.value)}/>
+        &nbsp;&lt;-- 달력 아이콘을 클릭하여 편하게 선택하실 수 있습니다
+        <br/><br/>
+
         {/* 도구 모음 */}
         <div style={{ marginBottom: "10px" }}>
-          <br/><br/><hr/>
           <button onClick={() => handleFormat("bold")}>볼드체</button>&nbsp;
           <button onClick={() => handleFormat("italic")}>이탤릭</button>&nbsp;
           <button onClick={() => handleFormat("underline")}>밑줄</button>&nbsp;
           <button onClick={() => handleFormat("insertUnorderedList")}>불렛 리스트</button>&nbsp;
-          <button onClick={() => handleFormat("insertOrderedList")}>숫자 리스트</button>&nbsp;&nbsp;
+          <button onClick={() => handleFormat("insertOrderedList")}>숫자 리스트</button>&nbsp;&nbsp;&nbsp;
           <button onClick={() => fileInputRef.current.click()}>이미지 추가</button>
         </div>
 
@@ -89,7 +114,14 @@ const CreateNotice = (props) => {
             <strong>추가된 이미지:</strong>
             <ul>
               {imagePreviews.map((name, index) => (
-                <li key={index}>{name}</li>
+                <>
+                <li key={index}>{name}&nbsp;&nbsp;<span style={{
+                  fontSize: "13px", color: "red", cursor: "pointer"
+                }} onClick={()=>{
+                  const filtered = imagePreviews.filter(x => x !== name)
+                  setImagePreviews(filtered)
+                }}>삭제</span></li>
+                </>
               ))}
             </ul>
           </div>
@@ -105,10 +137,8 @@ const CreateNotice = (props) => {
           onChange={handleFileSelect}
         />
 
-        {/* 제목 입력 */}
-        제목 : <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-
         {/* 에디터 */}
+        <br/>
         <div
           ref={editorRef}
           contentEditable
@@ -122,7 +152,6 @@ const CreateNotice = (props) => {
 
         {/* 저장 버튼 */}
         <button onClick={handleSubmit} style={{ marginTop: "10px" }}>글쓰기</button>
-      </div>
       </> : <><br/><br/><div>로그인이 필요합니다.</div></>
     }
     </>

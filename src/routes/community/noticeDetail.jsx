@@ -83,7 +83,7 @@ function NoticeDetail() {
   useEffect(()=>{
     api.get(`/notice/${subId}`)
     .then((res)=>{
-      if (res.data.state === 0) {
+      if (res.data.status === 200) {
         setNoticeData(res.data.content)
       } else {
         navigate("/404")
@@ -92,8 +92,6 @@ function NoticeDetail() {
       console.log(err)
     })
   }, [subId, location])
-
-  console.log(noticeData.imageUrls)
 
   return (
     <Noticedetail>

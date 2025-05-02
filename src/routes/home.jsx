@@ -8,6 +8,7 @@ import Section2 from './home/section2';
 import Section3 from './home/section3';
 import Section4 from './home/section4';
 import Section5 from './home/section5';
+import PopNotice from '../components/PopNotice';
 
 const FullpageComponent = () => {
   const fullpageRef = useRef(null);
@@ -43,7 +44,7 @@ const FullpageComponent = () => {
     updateFullpageHeight();
 
     new fullpage(fullpageRef.current, {
-      licenseKey: import.meta.env.VITE_FULLPAGE_KEY,
+      // licenseKey: import.meta.env.VITE_FULLPAGE_KEY,
       scrollingSpeed: 700,
       touchSensitivity: 20,
       autoScrolling: true,
@@ -72,6 +73,7 @@ const FullpageComponent = () => {
 
   return (
     <div id="fullpage" ref={fullpageRef}>
+      <PopNotice/>
       <div className="section">
         <HomeSlider/>
       </div>

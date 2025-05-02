@@ -27,7 +27,11 @@ function Notice() {
 
   useEffect(()=>{
     api.get("/notice", {withCredentials: true}).then((res)=>{
-      setNoticeList(res.data)
+      if (res.data.status === 200) {
+        setNoticeList(res.data.content)
+      } else {
+        console.log(res.data)
+      }
     }).catch((err)=>{
       console.log(err)
     })

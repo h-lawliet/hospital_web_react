@@ -12,14 +12,24 @@ function Admin() {
 
   let [user, setUser] = useState(null)
   const navigate = useNavigate()
+  const location = useLocation()
 
-  useEffect(()=>{
-    api.get("/check", {withCredentials: true}).then((res)=>{
-      if (res.data.loggedIn) setUser(res.data.user)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  }, [])
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await api.get("/check", { withCredentials: true })
+        if (res.data.loggedIn) {
+          setUser(res.data.user)
+        } else {
+          setUser(null)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    checkUser()
+  }, [location])
 
   const handleLogout = async () => {
     await api.post("/logout", {}, { withCredentials: true });
@@ -85,11 +95,11 @@ function Admin() {
           }
           </div>
         }/>
-        <Route path="notice/*" element={<AdminNotice user={user}/>}/>
-        <Route path="examination/*" element={<AdminExamination user={user}/>}/>
-        <Route path="reserve/*" element={<AdminReserve user={user}/>}/>
-        <Route path="research/*" element={<AdminResearch user={user}/>}/>
-        <Route path="login" element={<Login setUser={setUser}/>}/>
+        <Route path="notice/*" element={<AdminNotice/>}/>
+        <Route path="examination/*" element={<AdminExamination/>}/>
+        <Route path="reserve/*" element={<AdminReserve/>}/>
+        <Route path="research/*" element={<AdminResearch/>}/>
+        <Route path="login" element={<Login/>}/>
       </Routes>
     </div>
   )
