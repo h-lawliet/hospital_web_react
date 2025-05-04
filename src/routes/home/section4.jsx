@@ -1,156 +1,295 @@
-import { useState, useRef, useEffect } from "react"
-import styled from "styled-components"
+import React, { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
+/*  16 : 9(1920 × 1080) 고정 비율 영상 목록 */
 const videos = [
-  "https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/videoplayback.mp4",
-  "https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/Pixar+Lamp+Dude.mp4",
-  "https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/Galaxy+Brain+meme.mp4",
-  "https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/Send+this+to+all+your+friends.mp4"
-]
-const FourthSection = styled.div`
-  overflow: hidden;
-  box-sizing: border-box;
+  {
+    id: 1,
+    thumb: '/images/image1.jpg',
+    src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/%ED%99%8D%EC%A7%80%EB%A7%8C%EC%84%A0%EC%83%9D%EB%8B%98_%EC%9D%B8%ED%84%B0%EB%B7%B0_0418+(1080p).mp4',
+  },
+  {
+    id: 2,
+    thumb: '/images/image2.jpg',
+    src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/16_9+Aspect+ratio+video+test.mp4',
+  },
+];
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+const Section4 = () => {
+  const swiperRef = useRef(null);
+  const [playing, setPlaying] = useState(null);       // 현재 재생 중 인덱스
 
-  margin: 20px 0;
+  /* 썸네일 클릭 → 해당 슬라이드로 이동하고 재생 준비 */
+  const handleThumb = (idx) => {
+    setPlaying(idx);
+    swiperRef.current?.slideToLoop(idx);
+  };
 
-  height: calc(88vh - 40px);
+  /* 슬라이드 전환 시 모든 비디오 정지, autoplay 재개 */
+  const handleSlideChange = (sw) => {
+    document.querySelectorAll('.swiper-slide video').forEach((v) => v.pause());
+    if (sw.realIndex !== playing) setPlaying(null);
+    sw.autoplay.start();
+  };
 
-  @media (max-width: 1200px) {
-    height: calc(100vh - 140px);
-    width: 100%;
-  }
+  /* 개별 비디오 컴포넌트 (16:9 비율 가정) */
+  const VideoBox = ({ src }) => {
+    const ref = useRef(null);
 
-  .video-container {
-    flex-grow: 1;
-    width: 100%;
-    position: relative;
-  }
+    /* 비디오 로드 완료 후 자동 재생 */
+    useEffect(() => {
+      const v = ref.current;
+      if (!v) return;
 
-  .video-swiper {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+      const onReady = () => {
+        v.play().catch(() => {});
+        swiperRef.current?.autoplay.stop();
+        v.removeEventListener('loadedmetadata', onReady);
+      };
+      v.addEventListener('loadedmetadata', onReady);
+      v.load();
 
-  .video-wrapper {
-    position: relative;
-    width: calc(100% - 80px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 40px;
-  }
+      return () => {
+        v.pause();
+        v.removeEventListener('loadedmetadata', onReady);
+      };
+    }, [src]);
 
-  video {
-    width: 80%;
-    aspect-ratio: 16/9;
-  }
+    /* 종료 후 autoplay 재개 */
+    const onEnded = () => {
+      swiperRef.current?.autoplay.start();
+      setPlaying(null);
+    };
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    position: absolute !important;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100 !important;
-    color: black;
-    font-size: 24px;
-  }
+    return <Video ref={ref} src={src} controls onEnded={onEnded} />;
+  };
 
-  // .swiper-button-prev {
-  //   left: -30px;
-  // }
-
-  // .swiper-button-next {
-  //   right: -30px; /* video 오른쪽에서 30px 떨어짐 */
-  // }
-`
-
-
-function Section4() {
-  const swiperRef = useRef(null)
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!swiperRef.current || !swiperRef.current.autoplay) return
-
-        if (entry.isIntersecting) {
-          swiperRef.current.autoplay.start()
-        } else {
-          swiperRef.current.autoplay.stop()
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current)
-      }
-    }
-  }, [])
+  /* 슬라이드 렌더 */
+  const renderSlide = (v, i) => (
+    <SwiperSlide key={v.id} virtualIndex={i}>
+      <SlideBox>
+        {playing === i ? (
+          <VideoBox src={v.src} />
+        ) : (
+          <Thumb $src={v.thumb} className='thumb' onClick={() => handleThumb(i)}/>
+        )}
+      </SlideBox>
+    </SwiperSlide>
+  );
 
   return (
-    <FourthSection>
-      <div className="video-header">
-        <h2>제목?</h2>
-        <p>설명</p>
+    <Wrapper>
+      <div className='video-text'>
+        <h2>홍지만신경과 <span id='bold'>소개영상</span></h2>
       </div>
-      <div className="video-container" ref={containerRef}>
-        <Swiper
-          className='video-swiper'
-          modules={[Navigation, Scrollbar, A11y, Autoplay]}
-          spaceBetween={20}
-          slidesPerView={1}
-          navigation={true}
-          loop={true}
-          autoplay={{
-            delay: 6000,
-            disableOnInteraction: false
-          }}
-          speed={1000}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper
-          }}
-        >
-          {videos.map((e, i) => (
-            <SwiperSlide key={i} className="video-slider">
-              <div className="video-wrapper">
-                <video
-                  src={e}
-                  controls={true}
-                  onPlay={() => {
-                    swiperRef.current?.autoplay?.stop()
-                  }}
-                  onPause={() => {
-                    swiperRef.current?.autoplay?.start()
-                  }}
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </FourthSection>
-  )
-}
+      <PrevArrow />
+      <NextArrow />
 
-export default Section4
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        loop
+        autoplay={{ delay: 10000, disableOnInteraction: false }}
+        navigation={{
+          nextEl: '.arrow-next',
+          prevEl: '.arrow-prev',
+        }}
+        speed={600}
+        onSwiper={(sw) => (swiperRef.current = sw)}
+        onSlideChange={handleSlideChange}
+      >
+        {videos.map(renderSlide)}
+      </Swiper>
+    </Wrapper>
+  );
+};
+
+export default Section4;
+
+/* -------- styled‑components -------- */
+
+/* 주어진 Wrapper 유지 */
+const Wrapper = styled.div`
+  @media (min-width: 1200px) {
+    width: calc(100% - 20vw);
+    margin: 0 10vw;
+  }
+  @media (max-width: 1200px) {
+    width: calc(100% - 8vw);
+    margin: 0 4vw;
+  }
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .video-text {
+    display: none;
+    position: absolute;
+    top: 10px;
+    color: black;
+  }
+
+  @media (max-aspect-ratio: 1) {
+    .video-text {
+      display: block;
+      z-index: 30;
+    }
+
+    .video-text > h2 {
+      font-size: calc(20px + 0.1vw);
+      font-weight: 300;
+    }
+    #bold {
+      font-size: calc(22px + 0.1vw);
+      color: rgb(0, 51, 161);
+      font-weight: 700;
+    }
+  }
+
+  @media (min-aspect-ratio: 17/9) and (min-width: 1200px) {
+    .swiper {
+      width: 100%;
+      height: 100%;
+      max-width: 80vw;
+      max-height: calc(100% - 100px);
+    }
+
+    swiper-wrapper,
+    .swiper-slide {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (min-aspect-ratio: 17/9) and (max-width: 1200px) {
+    .swiper {
+      width: 100%;
+      height: 100%;
+      max-width: 92vw;
+      max-height: calc(100% - 100px);
+    }
+
+    swiper-wrapper,
+    .swiper-slide {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (max-aspect-ratio: 17/9) and (min-width: 1200px) {
+    .swiper {
+      width: 100%;
+      height: 100%;
+      max-width: 80vw;
+      max-height: calc(100% - 100px);
+    }
+
+    swiper-wrapper,
+    .swiper-slide {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  @media (max-aspect-ratio: 17/9) and (max-width: 1200px) {
+    .swiper {
+      width: 100%;
+      height: 100%;
+      max-width: 92vw;
+      max-height: calc(100% - 100px);
+    }
+
+    swiper-wrapper,
+    .swiper-slide {
+      height: 100%;
+      width: 100%;
+    }
+  }
+`;
+
+/* 16:9 박스 — flex 중앙 정렬 */
+const SlideBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  overflow: hidden;
+
+  container-type: size;
+`;
+
+const Video = styled.video`
+  width: auto;
+  height: 100%;
+  background: #fff;
+  display: block;
+
+  @container (aspect-ratio < 16 / 9) {
+    width: 100%;
+    height: auto;
+  }
+`;
+
+const Thumb = styled.div`
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-image: url(${(p) => p.$src});
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  cursor: pointer;
+`
+
+/* 화살표 공통 스타일 */
+const Arrow = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  
+
+  &::before {
+    content: '';
+    display: block;
+    width: calc(0.1vw + 20px);
+    height: calc(0.1vw + 20px);
+    border-top: 3px solid #fff;
+    border-right: 3px solid #fff;
+
+    filter: drop-shadow(0px 0px 6px rgb(0, 0, 0));
+  }
+`;
+
+/* 왼쪽 ← */
+const PrevArrow = styled(Arrow).attrs({ className: 'arrow-prev' })`
+  left: calc(0.03vw + 5px);
+
+  &::before {
+    transform: rotate(-135deg);   /* 화살표 왼쪽 방향 */
+  }
+`;
+
+/* 오른쪽 → */
+const NextArrow = styled(Arrow).attrs({ className: 'arrow-next' })`
+  right: calc(0.03vw + 5px);
+
+  &::before {
+    transform: rotate(45deg);     /* 화살표 오른쪽 방향 */
+  }
+`;
