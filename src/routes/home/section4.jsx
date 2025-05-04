@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 const videos = [
   {
     id: 1,
-    thumb: '/images/image1.jpg',
+    thumb: '/images/thumb1.png',
     src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/%ED%99%8D%EC%A7%80%EB%A7%8C%EC%84%A0%EC%83%9D%EB%8B%98_%EC%9D%B8%ED%84%B0%EB%B7%B0_0418+(1080p).mp4',
   },
   {
@@ -32,8 +32,10 @@ const Section4 = () => {
   /* 슬라이드 전환 시 모든 비디오 정지, autoplay 재개 */
   const handleSlideChange = (sw) => {
     document.querySelectorAll('.swiper-slide video').forEach((v) => v.pause());
-    if (sw.realIndex !== playing) setPlaying(null);
-    sw.autoplay.start();
+    if (sw.realIndex !== playing) {
+      setPlaying(null);
+      sw.autoplay.start();   // 재생 중이 아닐 때만 재개
+    }
   };
 
   /* 개별 비디오 컴포넌트 (16:9 비율 가정) */
@@ -65,17 +67,22 @@ const Section4 = () => {
       setPlaying(null);
     };
 
-    return <Video ref={ref} src={src} controls onEnded={onEnded} />;
+    return <Video ref={ref} src={src} playsInline controls onEnded={onEnded} />;
   };
 
   /* 슬라이드 렌더 */
   const renderSlide = (v, i) => (
     <SwiperSlide key={v.id} virtualIndex={i}>
       <SlideBox>
+        <PrevArrow />
+        <NextArrow />
         {playing === i ? (
           <VideoBox src={v.src} />
         ) : (
-          <Thumb $src={v.thumb} className='thumb' onClick={() => handleThumb(i)}/>
+          <Thumb className='thumb' onClick={() => handleThumb(i)}>
+            <img src={v.thumb} className='thumb-img'/>
+            <div className='thumb-img-btn'/>
+          </Thumb>
         )}
       </SlideBox>
     </SwiperSlide>
@@ -86,8 +93,6 @@ const Section4 = () => {
       <div className='video-text'>
         <h2>홍지만신경과 <span id='bold'>소개영상</span></h2>
       </div>
-      <PrevArrow />
-      <NextArrow />
 
       <Swiper
         modules={[Navigation, Autoplay]}
@@ -124,32 +129,25 @@ const Wrapper = styled.div`
   height: 100%;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-
+  
   .video-text {
-    display: none;
-    position: absolute;
-    top: 10px;
+    display: block;
+    z-index: 30;
     color: black;
   }
 
-  @media (max-aspect-ratio: 1) {
-    .video-text {
-      display: block;
-      z-index: 30;
-    }
-
-    .video-text > h2 {
-      font-size: calc(20px + 0.1vw);
-      font-weight: 300;
-    }
-    #bold {
-      font-size: calc(22px + 0.1vw);
-      color: rgb(0, 51, 161);
-      font-weight: 700;
-    }
+  .video-text > h2 {
+    font-size: calc(20px + 0.1vw);
+    font-weight: 300;
+  }
+  #bold {
+    font-size: calc(22px + 0.1vw);
+    color: rgb(0, 51, 161);
+    font-weight: 700;
   }
 
   @media (min-aspect-ratio: 17/9) and (min-width: 1200px) {
@@ -157,7 +155,7 @@ const Wrapper = styled.div`
       width: 100%;
       height: 100%;
       max-width: 80vw;
-      max-height: calc(100% - 100px);
+      max-height: calc(100% - 120px);
     }
 
     swiper-wrapper,
@@ -172,7 +170,7 @@ const Wrapper = styled.div`
       width: 100%;
       height: 100%;
       max-width: 92vw;
-      max-height: calc(100% - 100px);
+      max-height: calc(100% - 120px);
     }
 
     swiper-wrapper,
@@ -187,7 +185,7 @@ const Wrapper = styled.div`
       width: 100%;
       height: 100%;
       max-width: 80vw;
-      max-height: calc(100% - 100px);
+      max-height: calc(100% - 120px);
     }
 
     swiper-wrapper,
@@ -202,7 +200,7 @@ const Wrapper = styled.div`
       width: 100%;
       height: 100%;
       max-width: 92vw;
-      max-height: calc(100% - 100px);
+      max-height: calc(100% - 120px);
     }
 
     swiper-wrapper,
@@ -213,10 +211,10 @@ const Wrapper = styled.div`
   }
 `;
 
-/* 16:9 박스 — flex 중앙 정렬 */
 const SlideBox = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,25 +225,64 @@ const SlideBox = styled.div`
 `;
 
 const Video = styled.video`
-  width: auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
+  object-fit: contain;
   background: #fff;
   display: block;
+`;
+
+const Thumb = styled.div`
+
+  width: auto;
+  height: 100%;
 
   @container (aspect-ratio < 16 / 9) {
     width: 100%;
     height: auto;
   }
-`;
 
-const Thumb = styled.div`
-  width: 100%;
-  aspect-ratio: 16/9;
-  background-image: url(${(p) => p.$src});
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  cursor: pointer;
+  .thumb-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+  }
+
+  .thumb-img-btn {
+    width: 60px;
+    aspect-ratio: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: 50;
+    cursor: pointer;
+    pointer-events: none;
+  }
+
+  .thumb-img-btn::before {
+    content: '';
+    display: block;
+    border-style: solid;
+    border-width: 17px 0 17px 29.5px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 18px;
+    margin-top: 13px;
+    opacity: 0.9;
+  }
+
+  &:hover .thumb-img-btn {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.6);
+  }
 `
 
 /* 화살표 공통 스타일 */
@@ -269,10 +306,10 @@ const Arrow = styled.button`
     display: block;
     width: calc(0.1vw + 20px);
     height: calc(0.1vw + 20px);
-    border-top: 3px solid #fff;
-    border-right: 3px solid #fff;
+    border-top: 3px solid rgba(255, 255, 255, 0.5);
+    border-right: 3px solid rgba(255, 255, 255, 0.5);
 
-    filter: drop-shadow(0px 0px 6px rgb(0, 0, 0));
+    filter: drop-shadow(0px 0px 3px rgb(0, 0, 0));
   }
 `;
 
