@@ -209,11 +209,12 @@ function ExaminationContent({item}) {
         new Set(res.data.map(d => (d.room || "").trim()))
       )
       setRooms(list)
+      setSelectedMenu(0)
     }).catch((err)=>{
       console.log(err)
       alert(err + "관리자에게 문의하세요")
     })
-  }, [id, index, selectedMenu])
+  }, [id, index])
 
   if (rooms === null) return <div>Loading…</div>
 
@@ -266,7 +267,7 @@ function ExaminationContent({item}) {
             <div id="key">결과해석</div>
             <div id="value">{currentExam?.result}</div>
           </div>
-        </div> : null
+        </div> : <div>등록된 검사가 없습니다.</div>
       }
     </StyledExam>
   )

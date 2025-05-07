@@ -4,7 +4,7 @@ import api from "../api";
 
 
 
-const ExaminationDetail = ({user}) => {
+const ExaminationDetail = () => {
   let { id } = useParams()
   let navigate = useNavigate()
   const location = useLocation()
@@ -16,27 +16,51 @@ const ExaminationDetail = ({user}) => {
   let [time, setTime] = useState("")
   let [caution, setCaution] = useState("")
   let [result, setResult] = useState("")
-  let [formerImage, setFormerImage] = useState(null)
   const [imageFile, setImageFile] = useState(null)
+  const [formalImg, setFormalImg] = useState(null)
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await api.get("/check", { withCredentials: true })
+        if (res.data.loggedIn) {
+          setUser(res.data.user)
+        } else {
+          setUser(null)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    checkUser()
+  }, [location])
 
   useEffect(()=>{
-    if (user) {
-      api.get(`/examination/${id}`, {withCredentials: true}).then((res)=>{
-        setTitle(res.data.title || "")
-        setRoom(res.data.room || "")
-        setPurpose(res.data.purpose || "")
-        setMethod(res.data.method || "")
-        setTime(res.data.time || "")
-        setCaution(res.data.caution || "")
-        setResult(res.data.result || "")
-        setImageFile(res.data.image || null)
-        setFormerImage(res.data.image || null)
-      }).catch((err)=>{
-        console.log(err)
-        alert(err + "관리자에게 문의바랍니다. (010-8681-0930)")
-      })
-    }
-  }, [user, location])
+    api.get(`/examination/${id}`, {withCredentials: true}).then((res)=>{
+      if (res.data.status === 200) {
+        setTitle(res.data.content.title || "")
+        setRoom(res.data.content.room || "")
+        setPurpose(res.data.content.purpose || "")
+        setMethod(res.data.content.method || "")
+        setTime(res.data.content.time || "")
+        setCaution(res.data.content.caution || "")
+        setResult(res.data.content.result || "")
+        setImageFile(res.data.content.image || null)
+        setFormalImg(res.data.content.image || null)
+      } else if (res.data.status === 401) {
+        alert("로그인 정보가 만료되었습니다. 다시 로그인해주세요")
+        window.location.href = "/api/admin/login"
+      } else {
+        alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+      }
+    }).catch((err)=>{
+      console.log(err)
+      alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+    })
+  }, [location])
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -58,31 +82,27 @@ const ExaminationDetail = ({user}) => {
     formData.append("caution", caution)
     formData.append("result", result)
     formData.append("image", imageFile)
-    try {
-      const response = await api.put(`/examination/${id}`, formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true
-        }
-      )
-      if(response.data.state === 0) {
-        console.log(response)
-        alert(response.data.message)
-        navigate("/api/admin/examination")
-      } else if(response.data.state === 1) {
-        console.log(response)
-        alert(response.data.message)
-      } else if(response.data.state === 2) {
-        console.log(response)
-        alert(response.data.message + ": 관리자에게 문의바랍니다")
-      } else {
-        console.log(response)
-        alert(response.data.message)
+    
+    await api.put(`/examination/${id}`, formData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true
       }
-    } catch (error) {
-      console.error("업로드 실패:", error)
-      alert("서버 에러. 관리자에게 문의바랍니다: "+error)
-    }
+    ).then((res)=>{
+      if (res.data.status === 200) {
+        alert(res.data.message)
+        window.location.href = "/api/admin/examination"
+      } else if (res.data.status === 401) {
+        alert("로그인 정보가 만료되었습니다. 다시 로그인해주세요")
+        window.location.href = "/api/admin/login"
+      } else {
+        alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+        window.location.href = "/api/admin/examination"
+      }
+    }).catch((err)=>{
+      alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+      window.location.href = "/api/admin/examination"
+    })
   }
 
   return (
@@ -92,49 +112,47 @@ const ExaminationDetail = ({user}) => {
       <div>
         <br/>
         <br/>
-        <br/>
         <hr/>
-        
         {
           
-          imageFile == formerImage ? (
+          formalImg ? (
             <>
               <div>현재 이미지 : </div>
               <img 
-                src={imageFile} 
+                src={formalImg} 
                 style={{ width: "200px", height: "auto" }} 
                 alt="Examination Image" 
               />
             </>
           ) : (
-            null
+            <p>현재 이미지 없음</p>
           )
         } <br/>
-        사진(1장) : <input type="file" accept="image/*" onChange={handleImageChange}/>
-        {imageFile && <p>새 이미지 : {imageFile.name}</p>}<br/>
-        검사 제목 : <textarea type="text" name="title" value={title} onChange={(e)=>{
+        <strong>이미지를 바꾸시려면 하단의 "파일 선택" 버튼으로 새 이미지를 선택하시고 "글쓰기" 버튼을 눌러주세요.</strong><br/>
+        사진(1장) : <input style={{cursor: "pointer"}} type="file" accept="image/*" onChange={handleImageChange}/><br/><br/>
+        검사 제목 : <textarea type="text" name="title" value={title} style={{width: "100%", height: "100px"}} onChange={(e)=>{
           setTitle(e.target.value)
         }}/><br/>
-        검사실 : <textarea type="text" name="room" value={room} onChange={(e)=>{
+        검사실 : <textarea type="text" name="room" style={{width: "100%", height: "100px"}} value={room} onChange={(e)=>{
           setRoom(e.target.value)
         }}/><br/>
-        검사 목적 : <textarea type="text" name="purpose" value={purpose} onChange={(e)=>{
+        검사 목적 : <textarea type="text" name="purpose" style={{width: "100%", height: "100px"}} value={purpose} onChange={(e)=>{
           setPurpose(e.target.value)
         }}/><br/>
-        검사 방법 : <textarea type="text" name="method" value={method} onChange={(e)=>{
+        검사 방법 : <textarea type="text" name="method" style={{width: "100%", height: "100px"}} value={method} onChange={(e)=>{
           setMethod(e.target.value)
         }}/><br/>
-        소요 시간 : <textarea type="text" name="time" value={time} onChange={(e)=>{
+        소요 시간 : <textarea type="text" name="time" style={{width: "100%", height: "100px"}} value={time} onChange={(e)=>{
           setTime(e.target.value)
         }}/><br/>
-        주의사항 : <textarea type="text" name="caution" value={caution} onChange={(e)=>{
+        주의사항 : <textarea type="text" name="caution" style={{width: "100%", height: "100px"}} value={caution} onChange={(e)=>{
           setCaution(e.target.value)
         }}/><br/>
-        결과 해석 : <textarea type="text" name="result" value={result} onChange={(e)=>{
+        결과 해석 : <textarea type="text" name="result" style={{width: "100%", height: "100px"}} value={result} onChange={(e)=>{
           setResult(e.target.value)
         }}/><br/>
 
-        <button onClick={handleModify} style={{ marginTop: "10px" }}>글쓰기</button>
+        <button onClick={handleModify} style={{ marginTop: "10px", cursor: "pointer" }}>글쓰기</button>
       </div>
       </> : <><br/><br/><div>로그인이 필요합니다.</div></>
     }

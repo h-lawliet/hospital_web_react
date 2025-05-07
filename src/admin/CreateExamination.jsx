@@ -95,7 +95,7 @@ const CreateExamination = () => {
         <hr/>
         <br/>
         사진(1장) : <input type="file" accept="image/*" onChange={handleImageChange}/>
-        {imageFile && <p>{imageFile.name}</p>}<br/>
+        <br/>
         <br/>검사 제목 (필수) : <textarea type="text" name="title" value={title} onChange={(e)=>{
           setTitle(e.target.value)
         }}/><br/>
@@ -120,7 +120,7 @@ const CreateExamination = () => {
 
         <button onClick={handleSubmit} style={{ marginTop: "10px", cursor: "pointer" }}>검사 추가하기</button>
       </StyledDiv>
-      </> : <><br/><br/><div>로그인이 필요합니다.</div></>
+      </> : <p>로그인이 필요합니다.</p>
     }
     </>
     

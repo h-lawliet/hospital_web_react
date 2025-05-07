@@ -1,6 +1,7 @@
 import styled, {keyframes} from "styled-components";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import BoxFooter from "./boxFooter";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   display: flex;
@@ -144,6 +145,12 @@ const PageNavUl = styled.ul`
 function PageContainer({item, content}) {
 
   let {id} = useParams()
+  const location = useLocation()
+  const [itemDetails, setItemDetails] = useState([])
+
+  useEffect(()=>{
+    setItemDetails(item.detail)
+  }, [location])
 
   return(
     <Container>
@@ -151,7 +158,7 @@ function PageContainer({item, content}) {
         <div className="pagepicture-cover"/>
         <>
           <div className="pagepicture-text">{
-            item.detail.length === 1 ? item.detail[0] : item.detail[id]
+            itemDetails.length === 1 ? itemDetails[0] : itemDetails[id]
           }</div>
         </>
         
@@ -172,16 +179,16 @@ function PageContainer({item, content}) {
             
           </div>
           {
-            item.detail.length !== 1 &&
+            itemDetails.length !== 0 ?
             <>
               {
-                item.detail.map((e, i)=>{
+                itemDetails.map((e, i)=>{
                   return (
                     <li key={i} className={i == id ? "selected-list" : null}><Link to={`${item.link}/${i}`}>{e}</Link></li>
                   )
                 })
               }
-            </>
+            </> : null
           }
           </PageNavUl>
           <BoxFooter/>

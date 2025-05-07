@@ -65,28 +65,26 @@ const AdminExamination = () => {
                       textDecoration: "none",
                       color: "inherit"
                     }} to={`/api/admin/examination/${e._id}`}>수정하기</Link></button>&nbsp;
-                    <button onClick={()=>{
-                      if (user) {
-                        api.delete(`/examination/${e._id}`, {withCredentials: true}).then((res)=>{
-                          if (res.data.state === 0) {
-                            alert(res.data.message)
-                            setRenderer(1)
-                          } else {
-                            alert(res.data.message + ": 관리자에게 문의바랍니다")
-                          }
-                        }).catch((err)=>{
-                          console.log(err)
-                          alert(err + "관리자에게 문의바랍니다.")
-                        })
-                      } else {
-                        console.log("로그인 필요")
-                      }
+                    <button style={{cursor: "pointer"}} onClick={()=>{
+                      api.delete(`/examination/${e._id}`, {withCredentials: true}).then((res)=>{
+                        if (res.data.status === 200) {
+                          alert(res.data.message)
+                          setRenderer(1)
+                        } else if (res.data.status === 401) {
+                          alert("로그인 정보가 만료되었습니다. 다시 로그인해주세요")
+                          window.location.href = "/api/admin/login"
+                        } else {
+                          alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+                        }
+                      }).catch((err)=>{
+                        console.log(err)
+                        alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+                      })
                     }}>삭제하기</button>
                   </div>
                   )
                 })
               }
-              
             </>
           ) : (
             <p>로그인이 필요합니다.</p>
@@ -96,7 +94,7 @@ const AdminExamination = () => {
       <Route path="create" element={<CreateExamination user={user}/>}/>
       <Route path="/:id" element={<ExaminationDetail user={user}/>}/>
     </Routes>
-  );
-};
+  )
+}
 
 export default AdminExamination
