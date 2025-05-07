@@ -21,7 +21,37 @@ const videos = [
 
 const Section4 = () => {
   const swiperRef = useRef(null);
-  const [playing, setPlaying] = useState(null);       // 현재 재생 중 인덱스
+  const [playing, setPlaying] = useState(null);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+
+    const target = sectionRef.current;
+
+    if (!sectionRef.current) return;
+  
+    // 30 % 이상 화면에 들어오면 “보이는 중”으로 간주
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting && entry.intersectionRatio >= 0.3;
+  
+        if (visible) {
+          // 비디오 재생 중이 아니면 자동 재생 재개
+          if (swiperRef.current && playing === null) {
+            target.classList.add("visible");
+            swiperRef.current.autoplay.start();
+          }
+        } else {
+          swiperRef.current?.autoplay.stop();      // 일시정지
+        }
+      },
+      { threshold: 0.3 }
+    );
+  
+    io.observe(sectionRef.current);
+    return () => io.disconnect();
+  }, [playing]);
+  
 
   /* 썸네일 클릭 → 해당 슬라이드로 이동하고 재생 준비 */
   const handleThumb = (idx) => {
@@ -89,7 +119,7 @@ const Section4 = () => {
   );
 
   return (
-    <Wrapper>
+    <Wrapper ref={sectionRef}>
       <div className='video-text'>
         <h2>홍지만신경과 <span id='bold'>소개영상</span></h2>
       </div>
@@ -97,7 +127,7 @@ const Section4 = () => {
       <Swiper
         modules={[Navigation, Autoplay]}
         loop
-        autoplay={{ delay: 10000, disableOnInteraction: false }}
+        autoplay={{ delay: 7000, disableOnInteraction: false }}
         navigation={{
           nextEl: '.arrow-next',
           prevEl: '.arrow-prev',
@@ -118,6 +148,15 @@ export default Section4;
 
 /* 주어진 Wrapper 유지 */
 const Wrapper = styled.div`
+
+  opacity: 0;
+
+  &.visible {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+  }
+
+  
   @media (min-width: 1200px) {
     width: calc(100% - 20vw);
     margin: 0 10vw;
