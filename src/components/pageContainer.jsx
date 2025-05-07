@@ -139,7 +139,6 @@ const PageNavUl = styled.ul`
   }
 `
 
-// useEffect로 페이지 렌더링시 상단 이미지 확대? 효과
 // 측면 바, 상단 이미지는 내용만 다르고 동일. PageContainer에서 렌더링
 
 function PageContainer({item, content}) {

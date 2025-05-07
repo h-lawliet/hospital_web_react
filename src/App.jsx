@@ -17,6 +17,7 @@ import Community from './routes/community'
 import { isAllowedPath } from './filter'
 import { OutsideLink } from './components/outsideLink.jsx'
 import ScrollToTop from './scroller.js'
+import { useEffect } from 'react'
 
 function App() {
   

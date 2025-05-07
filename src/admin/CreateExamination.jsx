@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useRef, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import api from "../api";
 
@@ -11,8 +11,11 @@ const StyledDiv = styled.div`
   }
 `
 
-const CreateExamination = (props) => {
-  const navigate = useNavigate();
+const CreateExamination = () => {
+
+  const navigate = useNavigate()
+  const location = useLocation()
+
   let [title, setTitle] = useState("")
   let [room, setRoom] = useState("")
   let [purpose, setPurpose] = useState("")
@@ -20,7 +23,26 @@ const CreateExamination = (props) => {
   let [time, setTime] = useState("")
   let [caution, setCaution] = useState("")
   let [result, setResult] = useState("")
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState(null)
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await api.get("/check", { withCredentials: true })
+        if (res.data.loggedIn) {
+          setUser(res.data.user)
+        } else {
+          setUser(null)
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    checkUser()
+  }, [location])
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -40,48 +62,44 @@ const CreateExamination = (props) => {
     formData.append("caution", caution)
     formData.append("result", result)
     formData.append("image", imageFile)
-    try {
-      const response = await api.post("/examination/create", formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true
-        }
-      );
-      if(response.data.state === 0) {
-        console.log(response)
-        alert(response.data.message)
-        navigate("/api/admin/examination")
-      } else if(response.data.state === 1) {
-        console.log(response)
-        alert(response.data.message)
-      } else if(response.data.state === 2) {
-        console.log(response)
-        alert(response.data.message + ": 관리자에게 문의바랍니다")
-      } else {
-        console.log(response)
-        alert(response.data.message)
+    await api.post("/examination/create", formData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true
       }
-    } catch (error) {
-      console.error("업로드 실패:", error);
-      alert("서버 에러. 관리자에게 문의바랍니다: "+error)
-    }
+    ).then((res)=>{
+      if(res.data.status === 200) {
+        alert(res.data.message)
+        window.location.href = "/api/admin/examination"
+      } else if(res.data.status === 401) {
+        alert("로그인 정보가 만료되었습니다. 다시 로그인해주세요")
+        window.location.href = "/api/admin/login"
+      } else if(res.data.status === 400) {
+        alert(res.data.message)
+      } else {
+        alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+      }
+    }).catch((err)=>{
+      console.log(err)
+      alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+    })
   }
 
   return (
     <>
     {
-      props.user ? <>
+      (user === "admin") ? <>
       <StyledDiv>
         <br/>
         <br/>
-        <br/>
         <hr/>
+        <br/>
         사진(1장) : <input type="file" accept="image/*" onChange={handleImageChange}/>
         {imageFile && <p>{imageFile.name}</p>}<br/>
-        검사 제목 : <textarea type="text" name="title" value={title} onChange={(e)=>{
+        <br/>검사 제목 (필수) : <textarea type="text" name="title" value={title} onChange={(e)=>{
           setTitle(e.target.value)
         }}/><br/>
-        검사실 : <textarea type="text" name="room" value={room} onChange={(e)=>{
+        검사실 (필수) : <textarea type="text" name="room" value={room} onChange={(e)=>{
           setRoom(e.target.value)
         }}/><br/>
         검사 목적 : <textarea type="text" name="purpose" value={purpose} onChange={(e)=>{
@@ -100,7 +118,7 @@ const CreateExamination = (props) => {
           setResult(e.target.value)
         }}/><br/>
 
-        <button onClick={handleSubmit} style={{ marginTop: "10px" }}>글쓰기</button>
+        <button onClick={handleSubmit} style={{ marginTop: "10px", cursor: "pointer" }}>검사 추가하기</button>
       </StyledDiv>
       </> : <><br/><br/><div>로그인이 필요합니다.</div></>
     }

@@ -21,6 +21,14 @@ const StyledExam = styled.div`
     display: grid;
   }
 
+  .exam-img {
+    width: 100%;
+    padding-top: 20px;
+  }
+  .exam-img > img {
+    width: 100%;
+  }
+
   .exam-menu-item {
     display: flex;
     justify-content: center;
@@ -190,17 +198,30 @@ function ExaminationContent({item}) {
   let [examination, setExamination] = useState([])
   let [index, setIndex] = useState(null)
   let [selectedMenu, setSelectedMenu] = useState(0)
+  const [rooms, setRooms] = useState(null)
   let {id} = useParams()
 
   useEffect(()=>{
     setIndex(item.detail[id])
     api.get("/examination", {withCredentials: true}).then((res)=>{
       setExamination(res.data.filter(item => item.room.trim() === index))
+      const list = Array.from(
+        new Set(res.data.map(d => (d.room || "").trim()))
+      )
+      setRooms(list)
     }).catch((err)=>{
       console.log(err)
       alert(err + "관리자에게 문의하세요")
     })
   }, [id, index, selectedMenu])
+
+  if (rooms === null) return <div>Loading…</div>
+
+  if (id < 0 || id >= rooms.length) {
+    return <Navigate to="/404" replace />
+  }
+
+  const currentExam = examination[selectedMenu]
 
   return(
     <StyledExam>
@@ -221,29 +242,29 @@ function ExaminationContent({item}) {
       }
       </div>
       <div className="exam-img">
-
+        <img src={currentExam?.image ?? ""}/>
       </div>
       {
         examination.length !== 0 ? <div className="exam-content">
           <div className="exam-content-item">
             <div id="key">검사목적</div>
-            <div id="value">{examination[selectedMenu].purpose}</div>
+            <div id="value">{currentExam?.purpose ?? ""}</div>
           </div>
           <div className="exam-content-item">
             <div id="key">검사방법</div>
-            <div id="value">{examination[selectedMenu].method}</div>
+            <div id="value">{currentExam?.method}</div>
           </div>
           <div className="exam-content-item">
             <div id="key">소요시간</div>
-            <div id="value">{examination[selectedMenu].time}</div>
+            <div id="value">{currentExam?.time}</div>
           </div>
           <div className="exam-content-item">
             <div id="key">주의사항</div>
-            <div id="value">{examination[selectedMenu].caution}</div>
+            <div id="value">{currentExam?.caution}</div>
           </div>
           <div className="exam-content-item">
             <div id="key">결과해석</div>
-            <div id="value">{examination[selectedMenu].result}</div>
+            <div id="value">{currentExam?.result}</div>
           </div>
         </div> : null
       }

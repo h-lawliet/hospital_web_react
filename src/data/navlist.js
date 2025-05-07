@@ -1,8 +1,14 @@
-// 페이지 구조 관련 변수
-/*
-각 목차와 목차별
-이름, 링크, 페이지 상단 이미지, 하위목차
-*/
+import api from "../api"
+
+let examinations = []
+
+api.get("/examination", {withCredentials: true}).then((res)=>{
+  const rooms = Array.from(
+    new Set(res.data.map(doc => (doc.room || "").trim()))
+  )
+  examinations.push(...rooms)
+}).catch((err)=>{console.log(err)})
+
 
 export const navList = [
   {
@@ -26,7 +32,7 @@ export const navList = [
   {
     name: "검사항목",
     link: "/examination",
-    detail: ["뇌혈류생리검사실", "자율신경검사실", "어지럼검사실", "말초신경검사실", "뇌파검사실", "신경심리검사실", "운동분석치료실", "영상의학실"],
+    detail: examinations,
     topImg: "/images/image1.jpg"
   },
   {

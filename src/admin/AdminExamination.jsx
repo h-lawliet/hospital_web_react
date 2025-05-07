@@ -4,23 +4,40 @@ import api from "../api"
 import CreateExamination from "./CreateExamination";
 import ExaminationDetail from "./examinationDetail";
 
-const AdminExamination = ({ user }) => {
+const AdminExamination = () => {
 
   const location = useLocation()
   
   let [renderer, setRenderer] = useState(0)
   let [examinationList, setExaminationList] = useState([])
 
-  useEffect(()=>{
-    if (user) {
-      api.get("/examination", {withCredentials: true}).then((res)=>{
-        setExaminationList(res.data.reverse())
-        setRenderer(0)
-      }).catch((err)=>{
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await api.get("/check", { withCredentials: true })
+        if (res.data.loggedIn) {
+          setUser(res.data.user)
+        } else {
+          setUser(null)
+        }
+      } catch (err) {
         console.log(err)
-        alert(err + "관리자에게 문의바랍니다.")
-      })
+      }
     }
+
+    checkUser()
+  }, [location])
+
+  useEffect(()=>{
+    api.get("/examination", {withCredentials: true}).then((res)=>{
+      setExaminationList(res.data.reverse())
+      setRenderer(0)
+    }).catch((err)=>{
+      console.log(err)
+      alert("서버 또는 네트워크 에러 : 관리자에게 문의바랍니다.")
+    })
   }, [user, location, renderer])
 
   return (
@@ -31,7 +48,7 @@ const AdminExamination = ({ user }) => {
           <br/>
           <hr/>
           <h2>검사항목 관리 페이지</h2>
-          {user ? (
+          {(user === "admin") ? (
             <>
               <button><Link style={{
                 textDecoration: "none",

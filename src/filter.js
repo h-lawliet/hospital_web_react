@@ -1,4 +1,7 @@
+import api from "./api";
+
 export const isAllowedPath = (path) => {
+
   // "/"로 시작하는 경로를 분리하고, 빈 문자열은 제거합니다.
   const segments = path.split('/').filter(Boolean);
 
@@ -19,7 +22,7 @@ export const isAllowedPath = (path) => {
   }
 
   if (segments[0] === "examination") {
-    return segments.length === 2 && ["0", "1", "2", "3", "4", "5", "6", "7"].includes(segments[1]);
+    return segments.length === 2 && /^\d+$/.test(segments[1]);
   }
 
   if (segments[0] === "community") {
