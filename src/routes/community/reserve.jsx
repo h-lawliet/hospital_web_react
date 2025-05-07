@@ -144,35 +144,31 @@ function Reserve() {
 
 
   const handleSubmit = async () => {
- 
-    try {
-      const response = await api.post("/reserve/create", 
-        {
-          name, phone, content
-        },
-        {
-          headers: { "Content-Type": "application/json" }, // JSON 방식으로 전송
-          withCredentials: true,
-        }
-      )
-      if(response.data.state === 0) {
-        console.log(response)
-        alert(response.data.message)
+
+    await api.post("/reserve/create", 
+      {
+        name, phone, content
+      },
+      {
+        headers: { "Content-Type": "application/json" }, // JSON 방식으로 전송
+        withCredentials: true,
+      }
+    ).then((res)=>{
+      if (res.data.status === 200) {
+        alert(res.data.message)
         setContent("")
         setPhone("")
         setName("")
         setIsAlert(false)
-      } else if(response.data.state === 1) {
-        console.log(response)
-        alert(response.data.message)
+      } else if (res.data.status === 400) {
+        alert("모든 항목을 입력해주세요")
       } else {
-        console.log(response)
-        alert(response.data.message + ": 관리자에게 문의하세요")
+        alert("서버 또는 네트워크 에러 : 예약에 실패하였습니다")
       }
-    } catch (error) {
-      console.error("업로드 실패:", error);
-      alert("서버 에러. 관리자에게 문의하세요: "+error)
-    }
+    }).catch((err)=>{
+      console.log(err)
+      alert("서버 또는 네트워크 에러 : 예약에 실패하였습니다")
+    })
   }
 
 
