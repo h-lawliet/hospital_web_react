@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   StyledHamburger, 
   StyledNavbar, 
@@ -10,7 +10,7 @@ import {
   SubMenuItem,
   SidebarArrow
 } from "./navbarStyles.jsx";
-import { navList } from "../data/navlist.js";
+import { navList, fetchExaminationRooms } from "../data/navlist.js";
 
 // SidebarItem 컴포넌트는 부모에서 전달받은 openSubMenu 상태를 사용합니다.
 const SidebarItem = ({ item, index, openSubMenu, setOpenSubMenu }) => {
@@ -56,8 +56,14 @@ const SidebarItem = ({ item, index, openSubMenu, setOpenSubMenu }) => {
 const Navbar = () => {
   const [isSmall, setIsSmall] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [_, forceRender] = useState({})
+  const location = useLocation()
   // openSubMenu 상태를 통해 현재 열려있는 메뉴의 인덱스를 관리합니다.
   const [openSubMenu, setOpenSubMenu] = useState(null);
+
+  useEffect(() => {
+    fetchExaminationRooms(forceRender)
+  }, [])
   
   const toggleMenu = () => {
     setIsOpen(!isOpen);

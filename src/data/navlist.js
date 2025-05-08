@@ -1,15 +1,5 @@
 import api from "../api"
 
-let examinations = []
-
-api.get("/examination", {withCredentials: true}).then((res)=>{
-  const rooms = Array.from(
-    new Set(res.data.map(doc => (doc.room || "").trim()))
-  )
-  examinations.push(...rooms)
-}).catch((err)=>{console.log(err)})
-
-
 export const navList = [
   {
     name: "본원소개",
@@ -32,7 +22,7 @@ export const navList = [
   {
     name: "검사항목",
     link: "/examination",
-    detail: examinations,
+    detail: [],
     topImg: "/images/image1.jpg"
   },
   {
@@ -42,3 +32,27 @@ export const navList = [
     topImg: "/images/image1.jpg"
   },
 ]
+
+let fetched = false
+let cachedRooms = null      // ⭐ rooms 캐시
+
+export function fetchExaminationRooms(cb = () => {}) {
+  /* 이미 받아 둔 경우 즉시 콜백 */
+  if (fetched && cachedRooms) {
+    cb(cachedRooms)
+    return
+  }
+
+  /* 최초 호출 ― API 요청 */
+  api.get("/examination", { withCredentials: true })
+    .then(res => {
+      const rooms = Array.from(
+        new Set((res.data || []).map(d => (d.room || "").trim()))
+      )
+      navList[3].detail = rooms
+      cachedRooms = rooms          // 💾 캐싱
+      fetched = true
+      cb(rooms)                    // 최초 호출자에게 전달
+    })
+    .catch(console.error)
+}

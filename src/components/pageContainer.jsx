@@ -2,6 +2,7 @@ import styled, {keyframes} from "styled-components";
 import { useParams, Link, useLocation } from "react-router-dom";
 import BoxFooter from "./boxFooter";
 import { useEffect, useState } from "react";
+import { fetchExaminationRooms } from "../data/navlist";
 
 const Container = styled.div`
   display: flex;
@@ -146,11 +147,16 @@ function PageContainer({item, content}) {
 
   let {id} = useParams()
   const location = useLocation()
-  const [itemDetails, setItemDetails] = useState([])
+  const [_, forceRender] = useState({})
+  const [itemDetails, setItemDetails] = useState(item.detail)
 
   useEffect(()=>{
+    fetchExaminationRooms((rooms) => {setItemDetails([...rooms])})
+  }, [])
+
+  useEffect(() => {
     setItemDetails(item.detail)
-  }, [location])
+  }, [item.detail])
 
   return(
     <Container>
@@ -188,7 +194,7 @@ function PageContainer({item, content}) {
                   )
                 })
               }
-            </> : null
+            </> : <p>빈배열</p>
           }
           </PageNavUl>
           <BoxFooter/>

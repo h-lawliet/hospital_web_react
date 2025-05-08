@@ -3,6 +3,7 @@ import styled from "styled-components"
 import PageContainer from "../components/pageContainer.jsx"
 import { useEffect, useState } from "react"
 import api from "../api.js"
+import { fetchExaminationRooms } from "../data/navlist.js"
 
 
 const StyledExam = styled.div`
@@ -198,38 +199,41 @@ function ExaminationContent({item}) {
   let [examination, setExamination] = useState([])
   let [index, setIndex] = useState(null)
   let [selectedMenu, setSelectedMenu] = useState(0)
-  const [rooms, setRooms] = useState(null)
+  const [rooms, setRooms] = useState([])
   let {id} = useParams()
 
-  useEffect(()=>{
-    setIndex(item.detail[id])
-    api.get("/examination", {withCredentials: true}).then((res)=>{
-      setExamination(res.data.filter(item => item.room.trim() === index))
-      const list = Array.from(
-        new Set(res.data.map(d => (d.room || "").trim()))
-      )
-      setRooms(list)
-      setSelectedMenu(0)
-    }).catch((err)=>{
-      console.log(err)
-      alert(err + "관리자에게 문의하세요")
+  useEffect(() => {
+    fetchExaminationRooms((arr) => {       // rooms 배열을 그대로 전달받음
+      setRooms(arr)                        // → state 교체 → 리렌더
     })
-  }, [id, index])
+  }, [])
 
-  if (rooms === null) return <div>Loading…</div>
+  useEffect(() => {
+    if (rooms.length === 0) return           // 아직 rooms 없음
+    const roomName = rooms[id]               // 현재 탭의 룸 이름
+    if (!roomName) return                    // id 범위 밖
 
-  if (id < 0 || id >= rooms.length) {
-    return <Navigate to="/404" replace />
-  }
+    api.get("/examination", { withCredentials: true })
+       .then(res => {
+         const list = res.data.filter(d => d.room.trim() === roomName)
+         setExamination(list)
+         setSelectedMenu(0)                  // 메뉴 처음으로 초기화
+       })
+       .catch(console.error)
+  }, [rooms, id])
+
+  if (rooms.length === 0) return <div>Loading…</div>
+  if (id < 0 || id >= rooms.length) return <Navigate to="/404" replace />
 
   const currentExam = examination[selectedMenu]
+  const roomTitle   = rooms[id]
 
   return(
     <StyledExam>
       <div className="line-deco"/>
       {examination.length > 1 ? 
-        <h3><span className="heading-title">{item.detail[id]}</span>에서 진행하는 검사들입니다</h3> : 
-        <h3><span className="heading-title">{item.detail[id]}</span>에서 진행하는 검사입니다</h3>
+        <h3><span className="heading-title">{roomTitle}</span>에서 진행하는 검사들입니다</h3> : 
+        <h3><span className="heading-title">{roomTitle}</span>에서 진행하는 검사입니다</h3>
       }
       <div className="exam-menu">
       {

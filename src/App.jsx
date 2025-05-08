@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from './components/navbar.jsx'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { navList } from './data/navlist'
+import { fetchExaminationRooms, navList } from './data/navlist'
 import Home from './routes/home.jsx'
 import About from './routes/about.jsx'
 import Center from './routes/center.jsx'
@@ -23,6 +23,10 @@ function App() {
   
   const location = useLocation()
   const isAllowedRoute = isAllowedPath(location.pathname)
+
+  // useEffect(()=>{
+  //   fetchExaminationRooms()
+  // }, [location])
 
   if (isAllowedRoute === true) {
     return (
