@@ -147,16 +147,14 @@ function PageContainer({item, content}) {
 
   let {id} = useParams()
   const location = useLocation()
-  const [_, forceRender] = useState({})
   const [itemDetails, setItemDetails] = useState(item.detail)
 
   useEffect(()=>{
-    fetchExaminationRooms((rooms) => {setItemDetails([...rooms])})
-  }, [])
-
-  useEffect(() => {
-    setItemDetails(item.detail)
-  }, [item.detail])
+    if (item.link !== "/examination") return
+    fetchExaminationRooms((rooms) => {
+      setItemDetails([...rooms])
+    })
+  }, [item.link])
 
   return(
     <Container>

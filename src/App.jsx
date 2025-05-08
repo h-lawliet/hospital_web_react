@@ -17,16 +17,11 @@ import Community from './routes/community'
 import { isAllowedPath } from './filter'
 import { OutsideLink } from './components/outsideLink.jsx'
 import ScrollToTop from './scroller.js'
-import { useEffect } from 'react'
 
 function App() {
   
   const location = useLocation()
   const isAllowedRoute = isAllowedPath(location.pathname)
-
-  // useEffect(()=>{
-  //   fetchExaminationRooms()
-  // }, [location])
 
   if (isAllowedRoute === true) {
     return (
