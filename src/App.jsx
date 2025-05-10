@@ -19,6 +19,7 @@ import { OutsideLink } from './components/outsideLink.jsx'
 import ScrollToTop from './scroller.js'
 import PatientRights from './routes/patientRights.jsx'
 import PrivacyPolicy from './routes/privatePolicy.jsx'
+import Expenses from './routes/expenses.jsx'
 
 function App() {
   
@@ -40,6 +41,7 @@ function App() {
           <Route path='/api/admin/*' element={<Admin/>}/>
           <Route path='/patient-rights' element={<PatientRights/>}/>
           <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
+          <Route path='/expenses' element={<Expenses/>}/>
         </Routes>
         <Footer/>
         <OutsideLink/>

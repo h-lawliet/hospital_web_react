@@ -115,6 +115,7 @@ const Footer = React.forwardRef((props, ref) => {
         Designed by noryangjinLab
       </p>
       <p className="policy"><span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/privacy-policy"}>개인정보처리방침</span>&nbsp;&nbsp;|&nbsp;&nbsp; 
+      <span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/expenses"}>비급여항목</span>&nbsp;&nbsp;|&nbsp;&nbsp;
       <span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/patient-rights"}>환자권리장전</span></p>
       <img className="footer-logo" src="/images/logo_white.png"/>
     </Footer>
