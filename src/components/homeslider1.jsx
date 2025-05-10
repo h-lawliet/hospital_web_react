@@ -27,7 +27,7 @@ const HomeSlider = () => {
         <div className='opacity-cover-swiper'/>
         <p className='slogan'>전국 유일 모야모야 특화병원</p>
         <h2>홍지만 신경과</h2>
-        <p className='swiper-text'>23년 경력 아주대학교 신경과 교수 출신 대표원장</p>
+        <p className='swiper-text'>23년 경력 아주대학교 신경과 교수 역임 대표원장</p>
       </SwiperSlide>
       <SwiperSlide className='home-swiper-content swiper2'>
         <div className='opacity-cover-swiper'/>
