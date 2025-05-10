@@ -51,7 +51,7 @@ const AdminNotice = () => {
           <h2>공지사항 관리 페이지</h2>
           {(user === "admin") ? (
             <>
-              <button><Link style={{
+              <button style={{cursor: "pointer"}}><Link style={{
                 textDecoration: "none",
                 color: "inherit"
               }} to="/api/admin/notice/create">공지사항 추가</Link></button><br/><br/><hr/>
@@ -64,11 +64,11 @@ const AdminNotice = () => {
                   return(
                   <div key={i}>
                     <br/><span>{e.title}</span>&nbsp;
-                    <button><Link style={{
+                    <button style={{cursor: "pointer"}}><Link style={{
                       textDecoration: "none",
                       color: "inherit"
                     }} to={`/api/admin/notice/${e._id}`}>수정하기</Link></button>&nbsp;
-                    <button onClick={()=>{
+                    <button style={{cursor: "pointer"}} onClick={()=>{
                       api.delete(`/notice/${e._id}`, {withCredentials: true}).then((res)=>{
                         if (res.data.status === 200) {
                           alert(res.data.message)

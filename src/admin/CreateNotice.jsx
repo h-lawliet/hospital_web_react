@@ -95,17 +95,17 @@ const CreateNotice = () => {
 
         <strong>팝업 공지사항을 언제까지 표시할까요?</strong> (필수) :&nbsp;
         <input type="date" value={endDate} onChange={(e)=>setEndDate(e.target.value)}/>
-        &nbsp;&lt;-- 달력 아이콘을 클릭하여 편하게 선택하실 수 있습니다
+        &nbsp;&lt;-- 달력 아이콘을 클릭하여 편하게 선택하실 수 있습니다. 팝업으로 표시되자 않을 일반 공지사항은 날짜를 오늘 이전으로 맞춰주시면 됩니다.
         <br/><br/>
 
         {/* 도구 모음 */}
         <div style={{ marginBottom: "10px" }}>
-          <button onClick={() => handleFormat("bold")}>볼드체</button>&nbsp;
-          <button onClick={() => handleFormat("italic")}>이탤릭</button>&nbsp;
-          <button onClick={() => handleFormat("underline")}>밑줄</button>&nbsp;
-          <button onClick={() => handleFormat("insertUnorderedList")}>불렛 리스트</button>&nbsp;
-          <button onClick={() => handleFormat("insertOrderedList")}>숫자 리스트</button>&nbsp;&nbsp;&nbsp;
-          <button onClick={() => fileInputRef.current.click()}>이미지 추가</button>
+          <button style={{cursor: "pointer"}} onClick={() => handleFormat("bold")}>볼드체</button>&nbsp;
+          <button style={{cursor: "pointer"}} onClick={() => handleFormat("italic")}>이탤릭</button>&nbsp;
+          <button style={{cursor: "pointer"}} onClick={() => handleFormat("underline")}>밑줄</button>&nbsp;
+          <button style={{cursor: "pointer"}} onClick={() => handleFormat("insertUnorderedList")}>불렛 리스트</button>&nbsp;
+          <button style={{cursor: "pointer"}} onClick={() => handleFormat("insertOrderedList")}>숫자 리스트</button>&nbsp;&nbsp;&nbsp;
+          <button style={{cursor: "pointer"}} onClick={() => fileInputRef.current.click()}>이미지 추가</button>
         </div>
 
         {/* 이미지 미리보기 */}
@@ -151,7 +151,7 @@ const CreateNotice = () => {
         ></div>
 
         {/* 저장 버튼 */}
-        <button onClick={handleSubmit} style={{ marginTop: "10px" }}>글쓰기</button>
+        <button onClick={handleSubmit} style={{ marginTop: "10px", cursor: "pointer" }}>글쓰기</button>
       </> : <><br/><br/><div>로그인이 필요합니다.</div></>
     }
     </>

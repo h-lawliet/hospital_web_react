@@ -8,15 +8,36 @@ const Boxfooter = styled.div`
     margin: 0;
     padding-left: 15px;
     padding-top: 15px;
-    color: rgb(91, 90, 90);
-    font-size: 1em;
+    padding-bottom: 20px;
+    color: rgb(83, 83, 83);
+    font-size: calc(17px + 0.05vw);
   }
-  & > p {
-    display: flex;
-    align-items: center;
-    color: rgb(124, 122, 122);
+  .tel {
+    color: rgb(110, 110, 110);
     padding-left: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 0;
     font-size: 15px;
+  }
+  .tel.last {
+    padding-bottom: 15px;
+  }
+
+  .time {
+    color: rgb(110, 110, 110);
+    padding-left: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .rest {
+    font-size: 14px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    color: rgb(193, 98, 98);
   }
 `
 
@@ -24,12 +45,24 @@ function BoxFooter() {
   return (
     <Boxfooter>
       <h3>진료시간 및 연락처</h3>
-      <p>
+      <p className="tel">
         Tel. 031-222-3317  
       </p>
-      <span>
-
-      </span>
+      <p className="tel last">
+        Fax. 031-221-3318  
+      </p>
+      <p className="time">
+        평일 : 09:00 - 16:00
+      </p>
+      <p className="time">
+        토요일 : 09:00 - 13:00
+      </p>
+      <p className="time">
+        점심시간 : 13:00 - 14:00
+      </p>
+      <p className="rest">
+        일요일 · 공휴일은 휴진입니다
+      </p>
     </Boxfooter>
   )
 }

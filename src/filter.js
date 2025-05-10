@@ -7,8 +7,6 @@ export const isAllowedPath = (path) => {
 
   if (segments.length === 0) return "Home";
 
-  if (segments[0] === "test") return "Test";
-
   if (segments[0] === "about") {
     return segments.length === 2 && ["0", "1", "2", "3", "4"].includes(segments[1]);
   }
@@ -29,6 +27,10 @@ export const isAllowedPath = (path) => {
 
     if (segments.length === 2 && ["0", "1", "2"].includes(segments[1])) return true
     if (segments.length === 3 && segments[1] == 2) return true
+  }
+
+  if (segments[0] === "privacy-policy") {
+    return (segments.length === 1);
   }
 
   // /api/admin/...

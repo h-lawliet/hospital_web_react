@@ -64,7 +64,7 @@ function AdminResearch() {
           <h2>논문(연구활동) 관리 페이지</h2>
           {(user === "admin") ? (
             <>
-            <button onClick={()=>{navigate("/api/admin/research/create")}}>논문 추가하기</button><br/><br/>
+            <button style={{cursor: "pointer"}} onClick={()=>{navigate("/api/admin/research/create")}}>논문 추가하기</button><br/><br/>
             <hr/>
             <div style={{display: "flex", alignItems: "center", height: "50px"}}>
             {
@@ -82,7 +82,7 @@ function AdminResearch() {
               filtered.map((e, i)=>{
                 return (
                   <div style={{paddingBottom: "25px"}}>{i+1}. {e.title}<br/>
-                    <button><Link style={{
+                    <button style={{cursor: "pointer"}}><Link style={{
                       textDecoration: "none",
                       color: "inherit"
                     }} to={`/api/admin/research/${e._id}`}>수정하기</Link></button>&nbsp;
@@ -110,8 +110,8 @@ function AdminResearch() {
           }
         </div>
       }/>
-      <Route path="create" element={<CreateResearch user={user}/>}/>
-      <Route path="/:id" element={<ResearchDetail user={user}/>}/>
+      <Route path="create" element={<CreateResearch/>}/>
+      <Route path="/:id" element={<ResearchDetail/>}/>
     </Routes>
   )
 }

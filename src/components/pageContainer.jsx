@@ -118,9 +118,9 @@ const PageNavUl = styled.ul`
     height: 50px;
     line-height: 50px;
     font-weight: 400;
-    color: rgb(132, 130, 130);
+    color: rgb(37, 37, 37);
     padding-left: 15px;
-    font-size: 14px;
+    font-size: 15px;
   }
   & > li:not(:last-of-type) {
     border-bottom: 1px solid rgb(236, 227, 227);
@@ -175,7 +175,7 @@ function PageContainer({item, content}) {
               <div style={{
                 display: "inline-block",
                 paddingBottom: "8px",
-                fontSize: "20px",
+                fontSize: "22px",
                 fontWeight: 700
               }}>{item.name}</div>
               <img src="/images/pagenav_logo.png" style={{width: "94%"}}/>

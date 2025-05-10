@@ -160,6 +160,7 @@ function Reserve() {
         setPhone("")
         setName("")
         setIsAlert(false)
+        window.scrollTo(0, 0)
       } else if (res.data.status === 400) {
         alert("모든 항목을 입력해주세요")
       } else {
