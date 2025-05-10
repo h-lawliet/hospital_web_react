@@ -112,7 +112,7 @@ const Footer = React.forwardRef((props, ref) => {
       </p>
       <p className="copyright">
         Copyright©2025 Dr.Hong's Special Neurology Centre.<br/>
-        Designed by noryanjinLab
+        Designed by noryangjinLab
       </p>
       <p className="policy"><span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/privacy-policy"}>개인정보처리방침</span>&nbsp;&nbsp;|&nbsp;&nbsp; 
       <span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/patient-rights"}>환자권리장전</span></p>
