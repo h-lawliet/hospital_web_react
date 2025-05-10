@@ -39,7 +39,7 @@ function App() {
           <Route path='/community/:id/*' element={<Community item={navList[4]}/>} />
           <Route path='/api/admin/*' element={<Admin/>}/>
           <Route path='/patient-rights' element={<PatientRights/>}/>
-          <Route path='privacy-policy' element={<PrivacyPolicy/>}/>
+          <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
         </Routes>
         <Footer/>
         <OutsideLink/>
