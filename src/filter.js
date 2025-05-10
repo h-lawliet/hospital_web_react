@@ -33,6 +33,10 @@ export const isAllowedPath = (path) => {
     return (segments.length === 1);
   }
 
+  if (segments[0] === "patient-rights") {
+    return (segments.length === 1);
+  }
+
   // /api/admin/...
   if (segments[0] === "api" && segments[1] === "admin") {
     if (segments.length === 2) return true;

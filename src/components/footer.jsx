@@ -6,6 +6,7 @@ const Footer = React.forwardRef((props, ref) => {
   const Footer = styled.div`
     background-color: #222222;
     color: #EEEEEE;
+    position: relative;
 
     & > h3 {
       padding-bottom: 20px;
@@ -36,10 +37,16 @@ const Footer = React.forwardRef((props, ref) => {
     }
 
     @media (min-width: 1200px) {
-      padding: 2vh 10vw;
+      padding: 10px 10vw;
+
+      .policy {
+        position: absolute;
+        right: 10vw;
+        top: 74px;
+      }
     }
     @media (min-width: 600px) and (max-width: 1200px) {
-      padding: 1.5vh 4vw;
+      padding: 10px 4vw;
       & > h3 {
         font-size: 18px;
       }
@@ -49,9 +56,19 @@ const Footer = React.forwardRef((props, ref) => {
       .copyright {
         font-size: 14px;
         padding-top: 12px;
+        padding-bottom: 20px;
       }
       .footer-logo {
         width: 160px;
+        position: absolute;
+        right: 4vw;
+        bottom: 20px;
+      }
+
+      .policy {
+        position: absolute;
+        right: 4vw;
+        top: 70.8px;
       }
     }
     @media (max-width: 600px) {
@@ -68,7 +85,11 @@ const Footer = React.forwardRef((props, ref) => {
       .copyright {
         font-size: 11px;
         padding-top: 10px;
-        line-height: 17px;
+        line-height: 16px;
+      }
+      .policy {
+        padding-top: 10px;
+        font-size: 11px;
       }
       .footer-logo {
         width: 140px;
@@ -87,12 +108,13 @@ const Footer = React.forwardRef((props, ref) => {
         Tel. 031.222.3317
       </p>
       <p>
-        Fax. 031.222.3317
+        Fax. 031.221.3318
       </p>
       <p className="copyright">
         Copyright©2025 Dr.Hong's Special Neurology Centre.<br/>
         Designed by H_Lawliet
       </p>
+      <p className="policy"><span>개인정보처리방침</span> | <span>환자권리장전</span></p>
       <img className="footer-logo" src="/images/logo_white.png"/>
     </Footer>
   )
