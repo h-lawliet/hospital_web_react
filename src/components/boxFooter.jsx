@@ -55,7 +55,7 @@ function BoxFooter() {
         Fax. 031-221-3318
       </p>
       <p className="time">
-        평일 : 09:00 - 16:00
+        평일 : 09:00 - 18:00
       </p>
       <p className="time">
         토요일 : 09:00 - 13:00
