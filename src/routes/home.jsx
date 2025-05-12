@@ -82,10 +82,10 @@ const FullpageComponent = () => {
         <Section2/>
       </div>
       <div className="section">
-        <Section3/>
+        <Section4/>
       </div>
       <div className="section">
-        <Section4/>
+        <Section3/>
       </div>
       <div className="section section5">
         <Section5/>

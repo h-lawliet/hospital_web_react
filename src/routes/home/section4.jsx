@@ -135,6 +135,7 @@ const Section4 = () => {
         speed={600}
         onSwiper={(sw) => (swiperRef.current = sw)}
         onSlideChange={handleSlideChange}
+        spaceBetween={20}
       >
         {videos.map(renderSlide)}
       </Swiper>
