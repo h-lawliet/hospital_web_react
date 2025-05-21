@@ -76,12 +76,40 @@ const ThirdSection = styled.div`
     opacity: 0;
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
+    cursor: pointer;
   }
 
   .home-center-box.visible {
     opacity: 1;
     transition: opacity 1s ease-in-out;
     animation: downToUp 1s ease-in-out;
+
+    & > h4 {
+      position: absolute;
+      opacity: 1;
+      width: 100%;
+      margin: 0;
+      color: white;
+      text-shadow: 2px;
+      font-size: calc(0.1vw + 15px);
+      padding-top: calc(0.1vw + 20px);
+      font-weight: 400;
+
+      @media (max-width: 800px) {
+        font-size: calc(0.1vw + 12.5px);
+      }
+    }
+
+    & > p {
+      position: absolute;
+      top: 50px;
+      display: none;
+    }
+  }
+
+  .home-center-box:hover {
+    background-image: none;
+    background-color: rgb(0, 51, 161);
   }
     
 `
@@ -130,12 +158,13 @@ function Section3() {
                 backgroundImage: `url(${e.homeImg})`,
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center center",
-                backgroundSize: "cover"
+                backgroundSize: "cover",
+                position: "relative"
               }}
               onClick={()=>{navigate(e.path)}}
               ref={(el) => elementsRef.current[i] = el}
             >
-            
+              <h4>{e.hometitle}</h4>
             </div>
           )
         })
