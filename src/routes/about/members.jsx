@@ -131,7 +131,7 @@ function Members() {
       <div className='member-container'>
         <div
           className='motion-member-img'
-        ><img className='member-image-1' src='/images/member_img_1.png' style={{
+        ><img className='member-image-1' src='/images/about/member1.jpg' style={{
           width: "100%", height: "auto", borderRadius: "20px"
         }}/>
         </div>
@@ -186,9 +186,31 @@ function Members() {
         </div>
         <div
           className='motion-member-img'
-        ><img className='member-image-1' src='/images/member_img_1.png' style={{
+        ><img className='member-image-1' src='/images/about/member3.jpg' style={{
           width: "100%", height: "auto", borderRadius: "20px"
         }}/>
+        </div>
+      </div>
+      <hr/>
+      <div className='member-container'>
+        <div
+          className='motion-member-img'
+        ><img className='member-image-1' src='/images/about/member2.jpg' style={{
+          width: "100%", height: "auto", borderRadius: "20px"
+        }}/>
+        </div>
+        <div
+          className='motion-member-text'
+        >
+        <h3 className='member-name'>김윤희</h3><span className='member-name-2'>원장</span>
+        <div className='member-name-3'>영상의학과 전문의</div>
+        <ul>
+          <li>영남대학교 의과대학</li>
+          <li>카톨릭중앙의료원 인턴 및 수련의</li>
+          <li>서울대학교병원 전임의(신경두경부)</li>
+          <li>분당제생병원 영상의학과 교수</li>
+          <li>대한영상의학회 정회원</li>
+        </ul>
         </div>
       </div>
     </Styledmembers>

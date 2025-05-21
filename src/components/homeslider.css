@@ -99,21 +99,21 @@
 }
 
 .swiper2 {
-  background-image: url("/images/home/home-slide-2.jpg");
+  background-image: url("/images/home/temp4.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
 .swiper3 {
-  background-image: url("/images/home/home-slide-3.jpg");
+  background-image: url("/images/home/temp3.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
 .swiper4 {
-  background-image: url("/images/home/home-slide-4.jpg");
+  background-image: url("/images/home/temp5.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

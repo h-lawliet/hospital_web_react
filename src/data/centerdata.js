@@ -32,7 +32,7 @@ export const centerData = [
   },
   {
     hometitle: "두통 · 어지럼증 센터",
-    homeImg: "/images/image1.jpg",
+    homeImg: "/images/center/temp1.jpg",
     path: "/center/2",
     title: "정밀 영상 · 특수 진단 장비 · 탁월한 의료진에 의한 차별화된 치료 시스템!",
     contents: [
