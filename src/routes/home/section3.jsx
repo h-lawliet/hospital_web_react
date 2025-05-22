@@ -90,20 +90,14 @@ const ThirdSection = styled.div`
       width: 100%;
       margin: 0;
       color: white;
-      text-shadow: 2px;
-      font-size: calc(0.1vw + 15px);
+      text-shadow: 0 0 5px rgb(0,0,0);
+      font-size: calc(0.1vw + 16px);
       padding-top: calc(0.1vw + 20px);
-      font-weight: 400;
+      font-weight: 600;
 
       @media (max-width: 800px) {
         font-size: calc(0.1vw + 12.5px);
       }
-    }
-
-    & > p {
-      position: absolute;
-      top: 50px;
-      display: none;
     }
   }
 

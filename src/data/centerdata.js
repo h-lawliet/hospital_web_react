@@ -1,7 +1,7 @@
 export const centerData = [
   {
     hometitle: "뇌졸중 특화센터",
-    homeImg: "/images/image1.jpg",
+    homeImg: "/images/home/thumb1.jpg",
     path: "/center/0",
     title: "전문팀의 정밀 진단과 특화된 집중 치료 모니터링으로 고위험 환자 맞춤 치료 제공!",
     contents: [
@@ -17,7 +17,7 @@ export const centerData = [
   },
   {
     hometitle: "모야모야 특화센터",
-    homeImg: "/images/image1.jpg",
+    homeImg: "/images/home/thumb2.jpg",
     path: "/center/1",
     title: "최고 전문가의 효과적인 예방과 차별화된 비수술 · 최소침습 시술로 모야모야 병기별 표적 치료!",
     contents: [
@@ -32,7 +32,7 @@ export const centerData = [
   },
   {
     hometitle: "두통 · 어지럼증 센터",
-    homeImg: "/images/center/temp1.jpg",
+    homeImg: "/images/home/thumb3.jpg",
     path: "/center/2",
     title: "정밀 영상 · 특수 진단 장비 · 탁월한 의료진에 의한 차별화된 치료 시스템!",
     contents: [
@@ -46,7 +46,7 @@ export const centerData = [
   },
   {
     hometitle: "뇌졸중 · 치매 통합센터",
-    homeImg: "/images/image1.jpg",
+    homeImg: "/images/home/thumb4.jpg",
     path: "/center/3",
     title: "최고 전문가의 친절한 설명과 개인위험도 기반의 한차원 다른 뇌졸중·치매 예방 치료!",
     contents: [
@@ -62,7 +62,7 @@ export const centerData = [
   },
   {
     hometitle: "맞춤형 운동센터",
-    homeImg: "/images/image1.jpg",
+    homeImg: "/images/home/thumb5.jpg",
     path: "/center/4",
     title: "나를 잘 아는 전문의와 최고의 트레이너가 협력하는 개인 맞춤형 운동 프로토콜!",
     contents: [
@@ -77,7 +77,7 @@ export const centerData = [
   },
   {
     hometitle: "이완센터",
-    homeImg: "/images/image1.jpg",
+    homeImg: "/images/home/thumb6.png",
     path: "/center/5",
     title: "정확한 내 몸상태를 기반으로 맞춤 물리치료사와 주치의가 완성하는 최적의 접근!",
     contents: [
