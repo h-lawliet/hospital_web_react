@@ -15,7 +15,6 @@ import Examination from './routes/examination'
 import NotFoundPage from './routes/NotFoundPage'
 import Community from './routes/community'
 import { isAllowedPath } from './filter'
-import { OutsideLink } from './components/outsideLink.jsx'
 import ScrollToTop from './scroller.js'
 import PatientRights from './routes/patientRights.jsx'
 import PrivacyPolicy from './routes/privatePolicy.jsx'
@@ -44,7 +43,6 @@ function App() {
           <Route path='/expenses' element={<Expenses/>}/>
         </Routes>
         <Footer/>
-        <OutsideLink/>
       </>
     )
   } else if (isAllowedRoute === "Home") {
@@ -61,7 +59,6 @@ function App() {
           <Route path='/community/:id/*' element={<Community item={navList[4]}/>} />
           <Route path='/api/admin/*' element={<Admin/>}/>
         </Routes>
-        <OutsideLink/>
       </>
     )
   } else {
