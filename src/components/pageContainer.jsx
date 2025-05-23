@@ -1,39 +1,29 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { useParams, Link, useLocation } from "react-router-dom";
 import BoxFooter from "./boxFooter";
 import { useEffect, useState } from "react";
 import { fetchExaminationRooms } from "../data/navlist";
 
+/* ───────────── styled-components ───────────── */
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-
   padding-top: 12vh;
 
   @media (max-width: 1200px) {
     padding-top: 100px;
   }
-`
-const zoomIn = keyframes`
-  from {
-    background-size: 100% auto;
-  }
-  to {
-    background-size: 140% auto;
-  }
-`
+`;
 
-const PagePicture = styled.div`
+const zoomIn = keyframes`
+  100% { transform: scale(1.2); }
+`;
+
+const StyledPagePicture = styled.div`
   height: 35vh;
-  background-image: url(${(props) => props.img});
-  background-size: 100% auto;
-  background-position: center center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  animation: ${zoomIn} 2s ease-out forwards;
+  overflow: hidden;
 
   .pagepicture-cover {
     position: absolute;
@@ -42,21 +32,42 @@ const PagePicture = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2;
   }
 
   .pagepicture-text {
+    position: absolute;
     z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 0 0 5px #000;
+    font-size: calc(38px + 0.5vw);
+    font-weight: 600;
 
     @media (max-width: 600px) {
       font-size: calc(30px + 1vw);
     }
-
-    font-size: calc(38px + 0.5vw);
-    font-weight: 600;
-    color: white;
-    text-shadow: 0px 0px 5px rgb(0, 0, 0);
   }
-`
+`;
+
+/* 애니메이션을 조건부로 적용하는 이미지 컴포넌트 */
+const TopImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+  transform: scale(1);
+
+  ${({ $loaded }) =>
+    $loaded &&
+    css`
+      animation: ${zoomIn} 1s ease-out forwards;
+    `}
+`;
+
 const PageContent = styled.div`
   flex-grow: 1;
   display: flex;
@@ -65,11 +76,9 @@ const PageContent = styled.div`
   @media (min-width: 1200px) {
     padding: 0 10vw;
   }
-
   @media (max-width: 1200px) and (min-width: 900px) {
     padding: 0 4vw;
   }
-
   @media (max-width: 900px) {
     padding: 0 4vw;
   }
@@ -79,25 +88,22 @@ const PageContent = styled.div`
     overflow: hidden;
     padding-bottom: 10vh;
   }
-`
+`;
 
 const PageNav = styled.div`
-
   padding-right: 3vw;
   flex-shrink: 0;
-  
+
   @media (min-width: 1200px) {
     width: 250px;
   }
-
   @media (max-width: 1200px) and (min-width: 900px) {
     width: 220px;
   }
-
   @media (max-width: 900px) {
     display: none;
   }
-`
+`;
 
 const PageNavUl = styled.ul`
   list-style: none;
@@ -110,10 +116,9 @@ const PageNavUl = styled.ul`
     align-items: center;
     height: 150px;
     background-color: rgb(0, 51, 161);
-    color: white;
+    color: #fff;
   }
 
-  // 호버링 효과
   & > li {
     height: 50px;
     line-height: 50px;
@@ -125,7 +130,6 @@ const PageNavUl = styled.ul`
   & > li:not(:last-of-type) {
     border-bottom: 1px solid rgb(236, 227, 227);
   }
-
   & > li > a {
     text-decoration: none;
     color: inherit;
@@ -139,71 +143,77 @@ const PageNavUl = styled.ul`
     padding-left: 20px;
     font-weight: 800;
   }
-`
+`;
 
-// 측면 바, 상단 이미지는 내용만 다르고 동일. PageContainer에서 렌더링
+/* ───────────── 컴포넌트 ───────────── */
 
-function PageContainer({item, content}) {
+function PageContainer({ item, content }) {
+  const { id } = useParams();
+  const location = useLocation(); // 경로 변화 감지 용도, 추후 사용 가능
+  const [itemDetails, setItemDetails] = useState(item.detail);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
-  let {id} = useParams()
-  const location = useLocation()
-  const [itemDetails, setItemDetails] = useState(item.detail)
+  /* 검사실 페이지일 때 서버에서 목록 갱신 */
+  useEffect(() => {
+    if (item.link !== "/examination") return;
+    fetchExaminationRooms((rooms) => setItemDetails([...rooms]));
+  }, [item.link]);
 
-  useEffect(()=>{
-    if (item.link !== "/examination") return
-    fetchExaminationRooms((rooms) => {
-      setItemDetails([...rooms])
-    })
-  }, [item.link])
-
-  return(
+  return (
     <Container>
-      <PagePicture img={item.topImg}>
-        <div className="pagepicture-cover"/>
-        <>
-          <div className="pagepicture-text">{
-            itemDetails.length === 1 ? itemDetails[0] : itemDetails[id]
-          }</div>
-        </>
-        
-      </PagePicture>
+      <StyledPagePicture>
+        <div className="pagepicture-cover" />
+        <TopImg
+          src={item.topImg}
+          alt=""
+          $loaded={imgLoaded}
+          onLoad={() => setImgLoaded(true)}
+        />
+        <div className="pagepicture-text">
+          {itemDetails.length === 1 ? itemDetails[0] : itemDetails[id]}
+        </div>
+      </StyledPagePicture>
+
       <PageContent>
         <PageNav>
           <PageNavUl>
-          <div className="pagenav-title">
-            <div style={{textAlign: "center"}}>
-              <div style={{
-                display: "inline-block",
-                paddingBottom: "8px",
-                fontSize: "22px",
-                fontWeight: 700
-              }}>{item.name}</div>
-              <img src="/images/pagenav_logo.png" style={{width: "94%"}}/>
+            <div className="pagenav-title">
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    display: "inline-block",
+                    paddingBottom: "8px",
+                    fontSize: "22px",
+                    fontWeight: 700,
+                  }}
+                >
+                  {item.name}
+                </div>
+                <img
+                  src="/images/pagenav_logo.png"
+                  style={{ width: "94%" }}
+                  alt=""
+                />
+              </div>
             </div>
-            
-          </div>
-          {
-            itemDetails.length !== 0 ?
-            <>
-              {
-                itemDetails.map((e, i)=>{
-                  return (
-                    <li key={i} className={i == id ? "selected-list" : null}><Link to={`${item.link}/${i}`}>{e}</Link></li>
-                  )
-                })
-              }
-            </> : <p>빈배열</p>
-          }
+
+            {itemDetails.length ? (
+              itemDetails.map((e, i) => (
+                <li key={i} className={i == id ? "selected-list" : null}>
+                  <Link to={`${item.link}/${i}`}>{e}</Link>
+                </li>
+              ))
+            ) : (
+              <p>빈배열</p>
+            )}
           </PageNavUl>
-          <BoxFooter/>
+          <BoxFooter />
         </PageNav>
-        <div className="content-container">
-          {content}
-        </div>
-        
+
+        <div className="content-container">{content}</div>
       </PageContent>
     </Container>
-  )
+  );
 }
 
-export default PageContainer
+export default PageContainer;

@@ -5,15 +5,6 @@ import { useEffect,useRef } from "react";
 
 const ThirdSection = styled.div`
 
-  @keyframes downToUp {
-    0% {
-      transform: translateY(15px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,15 +65,25 @@ const ThirdSection = styled.div`
 
   .home-center-box {
     opacity: 0;
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    will-change: opacity, transform;
+    transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+    transform: translateY(15px);
     border-radius: 3px;
     cursor: pointer;
+    overflow: hidden;
+  }
+
+  .home-center-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .home-center-box.visible {
     opacity: 1;
-    transition: opacity 1s ease-in-out;
-    animation: downToUp 1s ease-in-out;
+    transform: translateY(0);
 
     & > h4 {
       position: absolute;
@@ -100,11 +101,6 @@ const ThirdSection = styled.div`
       }
     }
   }
-
-  .home-center-box:hover {
-    background-image: none;
-    background-color: rgb(0, 51, 161);
-  }
     
 `
 
@@ -118,11 +114,12 @@ function Section3() {
     const targets = elementsRef.current;
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+      
+      entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
           setTimeout(() => {
             entry.target.classList.add('visible');
-          }, 500);
+          }, 200);
         }
       });
     }, {
@@ -148,16 +145,10 @@ function Section3() {
           return(
             <div
               className="home-center-box"
-              style={{
-                backgroundImage: `url(${e.homeImg})`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center center",
-                backgroundSize: "cover",
-                position: "relative"
-              }}
               onClick={()=>{navigate(e.path)}}
               ref={(el) => elementsRef.current[i] = el}
             >
+              <img loading="lazy" className="home-center-img" src={e.homeImg}/>
               <h4>{e.hometitle}</h4>
             </div>
           )
