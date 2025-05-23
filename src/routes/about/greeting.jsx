@@ -8,6 +8,12 @@ function Greeting() {
     padding-bottom: 50px;
     padding-top: 70px;
 
+    .greeting-img {
+      width: 100%;
+      margin-top: 25px;
+      border-radius: 10px;
+    }
+
     .greeting-title {
       text-align: center;
       color: rgb(0, 51, 161);
@@ -71,7 +77,7 @@ function Greeting() {
       <div className="greeting-title">
         탁월한 전문성과 최선의 진료로 항상 여러분과 함께하는 홍지만신경과가 되겠습니다  
       </div>
-      <img></img>
+      <img className="greeting-img" src="/images/about/about1.jpg"/>
       <div className="greeting-content">
         <p>
           안녕하세요. 홍지만신경과 대표원장 홍지만입니다. <br/>
