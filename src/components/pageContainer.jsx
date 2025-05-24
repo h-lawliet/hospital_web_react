@@ -21,7 +21,7 @@ const zoomIn = keyframes`
 `;
 
 const StyledPagePicture = styled.div`
-  height: 35vh;
+  height: 32vh;
   position: relative;
   overflow: hidden;
 
@@ -37,17 +37,19 @@ const StyledPagePicture = styled.div`
 
   .pagepicture-text {
     position: absolute;
+    width: 80%;
+    text-align: center;
     z-index: 3;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     color: white;
     text-shadow: 0 0 5px #000;
-    font-size: calc(38px + 0.5vw);
+    font-size: calc(35px + 0.5vw);
     font-weight: 600;
 
     @media (max-width: 600px) {
-      font-size: calc(30px + 1vw);
+      font-size: calc(18px + 1vw);
     }
   }
 `;

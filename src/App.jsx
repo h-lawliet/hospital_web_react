@@ -33,8 +33,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/about/:id' element={<About item={navList[0]}/>} />
-          <Route path='/appointment/:id' element={<Appointment item={navList[1]}/>} />
-          <Route path='/center/:id' element={<Center item={navList[2]}/>} />
+          <Route path='/appointment/:id' element={<Appointment item={navList[2]}/>} />
+          <Route path='/center/:id' element={<Center item={navList[1]}/>} />
           <Route path='/examination/:id' element={<Examination item={navList[3]}/>} />
           <Route path='/community/:id/*' element={<Community item={navList[4]}/>} />
           <Route path='/api/admin/*' element={<Admin/>}/>

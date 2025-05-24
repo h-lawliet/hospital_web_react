@@ -17,6 +17,11 @@ const Centercontent = styled.div`
     padding-bottom: 1em;
     line-height: 2em;
   }
+
+  .center-img {
+    width: 100%;
+  }
+  
   .center-content {
     line-height: 2em; 
     font-size: 1em;
@@ -89,6 +94,9 @@ function CenterContent() {
     <Centercontent>
       <div className="line-deco"/>
       <h2>{centerDataIndex.title}</h2>
+
+      <img className="center-img" src={centerDataIndex.imgDetail}/>
+
       {
         centerDataIndex.contents.map((e, i)=>{
           return(
@@ -96,9 +104,6 @@ function CenterContent() {
           )
         })
       }
-      <div className="center-img">
-        
-      </div>
       <hr/>
       <ul>
       {

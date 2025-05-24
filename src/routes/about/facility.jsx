@@ -1,48 +1,123 @@
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
-import LineDeco from "../../components/line";
 
 const FacilityImage = [
   {
-    url: "/images/image1.jpg",
+    url: "/images/facility/1-1.webp",
     floor: 1
   },
   {
-    url: "/images/image2.jpg",
+    url: "/images/facility/1-2.webp",
     floor: 1
   },
   {
-    url: "/images/image5.jpg",
+    url: "/images/facility/1-4.webp",
     floor: 1
   },
   {
-    url: "/images/image1.jpg",
+    url: "/images/facility/1-5.webp",
     floor: 1
   },
   {
-    url: "/images/image1.jpg",
+    url: "/images/facility/1-6.webp",
     floor: 1
   },
   {
-    url: "/images/image1.jpg",
+    url: "/images/facility/1-7.webp",
     floor: 1
   },
   {
-    url: "/images/image1.jpg",
+    url: "/images/facility/1-8.webp",
     floor: 1
   },
   {
-    url: "/images/image2.jpg",
+    url: "/images/facility/1-9.webp",
+    floor: 1
+  },
+  {
+    url: "/images/facility/1-10.webp",
+    floor: 1
+  },
+  {
+    url: "/images/facility/1-11.webp",
+    floor: 1
+  },
+  {
+    url: "/images/facility/2-1.webp",
     floor: 2
   },
   {
-    url: "/images/image2.jpg",
+    url: "/images/facility/2-2.webp",
     floor: 2
   },
   {
-    url: "/images/image2.jpg",
+    url: "/images/facility/2-3.webp",
     floor: 2
+  },
+  {
+    url: "/images/facility/2-4.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-5.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-6.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-7.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-8.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-9.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-10.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-11.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-12.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-13.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/2-14.webp",
+    floor: 2
+  },
+  {
+    url: "/images/facility/3-1.webp",
+    floor: 3
+  },
+  {
+    url: "/images/facility/3-2.webp",
+    floor: 3
+  },
+  {
+    url: "/images/facility/3-3.webp",
+    floor: 3
+  },
+  {
+    url: "/images/facility/3-4.webp",
+    floor: 3
+  },
+  {
+    url: "/images/facility/3-5.webp",
+    floor: 3
   },
 ]
 
@@ -74,21 +149,24 @@ const SliderContainer = styled.div`
     color: black;
     opacity: 0.4;
   }
+
+  .facility-slider-second .slick-slide > div {
+    margin: 0 5px;
+  }
 `
 const SlideItem = styled.div`
   background-image: url(${(props) => props.img});
   width: 100%;
   aspect-ratio: 1.6;
-  background-size: 100% auto;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 `
 const SlideItemPadding = styled.div`
-  width: calc(100% - 2vw);
   box-sizing: border-box;
   aspect-ratio: 1.6;
   background-image: url(${(props) => props.img});
-  background-size: 90% auto;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   cursor: pointer;
