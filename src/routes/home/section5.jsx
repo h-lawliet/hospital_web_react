@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import styled from "styled-components"
+import Navermap from "../../components/NaverMap.jsx"
 
 const FifthSection = styled.div`
 
@@ -333,7 +334,9 @@ function Section5() {
   return (
     <FifthSection>
       <div className="info-img">
-        <div className="map-img" ref={(el) => elementsRef.current[0] = el}/>
+        <div className="map-img" ref={(el) => elementsRef.current[0] = el}>
+          <Navermap/>
+        </div>
       </div>
       <div className="info-text">
         <div class="text-container" ref={(el) => elementsRef.current[1] = el}>

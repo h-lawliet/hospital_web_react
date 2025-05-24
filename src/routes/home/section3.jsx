@@ -74,6 +74,15 @@ const ThirdSection = styled.div`
     overflow: hidden;
   }
 
+  .home-center-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4); /* 안쪽 그림자 */
+    z-index: 5;
+    pointer-events: none;
+  }
+
   .home-center-img {
     width: 100%;
     height: 100%;
@@ -81,25 +90,26 @@ const ThirdSection = styled.div`
     object-position: center;
   }
 
+  .home-center-title {
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    z-index: 10;
+    opacity: 1;
+    font-size: calc(0.05vw + 16px);
+    font-weight: 500;
+    text-shadow: 0 0 4px rgb(0, 0, 0);
+
+    @media (max-width: 600px) {
+      font-size: 13.5px;
+    }
+  }
+
   .home-center-box.visible {
     opacity: 1;
     transform: translateY(0);
-
-    & > h4 {
-      position: absolute;
-      opacity: 1;
-      width: 100%;
-      margin: 0;
-      color: white;
-      text-shadow: 0 0 5px rgb(0,0,0);
-      font-size: calc(0.1vw + 16px);
-      padding-top: calc(0.1vw + 20px);
-      font-weight: 600;
-
-      @media (max-width: 800px) {
-        font-size: calc(0.1vw + 12.5px);
-      }
-    }
   }
     
 `
@@ -149,7 +159,7 @@ function Section3() {
               ref={(el) => elementsRef.current[i] = el}
             >
               <img loading="lazy" className="home-center-img" src={e.homeImg}/>
-              <h4>{e.hometitle}</h4>
+              <h4 className="home-center-title">{e.hometitle}</h4>
             </div>
           )
         })

@@ -92,21 +92,21 @@
 }
 
 .swiper1 {
-  background-image: url("/images/home/home-slide1.jpg");
+  background-image: url("/images/home/home-slide1.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
 .swiper2 {
-  background-image: url("/images/home/home-slide2.jpg");
+  background-image: url("/images/home/home-slide2.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
 .swiper3 {
-  background-image: url("/images/home/home-slide3.jpg");
+  background-image: url("/images/home/home-slide3.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

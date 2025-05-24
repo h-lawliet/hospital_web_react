@@ -3,7 +3,7 @@ import styled from "styled-components"
 import PageContainer from "../components/pageContainer.jsx"
 import Members from "./about/members.jsx"
 import Greeting from "./about/greeting.jsx"
-import NaverMap from "../components/NaverMap.jsx"
+import Navermap from "../components/NaverMap.jsx"
 import Facility from "./about/facility.jsx"
 
 function Worktime() {
@@ -54,17 +54,17 @@ function Destination() {
 
   return(
     <>
-    <StyledDestination>
-      <h3>주소</h3>
-      <p>도로명 주소: 경기도 수원시 팔달구 경수대로546 (인계동)</p>
-      <p>지번 주소: 경기도 수원시 팔달구 인계동 944-5</p>
-      <h3>버스 이용시</h3>
-      <p><span>KBS 수원센터 / 수원고용복지플러스센터, 동수원사거리</span>정거장 하차</p>
-      
-    </StyledDestination>
-    <div style={{paddingTop: "60px"}}>
-    <NaverMap scroll={false}/>
-    </div>
+      <StyledDestination>
+        <h3>주소</h3>
+        <p>도로명 주소: 경기도 수원시 팔달구 경수대로546 (인계동)</p>
+        <p>지번 주소: 경기도 수원시 팔달구 인계동 944-5</p>
+        <h3>버스 이용시</h3>
+        <p><span>KBS 수원센터 / 수원고용복지플러스센터, 동수원사거리</span>정거장 하차</p>
+        
+      </StyledDestination>
+      <div style={{paddingTop: "60px"}}>
+        <Navermap/>
+      </div>
     </>
   )
   // 배포 후 url 등록해야됨
