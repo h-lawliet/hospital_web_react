@@ -11,13 +11,13 @@ export const navList = [
     name: "특화센터",
     link: "/center",
     detail: ["뇌졸중 특화센터", "모야모야 특화센터", "두통 · 어지럼증 센터", "뇌졸중 · 치매 통합 예방센터", "운동센터", "이완센터"],
-    topImg: "/images/pageTop/top3.jpg"
+    topImg: "/images/pageTop/top2.webp"
   },
   {
     name: "진료분야",
     link: "/appointment",
     detail: ["급성뇌졸중", "모야모야", "두통", "어지럼", "현훈", "뇌졸중 예방치료", "치매 예방치료", "노화 예방치료", "운동 치료", "이완 치료"],
-    topImg: "/images/pageTop/top2.webp"
+    topImg: "/images/pageTop/top3.webp"
   },
   {
     name: "검사항목",

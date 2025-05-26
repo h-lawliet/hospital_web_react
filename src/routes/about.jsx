@@ -27,7 +27,8 @@ function Destination() {
       color: rgb(0, 51, 161);
       padding-top: 30px;
       margin: 0;
-      font-size: calc(20px + 0.05vw);
+      font-size: calc(22px + 0.05vw);
+      font-weight: 800;
     }
     & > p {
       font-size: calc(15px + 0.03vw);
@@ -42,7 +43,7 @@ function Destination() {
         color: rgb(0, 51, 161);
         padding-top: 25px;
         margin: 0;
-        font-size: 16px;
+        font-size: 21px;
       }
       & > p {
         font-size: 14px;
@@ -62,7 +63,7 @@ function Destination() {
         <p><span>KBS 수원센터 / 수원고용복지플러스센터, 동수원사거리</span>정거장 하차</p>
         
       </StyledDestination>
-      <div style={{paddingTop: "60px"}}>
+      <div style={{paddingTop: "40px"}}>
         <Navermap/>
       </div>
     </>

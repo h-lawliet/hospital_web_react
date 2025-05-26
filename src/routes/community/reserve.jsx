@@ -10,7 +10,7 @@ const Reservecontent = styled.div`
     font-weight: 500;
     font-size: 17px;
     line-height: 30px;
-    padding-bottom: 5vh;
+    padding-bottom: 10px;
   }
 
   .line-deco {
@@ -76,7 +76,7 @@ const Reservecontent = styled.div`
     .reserve-title > p {
       font-weight: 600;
       font-size: 15px;
-      padding-bottom: 5vh;
+      padding-bottom: 10px;
       line-height: 25px;
     }
     .reserve-input {

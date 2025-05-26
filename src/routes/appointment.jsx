@@ -37,6 +37,7 @@ const Appointmentcontent = styled.div`
     font-size: 1.2em;
     margin-left: 1vw;
     text-align: center;
+    line-height: 32px;
   }
 
   @media (max-width: 600px) {
@@ -54,6 +55,7 @@ const Appointmentcontent = styled.div`
       font-size: 14.5px;
       margin-left: 1vw;
       text-align: center;
+      line-height: 30px;
     }
   }
 `
