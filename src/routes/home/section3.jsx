@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {centerData} from "../../data/centerdata.js"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect,useRef } from "react";
 
 const ThirdSection = styled.div`
@@ -118,30 +118,41 @@ function Section3() {
 
   const navigate = useNavigate()
   const elementsRef = useRef([])
+  const location = useLocation()
 
-  useEffect(()=>{
-    
-    const targets = elementsRef.current;
+  useEffect(() => {
+  const targets = elementsRef.current;
 
-    const observer = new IntersectionObserver((entries) => {
-      
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, 200);
-        }
-      });
-    }, {
-      threshold: 0.01
+  // 기존 observer를 cleanup하기 위한 참조 저장
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
+  }, {
+    threshold: 0.01
+  });
 
-    targets.forEach((el) => el && observer.observe(el));
+  // 대상 엘리먼트에 observer 등록
+  targets.forEach((el) => {
+    if (el) observer.observe(el);
+  });
 
-    return () => {
-      targets.forEach((el) => el && observer.unobserve(el));
-    };
-  }, )
+  // 언마운트 또는 location 변경 시 observer 해제
+  return () => {
+    targets.forEach((el) => {
+      if (el) observer.unobserve(el);
+    });
+    observer.disconnect();
+  };
+}, [location]);
+
+  const handleClick = (path) => {
+    sessionStorage.setItem('returnToSection', 'section3');   // 복귀 플래그
+    navigate(path);
+  };
+
 
   return (
     <ThirdSection>
@@ -155,7 +166,7 @@ function Section3() {
           return(
             <div
               className="home-center-box"
-              onClick={()=>{navigate(e.path)}}
+              onClick={()=>{ handleClick(e.path) }}
               ref={(el) => elementsRef.current[i] = el}
             >
               <img loading="lazy" className="home-center-img" src={e.homeImg}/>

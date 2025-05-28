@@ -44,7 +44,7 @@ const FullpageComponent = () => {
     updateFullpageHeight();
 
     new fullpage(fullpageRef.current, {
-      licenseKey: import.meta.env.VITE_FULLPAGE_KEY,
+      // licenseKey: import.meta.env.VITE_FULLPAGE_KEY,
       scrollingSpeed: 700,
       touchSensitivity: 20,
       autoScrolling: true,
@@ -52,9 +52,18 @@ const FullpageComponent = () => {
       autoHeight: true,
       fitToSectionDelay: 2300,
       afterRender: () => {
-        setTimeout(() => {
-          adjustFooterHeight();
-        }, 100);
+        adjustFooterHeight();
+
+        if (window.location.pathname === "/") {
+          const flag = sessionStorage.getItem("returnToSection");
+
+          if (flag === "section3") {
+            fullpage_api.moveTo(4);              // DOM 기준 4번째 = Section3
+            sessionStorage.removeItem("returnToSection");
+          } else {
+            fullpage_api.moveTo(1);              // 기본: 첫 섹션
+          }
+        }
       }
     });
     

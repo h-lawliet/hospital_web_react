@@ -53,7 +53,7 @@ export const appointmentData = [
       "특수 검사로는 ABI(Ankle-Brachial Index)를 통해 말초동맥질환을 확인하고, CRP(C-Reactive Protein) 검사를 통해 전신 염증 상태를 평가합니다. 개인의 위험 요소를 조합하여 뇌졸중 위험을 수치화 하여 항응고제 사용 여부를 결정합니다. 흡연, 음주, 식습관, 운동 부족, 스트레스는 주요 위험 요인입니다. 조기에 위험 요인을 파악하고 관리하면 뇌졸중 발생 가능성을 줄일 수 있습니다."
     ],
     bold: "뇌졸중 예방은 환자가 가지고 있는 개인의 뇌졸중 위험도 관리에 기반한 예방 전략이 필요합니다.",
-    img: "/images/appointment/6temp.jpg"
+    img: "/images/appointment/6temp.webp"
   },
   {
     contents: [
@@ -62,7 +62,7 @@ export const appointmentData = [
       "인지 자극과 정서적 건강 유지도 중요합니다. 독서, 퍼즐 풀기와 같은 활동은 인지 기능 저하를 늦추며, 사회적 교류는 정서적 안정과 인지 기능 유지에 도움을 줍니다.  통합적인 예방 프로그램은 혈관성 치매의 위험을 줄이고 건강한 뇌 기능을 유지하는 데 중요한 역할을 합니다.",
     ],
     bold: "예방이 가능한 치매에 대해 정확한 진단과 올바른 치료전략으로 개인 맞춤으로 접근합니다.",
-    img: "/images/appointment/7temp.png"
+    img: "/images/appointment/7temp.webp"
   },
   {
     contents: [
@@ -71,7 +71,7 @@ export const appointmentData = [
       "정신 건강 관리와 사회적 교류는 정서적 안정과 삶의 질 향상에 기여합니다. 이러한 통합적 접근은 노화를 효과적으로 관리하고 건강 수명을 연장하며 삶의 질을 크게 향상시킬 수 있습니다.",
     ],
     bold: "노화는 피할 수 없지만 심-뇌혈관증강, 근력운동, 뇌-건강 증진법 등으로 건강수명을 연장할 수 있습니다.",
-    img: "/images/appointment/8temp.jpg"
+    img: "/images/appointment/8temp.webp"
   },
   {
     contents: [
@@ -80,7 +80,7 @@ export const appointmentData = [
       "이를 바탕으로 시계열 분석을 통해 환자 특성에 맞는 체계적이고 과학적인 운동치료를 제공합니다.또한, 급성기 치료 이후 재활 과정에서도 전문 재활 시설과 숙련된 치료사를 통해 환자분들이 더 나은 일상으로 복귀할 수 있도록 최상의 치료 결과를 지원하고 있습니다.",
     ],
     bold: "자세교정치료와 맞춤형 운동치료의 이상적인 조합으로 환자의 빠른 치료와 재발방지를 돕습니다.",
-    img: "/images/appointment/9temp.jpg"
+    img: "/images/appointment/9temp.webp"
   },
   {
     contents: [
@@ -90,6 +90,6 @@ export const appointmentData = [
       "뇌졸중 후 흔히 나타나는 자세 불균형, 골반 기울어짐, 척추 변형은 교정 치료를 통해 균형을 회복할 수 있으며, 이를 통해 비정상적인 보행 패턴을 개선하고 이동성을 증진시킬 수 있습니다. 운동 치료는 약화된 근육을 강화하고 균형과 협응을 회복하는 데 중점을 두며, 반복적인 재활 운동은 신경 가소성을 활성화하여 기능적 독립성을 높이는 데 기여합니다.보행 훈련은 보행 보조기구를 활용해 이동 능력을 강화하며, 유산소 운동은 심혈관 건강과 체력 증진뿐 아니라 인지 기능 향상에도 긍정적인 영향을 미칩니다. 균형 훈련은 낙상 위험을 감소시키고 안정성을 강화하는 데 효과적입니다."
     ],
     bold: "이완치료는 근육 경직 완화와 통증 경감을, 꾸준한 이완_도수치료로 운동능력 회복을 돕습니다.",
-    img: "/images/appointment/10temp.jpg"
+    img: "/images/appointment/10temp.webp"
   },
 ]

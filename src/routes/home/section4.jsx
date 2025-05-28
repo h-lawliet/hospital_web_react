@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useLocation } from 'react-router-dom';
 
 /*  16 : 9(1920 × 1080) 고정 비율 영상 목록 */
 const videos = [
@@ -18,34 +19,40 @@ const Section4 = () => {
   const swiperRef = useRef(null);
   const [playing, setPlaying] = useState(null);
   const sectionRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
 
-    const target = sectionRef.current;
+    /* ① 진입 전 상태 초기화 */
+    el.classList.remove('visible');          // opacity:0 으로 되돌림
+    swiperRef.current?.autoplay.stop();      // 슬라이더 자동 재생도 잠시 중단
 
-    if (!sectionRef.current) return;
-  
-    // 30 % 이상 화면에 들어오면 “보이는 중”으로 간주
-    const io = new IntersectionObserver(
+    /* ② Observer 생성 */
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        const visible = entry.isIntersecting && entry.intersectionRatio >= 0.3;
-  
-        if (visible) {
-          // 비디오 재생 중이 아니면 자동 재생 재개
-          if (swiperRef.current && playing === null) {
-            target.classList.add("visible");
-            swiperRef.current.autoplay.start();
+        const onScreen = entry.isIntersecting && entry.intersectionRatio >= 0.3;
+
+        if (onScreen) {
+          el.classList.add('visible');               // fade-in
+          if (playing === null) {                    // 비디오가 재생 중이 아닐 때만
+            swiperRef.current?.autoplay.start();     // 자동 재생 재개
           }
         } else {
-          swiperRef.current?.autoplay.stop();      // 일시정지
+          swiperRef.current?.autoplay.stop();        // 화면에서 벗어나면 중단
         }
       },
       { threshold: 0.3 }
     );
-  
-    io.observe(sectionRef.current);
-    return () => io.disconnect();
-  }, [playing]);
+
+    observer.observe(el);
+
+    /* ③ cleanup */
+    return () => {
+      observer.disconnect();
+    };
+  }, [location]);   // location 변화마다 재실행
   
 
   /* 썸네일 클릭 → 해당 슬라이드로 이동하고 재생 준비 */
