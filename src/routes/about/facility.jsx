@@ -44,6 +44,10 @@ const FacilityImage = [
     floor: 1
   },
   {
+    url: "/images/facility/1-12.webp",
+    floor: 1
+  },
+  {
     url: "/images/facility/2-1.webp",
     floor: 2
   },
