@@ -34,14 +34,8 @@ const Footer = React.forwardRef((props, ref) => {
       padding-bottom: 20px;
     }
     .footer-logo {
-      width: 200px;
       height: auto;
-      padding-top: 30px;
-      padding-bottom: 20px;
       opacity: 0.8;
-      position: absolute;
-      right: 10vw;
-      bottom: 20px;
     }
 
     .bold {
@@ -63,6 +57,17 @@ const Footer = React.forwardRef((props, ref) => {
         position: absolute;
         right: 10vw;
         top: 74px;
+      }
+
+      .footer-logo {
+        width: 200px;
+        height: auto;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        opacity: 0.8;
+        position: absolute;
+        right: 10vw;
+        bottom: 20px;
       }
     }
     @media (min-width: 700px) and (max-width: 1200px) {
