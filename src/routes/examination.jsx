@@ -279,8 +279,6 @@ function ExaminationContent({item}) {
 
 function Examination(props) {
 
-  
-
   return(
     <PageContainer item={props.item} content={<ExaminationContent item={props.item}/>}/>
   )

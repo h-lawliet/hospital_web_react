@@ -29,16 +29,8 @@ export const isAllowedPath = (path) => {
     if (segments.length === 3 && segments[1] == 2) return true
   }
 
-  if (segments[0] === "privacy-policy") {
-    return (segments.length === 1);
-  }
-
-  if (segments[0] === "patient-rights") {
-    return (segments.length === 1);
-  }
-
-  if (segments[0] === "expenses") {
-    return (segments.length === 1);
+  if (segments[0] === "info") {
+    return segments.length === 2 && ["0", "1", "2"].includes(segments[1]);
   }
 
   // /api/admin/...

@@ -1,21 +1,11 @@
 import styled from "styled-components"
 
 const Privacy = styled.div`
-  padding-top: 12vh;
-  padding-left: 10vw;
-  padding-right: 10vw;
-
   table {
     border-collapse: collapse; /* 겹치는 선 제거 */
   }
   table, th, td {
     border: 1px solid black;
-  }
-
-  @media (max-width: 1200px) {
-    padding-top: 100px;
-    padding-left: 4vw;
-    padding-right: 4vw;
   }
 `
 
@@ -23,7 +13,6 @@ const PrivacyPolicy = () => {
   return (
     <Privacy>
       <br/><br/>
-      <h1>개인정보 처리방침</h1>
       <br/>
       <p>본원은 개인정보보호법 또는 관련법령에 따라 개인정보보호 규정을 준수하며, 본원에서 취급하는 모든 개인정보는 이 법 또는 관련법령에 근거하여 정보주체의 동의하에 수집·보유 및 처리하고 있습니다.</p>
       <p>개인정보보호법 제30조에 따라 정보주체의 개인정보 보호 및 권익을 존중하고 개인정보와 관련하여 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 개인정보처리방침을 수립·공개하고 있습니다.</p>

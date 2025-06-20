@@ -1,8 +1,10 @@
 import styled, { keyframes, css } from "styled-components";
 import { useParams, Link, useLocation } from "react-router-dom";
-import BoxFooter from "./boxFooter";
+import BoxFooter from "../components/boxFooter.jsx";
 import { useEffect, useState } from "react";
-import { fetchExaminationRooms } from "../data/navlist";
+import PrivacyPolicy from "./privatePolicy.jsx";
+import Expense from "./expense.jsx";
+import PatientRights from "./patientRights.jsx";
 
 /* ───────────── styled-components ───────────── */
 
@@ -153,30 +155,34 @@ const PageNavUl = styled.ul`
 
 /* ───────────── 컴포넌트 ───────────── */
 
-function PageContainer({ item, content }) {
-  const { id } = useParams();
-  const location = useLocation(); // 경로 변화 감지 용도, 추후 사용 가능
-  const [itemDetails, setItemDetails] = useState(item.detail);
-  const [imgLoaded, setImgLoaded] = useState(false);
+function Information() {
+  const { id } = useParams()
+  const location = useLocation() // 경로 변화 감지 용도, 추후 사용 가능
+  const itemList = ["개인정보처리방침", "비급여항목", "환자권리장전"]
+  const [imgLoaded, setImgLoaded] = useState(false)
+  
+  let content
 
-  /* 검사실 페이지일 때 서버에서 목록 갱신 */
-  useEffect(() => {
-    if (item.link !== "/examination") return;
-    fetchExaminationRooms((rooms) => setItemDetails([...rooms]));
-  }, [item.link]);
+  if (Number(id) === 0) {
+    content = <PrivacyPolicy/>
+  } else if (Number(id) === 1) {
+    content = <Expense/>
+  } else {
+    content = <PatientRights/>
+  }
 
   return (
     <Container>
       <StyledPagePicture>
         <div className="pagepicture-cover" />
         <TopImg
-          src={item.topImg}
+          src="/images/pageTop/top1.webp"
           alt=""
           $loaded={imgLoaded}
           onLoad={() => setImgLoaded(true)}
         />
         <div className="pagepicture-text">
-          {itemDetails.length === 1 ? itemDetails[0] : itemDetails[id]}
+          {itemList[Number(id)]}
         </div>
       </StyledPagePicture>
 
@@ -193,7 +199,7 @@ function PageContainer({ item, content }) {
                     fontWeight: 700,
                   }}
                 >
-                  {item.name}
+                  안내사항
                 </div>
                 <img
                   src="/images/pagenav_logo.png"
@@ -203,10 +209,10 @@ function PageContainer({ item, content }) {
               </div>
             </div>
 
-            {itemDetails.length ? (
-              itemDetails.map((e, i) => (
-                <li key={i} className={i == id ? "selected-list" : null}>
-                  <Link to={`${item.link}/${i}`}>{e}</Link>
+            {itemList.length ? (
+              itemList.map((e, i) => (
+                <li key={i} className={i == Number(id) ? "selected-list" : null}>
+                  <Link to={`/info/${i}`}>{e}</Link>
                 </li>
               ))
             ) : (
@@ -219,7 +225,7 @@ function PageContainer({ item, content }) {
         <div className="content-container">{content}</div>
       </PageContent>
     </Container>
-  );
+  )
 }
 
-export default PageContainer;
+export default Information

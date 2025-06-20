@@ -16,9 +16,7 @@ import NotFoundPage from './routes/NotFoundPage'
 import Community from './routes/community'
 import { isAllowedPath } from './filter'
 import ScrollToTop from './scroller.js'
-import PatientRights from './routes/patientRights.jsx'
-import PrivacyPolicy from './routes/privatePolicy.jsx'
-import Expenses from './routes/expenses.jsx'
+import Information from './routes/information.jsx'
 
 function App() {
   
@@ -38,9 +36,7 @@ function App() {
           <Route path='/examination/:id' element={<Examination item={navList[3]}/>} />
           <Route path='/community/:id/*' element={<Community item={navList[4]}/>} />
           <Route path='/api/admin/*' element={<Admin/>}/>
-          <Route path='/patient-rights' element={<PatientRights/>}/>
-          <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
-          <Route path='/expenses' element={<Expenses/>}/>
+          <Route path='/info/:id' element={<Information/>}/>
         </Routes>
         <Footer/>
       </>
@@ -58,6 +54,7 @@ function App() {
           <Route path='/examination/:id' element={<Examination item={navList[3]}/>} />
           <Route path='/community/:id/*' element={<Community item={navList[4]}/>} />
           <Route path='/api/admin/*' element={<Admin/>}/>
+          <Route path='/info/:id' element={<Information/>}/>
         </Routes>
       </>
     )

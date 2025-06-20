@@ -34,7 +34,7 @@ export const navList = [
 ]
 
 let fetched = false
-let cachedRooms = null      // ⭐ rooms 캐시
+let cachedRooms = null
 
 export function fetchExaminationRooms(cb = () => {}) {
   /* 이미 받아 둔 경우 즉시 콜백 */

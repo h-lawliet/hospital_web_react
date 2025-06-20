@@ -31,6 +31,7 @@ const Footer = React.forwardRef((props, ref) => {
       opacity: 0.7;
       padding-top: 15px;
       line-height: 20px;
+      padding-bottom: 20px;
     }
     .footer-logo {
       width: 200px;
@@ -38,6 +39,9 @@ const Footer = React.forwardRef((props, ref) => {
       padding-top: 30px;
       padding-bottom: 20px;
       opacity: 0.8;
+      position: absolute;
+      right: 10vw;
+      bottom: 20px;
     }
 
     .bold {
@@ -134,9 +138,9 @@ const Footer = React.forwardRef((props, ref) => {
         Copyright©2025 Dr.Hong's Special Neurology Centre.<br/>
         Designed by noryangjinLab
       </p>
-      <p className="policy"><span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/privacy-policy"}>개인정보처리방침</span>&nbsp;&nbsp;|&nbsp;&nbsp; 
-      <span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/expenses"}>비급여항목</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-      <span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/patient-rights"}>환자권리장전</span></p>
+      <p className="policy"><span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/info/0"}>개인정보처리방침</span>&nbsp;&nbsp;|&nbsp;&nbsp; 
+      <span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/info/1"}>비급여항목</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+      <span style={{cursor: "pointer"}} onClick={()=>window.location.href = "/info/2"}>환자권리장전</span></p>
       <img className="footer-logo" src="/images/logo_white.png"/>
     </Footer>
   )

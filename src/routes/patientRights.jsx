@@ -3,21 +3,10 @@ import styled from "styled-components"
 const PatientRights = () => {
 
   const Patientrights = styled.div`
-    @media (max-width: 1200px) {
-      padding-top: 120px;
-      padding-left: 4vw;
-      padding-right: 4vw;
-    }
-
-    @media (min-width: 1200px) {
-      padding-top: calc(12vh + 20px);
-      padding-left: 10vw;
-      padding-right: 10vw;
-    }
+    
   `
   return (
     <Patientrights>
-      <h2>환자권리장전</h2>
       <p>모든 환자는 인간으로서 존엄과 가치를 지니고, 건강한 삶을 영위하기 위해 다음과 같은 권리를 가지며 이에 따른 책임과 의무를 가진다.</p>
       <br/>
 

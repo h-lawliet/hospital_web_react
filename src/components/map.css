@@ -2,7 +2,7 @@
 
   #map {
     width: 100%;
-    aspect-ratio: 1.6;
+    height: 100%;
   }
 }
 
@@ -10,6 +10,6 @@
 
   #map {
     width: 100%;
-    aspect-ratio: 1.6;
+    height: 100%;
   }
 }
