@@ -18,7 +18,7 @@ const Footer = React.forwardRef((props, ref) => {
     & > p {
       font-weight: 300;
       margin: 0;
-      color:rgb(227, 227, 227);
+      color:rgb(217, 217, 217);
       padding: 2.5px 0;
       font-size: 16px;
     }
@@ -47,7 +47,7 @@ const Footer = React.forwardRef((props, ref) => {
     }
 
     #gray {
-      color: #a5a5a5;
+      color:rgb(157, 157, 157);
     }
 
     @media (min-width: 1200px) {
