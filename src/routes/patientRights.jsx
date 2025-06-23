@@ -3,12 +3,75 @@ import styled from "styled-components"
 const PatientRights = () => {
 
   const Patientrights = styled.div`
-    
+    .line-deco {
+      margin-top: 70px;
+      height: 3.5px;
+      width: 60px;
+      background: linear-gradient(to right, rgb(0, 51, 161), rgb(67, 110, 203));
+    }
+
+    p {
+      line-height: 25px;
+      font-size: 15px;
+      color: rgb(26, 26, 26);
+      font-weight: 600;
+      padding-bottom: 50px;
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-top: 30px;
+      color: rgb(0, 51, 161);
+    }
+      
+    ol, ul {
+      list-style: none;
+      padding-left: 10px;
+      margin: 0;
+      padding-bottom: 20px;
+    }
+    li {
+      line-height: 30px;
+      font-size: 14.8px;
+      color: rgb(26, 26, 26);
+    }
+
+    @media (max-width: 800px) {
+      p {
+        line-height: calc(23px + 0.05vw);
+        font-size: calc(12px + 0.05vw);
+        color: rgb(26, 26, 26);
+        font-weight: 600;
+        padding-bottom: 30px;
+      }
+
+      h3 {
+        font-size: 17px;
+        font-weight: 700;
+        margin-top: 30px;
+        color: rgb(0, 51, 161);
+      }
+        
+      ol, ul {
+        list-style: none;
+        padding-left: 10px;
+        margin: 0;
+        padding-bottom: 20px;
+      }
+      li {
+        line-height: 25px;
+        font-size: calc(11px + 0.05vw);
+        color: rgb(26, 26, 26);
+      }
+    }
   `
   return (
     <Patientrights>
+
+      <div className="line-deco"/>
+
       <p>모든 환자는 인간으로서 존엄과 가치를 지니고, 건강한 삶을 영위하기 위해 다음과 같은 권리를 가지며 이에 따른 책임과 의무를 가진다.</p>
-      <br/>
 
       <h3>환자의 권리</h3>
       <ol>

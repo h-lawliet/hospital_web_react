@@ -176,7 +176,7 @@ function Information() {
       <StyledPagePicture>
         <div className="pagepicture-cover" />
         <TopImg
-          src="/images/pageTop/top1.webp"
+          src="/images/pageTop/top6.webp"
           alt=""
           $loaded={imgLoaded}
           onLoad={() => setImgLoaded(true)}
