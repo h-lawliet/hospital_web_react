@@ -14,7 +14,7 @@ export const centerData = [
       "END 방지를 위해, 집중치료실에서 모니터링하며 의심시 침상옆에서 적절한 평가와 즉각정 치료",
       "불안정한 시기가 지나면, 원인검사로 적절한 약물을 선택하고 재활을 통해 빠른 회복과 퇴원"
     ],
-    imgDetail: "/images/center/1.webp"
+    imgDetail: ["/images/center/1.webp", "/images/center/2.png"]
   },
   {
     hometitle: "모야모야 특화센터",
@@ -30,7 +30,7 @@ export const centerData = [
       "두개내 혈관 협착과 유전자검사양성인 경우 주기적인 혈액검사와 뇌혈관-기능 검사가 필요",
       "급성기 환자에서도 두개천공술과 빈혈치료제를 병합해 혈관 재생 유도 치료 위험도평가, 집중치료실, 최소침습시술, 2-3일간의 집중치료실, 3-5일간의 일반입원실 입원 후 퇴원"
     ],
-    imgDetail: "/images/center/2.webp"
+    imgDetail: ["/images/center/2.webp", "/images/center/2.png"]
   },
   {
     hometitle: "두통 · 어지럼증 센터",
@@ -45,7 +45,7 @@ export const centerData = [
       "두통과 어지럼은 병력 청취와 신체검사가 매우 중요하며 이차성 두통을 확인하는 작업으로 영상검사나 난원공개존검사, 자율신경검사 등이 평가",
       "어지럼증은 안구운동 검사, 자세 변화 관찰, 필요 시 MRI와 전정기능 등이 평가 실신은 심전도(EKG), 자율신경, 기립경사검사, 심장기능 검사 등이 평가",
     ],
-    imgDetail: "/images/center/3.webp"
+    imgDetail: ["/images/center/3.webp", "/images/center/3.png"]
   },
   {
     hometitle: "뇌졸중 · 치매 통합센터",
@@ -62,7 +62,7 @@ export const centerData = [
       "예방이 가능한 치매에 대해 정확한 진단과 올바른 치료전략으로 개인 맞춤으로 접근",
       "노화는 피할 수 없지만 심-뇌혈관증강, 근력운동, 뇌-건강 증진법 등으로 건강수명 연장도모"
     ],
-    imgDetail: "/images/center/4.webp"
+    imgDetail: ["/images/center/4.webp", "/images/center/4.png"]
   },
   {
     hometitle: "맞춤형 운동센터",
@@ -78,7 +78,7 @@ export const centerData = [
       "운동량을 개별적으로 모니터링하여 운동의 즐거움을 높이고, 최적의 효율을 제공합니다.",
       "엔도르핀 분비를 촉진하여 기분을 개선하고, 사회적 활동 참여 유도로 삶의 질을 향상시킵니다."
     ],
-    imgDetail: "/images/center/5.webp"
+    imgDetail: ["/images/center/5.webp", "/images/center/5.png"]
   },
   {
     hometitle: "이완센터",
@@ -95,6 +95,6 @@ export const centerData = [
       "도수치료는 근육 경직 완화와 통증 경감을, 꾸준한 이완치료로 운동능력 회복을 돕습니다.",
       "교정 · 운동 · 이완 치료의 병행은 균형과 이동성을 증진시키고, 궁극적인 삶의 질을 높여줍니다."
     ],
-    imgDetail: "/images/center/6.webp"
+    imgDetail: ["/images/center/6.webp", "/images/center/5.png"]
   },
 ]

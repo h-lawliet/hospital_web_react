@@ -21,17 +21,30 @@ const Centercontent = styled.div`
   .center-img {
     width: 100%;
   }
+
+  .center-img-2 {
+    width: 36%;
+    margin-right: 1%;
+    float: left;
+    height: auto;
+  }
+
+  .content-container {
+    position: relative;
+  }
   
   .center-content {
     line-height: 2em; 
     font-size: 1em;
-    color: rgb(103, 101, 101);
+    color: rgb(58, 58, 58);
     font-weight: 400;
     text-align: justify;
   }
   
   & > hr {
-    margin: 2em 10%;
+    margin: 40px 10%;
+    clear: both;
+    
   }
 
   & > ul {
@@ -40,8 +53,8 @@ const Centercontent = styled.div`
   .center-clinics {
     line-height: 2em;
     font-size: 1em;
-    color: rgb(103, 101, 101);
-    font-weight: 400;
+    color: rgb(56, 56, 56);
+    font-weight: 700;
     padding-bottom: 0.4em;
     text-align: justify;
   }
@@ -95,12 +108,16 @@ function CenterContent() {
       <div className="line-deco"/>
       <h2>{centerDataIndex.title}</h2>
 
-      <img className="center-img" src={centerDataIndex.imgDetail}/>
-
+      <img className="center-img" src={centerDataIndex.imgDetail[0]}/>
+      <hr/>
       {
         centerDataIndex.contents.map((e, i)=>{
           return(
-            <p className="center-content" key={i}>{e}</p>
+            <p className="center-content" key={i}>
+              {(i === 0 && centerDataIndex.imgDetail.length === 2) && <img className="center-img-2" src={centerDataIndex.imgDetail[1]} />}
+              {e}
+            </p>
+            
           )
         })
       }
