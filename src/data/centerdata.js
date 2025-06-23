@@ -14,7 +14,7 @@ export const centerData = [
       "END 방지를 위해, 집중치료실에서 모니터링하며 의심시 침상옆에서 적절한 평가와 즉각정 치료",
       "불안정한 시기가 지나면, 원인검사로 적절한 약물을 선택하고 재활을 통해 빠른 회복과 퇴원"
     ],
-    imgDetail: ["/images/center/1.webp", "/images/center/2.png"]
+    imgDetail: ["/images/center/1.webp", "/images/center/1.png"]
   },
   {
     hometitle: "모야모야 특화센터",
