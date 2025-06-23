@@ -23,7 +23,7 @@ const zoomIn = keyframes`
 `;
 
 const StyledPagePicture = styled.div`
-  height: clamp(100px, 22vh, 200px);
+  height: clamp(100px, 30vh, 300px);
   position: relative;
   overflow: hidden;
 

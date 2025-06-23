@@ -39,13 +39,19 @@ const HomeSlider = () => {
       <div className='opacity-cover-swiper'/>
         <p className='slogan'>전국 유일 모야모야 특화병원</p>
         <h2>홍지만 신경과</h2>
-        <p className='swiper-text'>홍지만신경과는 오직 "뇌"만 생각합니다</p>
+        <p className='swiper-text'>홍지만신경과는 오직 뇌만 생각합니다</p>
       </SwiperSlide>
       <SwiperSlide className='home-swiper-content swiper4'>
       <div className='opacity-cover-swiper'/>
         <p className='slogan'>전국 유일 모야모야 특화병원</p>
         <h2>홍지만 신경과</h2>
-        <p className='swiper-text'>최고 전문의들의 경험과 치료법으로 환자의 호전을 이뤄냅니다</p>
+        <p className='swiper-text'>365일 / 24시간 연중무휴 입원실 운영</p>
+      </SwiperSlide>
+      <SwiperSlide className='home-swiper-content swiper5'>
+        <div className='opacity-cover-swiper'/>
+        <p className='slogan'>전국 유일 모야모야 특화병원</p>
+        <h2>홍지만 신경과</h2>
+        <p className='swiper-text'>대학병원 수준의 집중치료실과 영상실 보유</p>
       </SwiperSlide>
       
     </Swiper>

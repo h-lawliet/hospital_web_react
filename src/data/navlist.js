@@ -5,7 +5,7 @@ export const navList = [
     name: "본원소개",
     link: "/about",
     detail: ["인사말", "의료진 소개", "진료 시간", "오시는길", "층별 안내"],
-    topImg: "/images/pageTop/top1.webp"
+    topImg: "/images/pageTop/temp5.webp"
   },
   {
     name: "특화센터",

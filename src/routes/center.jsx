@@ -40,15 +40,22 @@ const Centercontent = styled.div`
     font-weight: 400;
     text-align: justify;
   }
+
+  .center-content:first-of-type {
+    margin-top: 0;
+  }
+  .center-content:last-of-type {
+    margin-bottom: 0;
+  }
   
   & > hr {
-    margin: 40px 10%;
+    margin: 0 10%;
     clear: both;
-    
   }
 
   & > ul {
     padding-left: 20px;
+    margin: 0;
   }
   .center-clinics {
     line-height: 2em;
@@ -57,6 +64,11 @@ const Centercontent = styled.div`
     font-weight: 700;
     padding-bottom: 0.4em;
     text-align: justify;
+  }
+
+  #blank {
+    height: 40px;
+    clear: both;
   }
 
   @media (max-width: 600px) {
@@ -75,7 +87,7 @@ const Centercontent = styled.div`
     }
     
     & > hr {
-      margin: 30px 10%;
+      margin: 0 10%;
     }
 
     & > ul {
@@ -109,7 +121,11 @@ function CenterContent() {
       <h2>{centerDataIndex.title}</h2>
 
       <img className="center-img" src={centerDataIndex.imgDetail[0]}/>
+
+      <div id="blank"/>
       <hr/>
+      <div id="blank"/>
+
       {
         centerDataIndex.contents.map((e, i)=>{
           return(
@@ -121,7 +137,9 @@ function CenterContent() {
           )
         })
       }
+      <div id="blank"/>
       <hr/>
+      <div id="blank"/>
       <ul>
       {
         centerDataIndex.clinics.map((e, i)=>{

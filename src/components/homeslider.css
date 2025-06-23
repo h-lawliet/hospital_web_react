@@ -113,7 +113,14 @@
 }
 
 .swiper4 {
-  background-image: url("/images/home/home-slide4.jpg");
+  background-image: url("/images/home/home-slide4.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.swiper5 {
+  background-image: url("/images/home/home-slide5.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

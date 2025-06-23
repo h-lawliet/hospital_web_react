@@ -63,7 +63,10 @@ function Destination() {
         <p><span>KBS 수원센터 / 수원고용복지플러스센터, 동수원사거리</span>정거장 하차</p>
         
       </StyledDestination>
-      <div style={{paddingTop: "40px"}}>
+      <div style={{
+        paddingTop: "40px",
+        aspectRatio: 1.6
+      }}>
         <Navermap/>
       </div>
     </>
