@@ -125,7 +125,7 @@ const Footer = React.forwardRef((props, ref) => {
   `
   return (
     <Footer ref={ref}>
-      <h3>홍지만 신경과</h3>
+      <h3>홍지만신경과의원</h3>
       <p className="address">
         <span className="bold">(16484)</span> 수원시 팔달구 경수대로546 (인계동)
       </p>
