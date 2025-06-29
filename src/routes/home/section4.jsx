@@ -13,6 +13,11 @@ const videos = [
     thumb: '/images/thumb1.png',
     src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/%ED%99%8D%EC%A7%80%EB%A7%8C%EC%84%A0%EC%83%9D%EB%8B%98_%EC%9D%B8%ED%84%B0%EB%B7%B0_0418+(1080p).mp4',
   },
+  {
+    id: 2,
+    thumb: '/images/thumb2.png',
+    src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/video2_temp.mp4',
+  },
 ];
 
 const Section4 = () => {
