@@ -197,7 +197,6 @@ const StyledExam = styled.div`
 // if문 처리 역할
 function ExaminationContent({item}) {
   let [examination, setExamination] = useState([])
-  let [index, setIndex] = useState(null)
   let [selectedMenu, setSelectedMenu] = useState(0)
   const [rooms, setRooms] = useState([])
   let {id} = useParams()
@@ -214,11 +213,12 @@ function ExaminationContent({item}) {
     if (!roomName) return                    // id 범위 밖
 
     api.get("/examination", { withCredentials: true })
-       .then(res => {
-         const list = res.data.filter(d => d.room.trim() === roomName)
-         setExamination(list)
-         setSelectedMenu(0)                  // 메뉴 처음으로 초기화
-       })
+      .then(res => {
+        const list = res.data.filter(d => d.room.trim() === roomName)
+        setExamination(list)
+        setSelectedMenu(0)
+        console.log(examination)
+      })
        .catch(console.error)
   }, [rooms, id])
 

@@ -39,7 +39,7 @@ const ExaminationDetail = () => {
   }, [location])
 
   useEffect(()=>{
-    api.get(`/examination/${id}`, {withCredentials: true}).then((res)=>{
+    api.get(`/examination/detail/${id}`, {withCredentials: true}).then((res)=>{
       if (res.data.status === 200) {
         setTitle(res.data.content.title || "")
         setRoom(res.data.content.room || "")

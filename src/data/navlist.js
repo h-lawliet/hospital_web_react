@@ -50,9 +50,9 @@ export function fetchExaminationRooms(cb = () => {}) {
         new Set((res.data || []).map(d => (d.room || "").trim()))
       )
       navList[3].detail = rooms
-      cachedRooms = rooms          // 💾 캐싱
+      cachedRooms = rooms
       fetched = true
-      cb(rooms)                    // 최초 호출자에게 전달
+      cb(rooms)
     })
     .catch(console.error)
 }
