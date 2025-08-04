@@ -10,14 +10,29 @@ import { useLocation } from 'react-router-dom';
 const videos = [
   {
     id: 1,
+    thumb: '/images/thumb2.png',
+    src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/20250724_%EB%B3%91%EC%9B%90%EC%86%8C%EA%B0%9C%EC%98%81%EC%83%81+(1440p).mp4',
+  },
+  {
+    id: 2,
     thumb: '/images/thumb1.png',
     src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/%ED%99%8D%EC%A7%80%EB%A7%8C%EC%84%A0%EC%83%9D%EB%8B%98_%EC%9D%B8%ED%84%B0%EB%B7%B0_0418+(1080p).mp4',
   },
   {
-    id: 2,
-    thumb: '/images/thumb2.png',
-    src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/video2_temp.mp4',
+    id: 3,
+    thumb: '/images/thumb3.png',
+    src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/20250724_%EA%B8%B0%EC%98%81%EC%83%81%EB%93%A4_%EB%A3%A8%ED%95%91_ver._2+(1080p).mp4',
   },
+  {
+    id: 4,
+    thumb: '/images/thumb4.png',
+    src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/20250724_%EB%8C%80%ED%91%9C%EC%A6%9D%EC%83%81+(1440p).mp4',
+  },
+  {
+    id: 5,
+    thumb: '/images/thumb5.png',
+    src: 'https://hong-hospital-suwon.s3.ap-northeast-2.amazonaws.com/20250724_%EB%AC%B4%EC%97%87%EC%9D%B4%EB%93%A0%EB%AC%BC%EC%96%B4%EB%B3%B4%EC%84%B8%EC%9A%94+(1080p).mp4',
+  }
 ];
 
 const Section4 = () => {
