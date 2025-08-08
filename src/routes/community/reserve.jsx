@@ -144,7 +144,11 @@ function Reserve() {
 
 
   const handleSubmit = async () => {
-
+    if (!/^010\d{8}$/.test(phone)) {
+      alert("입력하신 휴대폰 번호를 다시 확인해주세요. (010으로 시작하는 11자리 숫자)");
+      return;
+    }
+    
     await api.post("/reserve/create", 
       {
         name, phone, content
