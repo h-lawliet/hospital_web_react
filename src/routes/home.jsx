@@ -44,7 +44,7 @@ const FullpageComponent = () => {
     updateFullpageHeight();
 
     new fullpage(fullpageRef.current, {
-      // licenseKey: import.meta.env.VITE_FULLPAGE_KEY,
+      licenseKey: (window.__ENV__ && window.__ENV__.FULLPAGE_KEY) || "",
       scrollingSpeed: 700,
       touchSensitivity: 20,
       autoScrolling: true,
