@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "autolinker": "^4.1.5",
     "axios": "^1.7.9",
     "dompurify": "^3.2.4",
     "framer-motion": "^12.2.0",
