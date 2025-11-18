@@ -166,7 +166,13 @@ const PopNotice = () => {
               src={currentNotice.imageUrls[0]}
               alt="공지사항"
               className="popnotice-image"
-              onClick={() => navigate(`/community/2/${currentNotice._id}`)}
+              onClick={() => {
+                if (currentNotice.url.length !== 0) {
+                  navigate(currentNotice.url)
+                } else {
+                  navigate(`/community/2/${currentNotice._id}`)
+                }
+              }}
             />
             <div className="popnotice-buttons">
               <div onClick={() => handleDismiss12h(currentNotice._id)}>

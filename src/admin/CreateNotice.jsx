@@ -4,11 +4,11 @@ import api from "../api";
 import Autolinker from "autolinker";
 
 const CreateNotice = () => {
-  const navigate = useNavigate();
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
 
   const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
   const [images, setImages] = useState([]);
   const [endDate, setEndDate] = useState(null);
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -137,6 +137,7 @@ const CreateNotice = () => {
           <input type="date" value={endDate || ""} onChange={(e) => setEndDate(e.target.value)} />
           &nbsp;&lt;-- 달력 아이콘을 클릭하여 편하게 선택하실 수 있습니다. 팝업으로 표시되지 않을 일반 공지사항은 날짜를 오늘 이전으로 맞춰주시면 됩니다.
           <br /><br />
+          url : <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
 
           <div style={{ marginBottom: "10px" }}>
             <button style={{ cursor: "pointer" }} onClick={() => handleFormat("bold")}>볼드체</button>&nbsp;
