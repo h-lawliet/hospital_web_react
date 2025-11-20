@@ -137,7 +137,8 @@ const CreateNotice = () => {
           <input type="date" value={endDate || ""} onChange={(e) => setEndDate(e.target.value)} />
           &nbsp;&lt;-- 달력 아이콘을 클릭하여 편하게 선택하실 수 있습니다. 팝업으로 표시되지 않을 일반 공지사항은 날짜를 오늘 이전으로 맞춰주시면 됩니다.
           <br /><br />
-          url : <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+          url : <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} /><br/>
+          (배너 클릭시 이동할 url을 입력해주세요. 공란일시 공지사항 세부페이지로 이동합니다.)
 
           <div style={{ marginBottom: "10px" }}>
             <button style={{ cursor: "pointer" }} onClick={() => handleFormat("bold")}>볼드체</button>&nbsp;
