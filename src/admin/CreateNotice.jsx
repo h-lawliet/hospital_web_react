@@ -8,7 +8,7 @@ const CreateNotice = () => {
   const fileInputRef = useRef(null);
 
   const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(null);
   const [images, setImages] = useState([]);
   const [endDate, setEndDate] = useState(null);
   const [imagePreviews, setImagePreviews] = useState([]);

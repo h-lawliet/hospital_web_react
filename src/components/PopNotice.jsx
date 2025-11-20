@@ -167,8 +167,8 @@ const PopNotice = () => {
               alt="공지사항"
               className="popnotice-image"
               onClick={() => {
-                if (currentNotice.url.length !== 0) {
-                  navigate(currentNotice.url)
+                if (currentNotice.url) {
+                  window.location.href = currentNotice.url
                 } else {
                   navigate(`/community/2/${currentNotice._id}`)
                 }
