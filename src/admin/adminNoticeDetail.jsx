@@ -14,6 +14,7 @@ const AdminNoticeDetail = () => {
   let [notice, setNotice] = useState(null)
   const [user, setUser] = useState(null)
   const [endDate, setEndDate] = useState(null)
+  const [url, setUrl] = useState(null)
   const editorRef = useRef(null);
   const fileInputRef = useRef(null);
   
@@ -45,6 +46,7 @@ const AdminNoticeDetail = () => {
       if (res.data.status === 200) {
         setNotice(res.data.content)
         setTitle(res.data.content.title)
+        setUrl(res.data.content.url)
         setEndDate(res.data.content.endDate)
       } else if (res.data.status === 401) {
         alert("로그인 정보가 만료되었습니다. 다시 로그인해주세요")
@@ -89,6 +91,7 @@ const AdminNoticeDetail = () => {
     const formData = new FormData();
     formData.append("title", title); // 제목 추가
     formData.append("endDate", endDate);
+    formData.append("url", url);
     formData.append("content", editorRef.current.innerHTML); // 내용 추가
     images.forEach((image) => formData.append("images", image)); // 이미지 추가
     await api.put(`/notice/${id}`, formData, {
@@ -128,6 +131,8 @@ const AdminNoticeDetail = () => {
         <input type="date" value={endDate} onChange={(e)=>setEndDate(e.target.value)}/>
         &nbsp;&lt;-- 달력 아이콘을 클릭하여 편하게 선택하실 수 있습니다. 팝업으로 표시되자 않을 일반 공지사항은 날짜를 오늘 이전으로 맞춰주시면 됩니다.
         <br/><br/>
+        url : <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} /><br/>
+        (배너 클릭시 이동할 url을 입력해주세요. 공란일시 공지사항 세부페이지로 이동합니다.)<br/><br/>
 
         현재 이미지 목록 : <br/><br/>
         <div style={{display: "flex"}}>

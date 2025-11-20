@@ -167,7 +167,7 @@ const PopNotice = () => {
               alt="공지사항"
               className="popnotice-image"
               onClick={() => {
-                const rawUrl = notice.url
+                const rawUrl = currentNotice.url
 
                 if (rawUrl && rawUrl.trim()) {
                   let target = rawUrl.trim()
