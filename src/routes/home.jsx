@@ -1,48 +1,60 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 import fullpage from 'fullpage.js';
 import 'fullpage.js/dist/fullpage.css';
 import "./home.css"
 import Footer from '../components/footer';
 import HomeSlider from '../components/homeslider1';
-import Section2 from './home/section2';
-import Section3 from './home/section3';
-import Section4 from './home/section4';
-import Section5 from './home/section5';
 import PopNotice from '../components/PopNotice';
+import styled from 'styled-components';
+import HomeInfo from '../components/homeInfo';
+
+
+
+const HomeContant = styled.div`
+  @media (min-width: 1200px) {
+    padding: 0 10vw;
+  }
+`
+
+const History = styled.div`
+
+  h3 {
+    // color: rgb(0, 51, 161);
+    font-weight: 500;
+    
+    @media (min-width: 1200px) {
+      font-size: 30px;
+    }
+  }
+  p {
+    font-weight: 200;
+    font-size: 13px;
+  }
+
+
+  .history-overflow {
+    overflow-x: auto;
+
+    @media (min-width: 1200px) {
+      height: 500px;
+    }
+  }
+
+  .history-overflow::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .history-overflow > img {
+    height: calc(100% - 10px);
+  }
+`
 
 const FullpageComponent = () => {
   const fullpageRef = useRef(null);
-  const footerRef = useRef(null);
-
-  const adjustFooterHeight = useCallback(() => {
-    const footerEl = footerRef.current;
-    const footerSection = document.querySelector('.section.footer'); // 정확하게 선택
   
-    if (footerEl && footerSection) {
-      const footerHeight = footerEl.getBoundingClientRect().height;
-  
-      // 핵심 변경: style setProperty로 !important 적용
-      footerSection.style.setProperty('height', `${footerHeight}px`, 'important');
-  
-      if (typeof fullpage_api !== 'undefined') {
-        fullpage_api.reBuild();
-      }
-    } else {
-      console.warn('Footer DOM or section.footer not ready');
-    }
-  }, []);
-
-  const updateFullpageHeight = useCallback(() => {
-    const height = window.innerHeight;
-    document.documentElement.style.setProperty('--custom-height', `${height}px`);
-  }, []);
-  
-  
-
   useEffect(() => {
-
-    updateFullpageHeight();
-
     new fullpage(fullpageRef.current, {
       licenseKey: (window.__ENV__ && window.__ENV__.FULLPAGE_KEY) || "",
       scrollingSpeed: 700,
@@ -50,34 +62,10 @@ const FullpageComponent = () => {
       autoScrolling: true,
       fitToSection: true,
       autoHeight: true,
-      fitToSectionDelay: 2300,
-      afterRender: () => {
-        adjustFooterHeight();
-
-        if (window.location.pathname === "/") {
-          const flag = sessionStorage.getItem("returnToSection");
-
-          if (flag === "section3") {
-            fullpage_api.moveTo(4);              // DOM 기준 4번째 = Section3
-            sessionStorage.removeItem("returnToSection");
-          } else {
-            fullpage_api.moveTo(1);              // 기본: 첫 섹션
-          }
-        }
-      }
+      fitToSectionDelay: 2300
     });
-    
-    window.addEventListener('resize', updateFullpageHeight);
-    window.addEventListener('resize', adjustFooterHeight);
-  
-    return () => {
-      window.removeEventListener('resize', updateFullpageHeight);
-      window.removeEventListener('resize', adjustFooterHeight);
-      if (typeof fullpage_api !== 'undefined') {
-        fullpage_api.destroy('all');
-      }
-    };
-  }, [adjustFooterHeight, updateFullpageHeight]);
+
+  }, []);
   
 
   return (
@@ -86,21 +74,28 @@ const FullpageComponent = () => {
       <div className="section">
         <HomeSlider/>
       </div>
-      <div className="section fullpage-2">
-        <div className='opacity-cover'/>
-        <Section2/>
-      </div>
-      <div className="section">
-        <Section4/>
-      </div>
-      <div className="section">
-        <Section3/>
-      </div>
-      <div className="section section5">
-        <Section5/>
-      </div>
-      <div className="section footer">
-        <Footer ref={footerRef}/>
+
+
+      <div className="section section-home">
+        
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <HomeContant>
+
+
+          <History>
+            <h3>모야모야병, 뇌졸중 <span style={{color: "#7f99cf"}}>특화 연구 발자취</span></h3>
+            <p>&#8251; 좌우로 스크롤하여 확인하실 수 있습니다</p>
+            <div className='history-overflow'>
+              <img src='/images/home/history.png'/>
+            </div>
+          </History>
+
+
+        </HomeContant>
+
+        <HomeInfo/>
+        
+        <Footer/>
       </div>
     </div>
   );
