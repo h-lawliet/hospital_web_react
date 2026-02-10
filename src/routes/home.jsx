@@ -7,49 +7,109 @@ import HomeSlider from '../components/homeslider1';
 import PopNotice from '../components/PopNotice';
 import styled from 'styled-components';
 import HomeInfo from '../components/homeInfo';
+import News from './home/news';
+import Doctor from './home/doctor';
+import HomeCenter from './home/homeCenter';
+import HomeVideo from './home/homeVideo';
 
 
-
-const HomeContant = styled.div`
-  @media (min-width: 1200px) {
-    padding: 0 10vw;
-  }
-`
 
 const History = styled.div`
+  background-color: white;
 
-  h3 {
-    // color: rgb(0, 51, 161);
-    font-weight: 500;
-    
-    @media (min-width: 1200px) {
+
+  @media (min-width: 1200px) {
+    padding: 130px 10vw;
+
+    #deco {
+      width: calc(50px + 0.1vw);
+      height: 5px;
+      padding-bottom: 3px;
+    }
+
+    h3 {
+      font-weight: 400;
+      margin: 0;
       font-size: 30px;
     }
-  }
-  p {
-    font-weight: 200;
-    font-size: 13px;
-  }
+    p {
+      font-weight: 200;
+      font-size: 13px;
+    }
 
-
-  .history-overflow {
-    overflow-x: auto;
-
-    @media (min-width: 1200px) {
+    .history-overflow {
+      overflow-x: auto;
       height: 500px;
+    }
+
+    .history-overflow > img {
+      height: calc(100% - 10px);
     }
   }
 
-  .history-overflow::-webkit-scrollbar-button {
-    display: none;
-    width: 0;
-    height: 0;
+  
+  @media (min-width: 600px) and (max-width: 1200px) {
+    padding: 90px 7vw;
+
+    .news-text-deco {
+      width: calc(30px + 1vw);
+      height: 4px;
+      background-color: rgb(0, 51, 161);
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-weight: 500;
+      margin: 0;
+      font-size: calc(20px + 0.4vw);
+    }
+    p {
+      font-weight: 200;
+      font-size: 13px;
+    }
+
+    .history-overflow {
+      overflow-x: auto;
+      height: 400px;
+    }
+
+    .history-overflow > img {
+      height: calc(100% - 10px);
+    }
   }
 
-  .history-overflow > img {
-    height: calc(100% - 10px);
+
+  @media (max-width: 600px) {
+    padding: 90px 7vw;
+
+    .news-text-deco {
+      width: calc(30px + 1vw);
+      height: 4px;
+      background-color: rgb(0, 51, 161);
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-weight: 500;
+      margin: 0;
+      font-size: calc(18px + 0.5vw);
+    }
+    p {
+      font-weight: 200;
+      font-size: 13px;
+    }
+
+    .history-overflow {
+      overflow-x: auto;
+      height: 350px;
+    }
+
+    .history-overflow > img {
+      height: calc(100% - 10px);
+    }
   }
 `
+
 
 const FullpageComponent = () => {
   const fullpageRef = useRef(null);
@@ -58,11 +118,13 @@ const FullpageComponent = () => {
     new fullpage(fullpageRef.current, {
       licenseKey: (window.__ENV__ && window.__ENV__.FULLPAGE_KEY) || "",
       scrollingSpeed: 700,
-      touchSensitivity: 20,
+      touchSensitivity: 30,
       autoScrolling: true,
       fitToSection: true,
       autoHeight: true,
-      fitToSectionDelay: 2300
+      fitToSectionDelay: 2300,
+      scrollBar: false,
+      css3: false
     });
 
   }, []);
@@ -77,25 +139,35 @@ const FullpageComponent = () => {
 
 
       <div className="section section-home">
+        <div style={{ backgroundColor: "white" }}>
+
+          <HomeCenter/>
+        </div>
         
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <HomeContant>
+        <Doctor/>
 
-
+        <div style={{ backgroundColor: "white" }}>
+          <News/>
+        
           <History>
-            <h3>모야모야병, 뇌졸중 <span style={{color: "#7f99cf"}}>특화 연구 발자취</span></h3>
+            
+            <h3>모야모야병 · 뇌졸중&nbsp;<span style={{
+              color: "rgb(0, 51, 161)",
+              fontWeight: 800
+            }}>특화 연구 발자취</span></h3>
             <p>&#8251; 좌우로 스크롤하여 확인하실 수 있습니다</p>
             <div className='history-overflow'>
               <img src='/images/home/history.png'/>
             </div>
           </History>
 
+          <HomeVideo/>
 
-        </HomeContant>
-
-        <HomeInfo/>
+          <HomeInfo/>
+          
+          <Footer/>
+        </div>
         
-        <Footer/>
       </div>
     </div>
   );

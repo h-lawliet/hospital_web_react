@@ -8,7 +8,7 @@ import Facility from "./about/facility.jsx"
 
 function Worktime() {
   return(
-    <img src="/images/about/about3.png" style={{
+    <img src="/images/about/time_new.png" style={{
       width: "100%",
       height: "auto",
       paddingTop: "15vh",

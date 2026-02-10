@@ -1,7 +1,3 @@
-#map {
-  border-top-right-radius: 70px;
-}
-
 @media (max-width: 600px) {
 
   #map {
@@ -15,5 +11,11 @@
   #map {
     width: 100%;
     height: 100%;
+  }
+}
+
+@media (min-width: 700px) {
+  #map {
+    border-top-right-radius: 7vw;
   }
 }

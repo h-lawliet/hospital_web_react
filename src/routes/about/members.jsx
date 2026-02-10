@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import LineDeco from '../../components/line';
 
 
 const Styledmembers = styled.div`

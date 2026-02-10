@@ -2,41 +2,226 @@ import styled from "styled-components";
 import Navermap from "./NaverMap";
 
 
+
+const Information = styled.div`
+  width: 100%;
+  text-align: center;
+  padding: 0 0 35px 0;
+  letter-spacing: 0.2em;
+  font-weight: 200;
+  background-color: white;
+  font-size: calc(16px + 0.6vw);
+`
 const FooterInfo = styled.div`
 
-  position: relative;
-  overflow-y: hidden;
+  background-color: rgb(248, 248, 248);
 
+  .footer-info {
+    position: relative;
+  }
 
-  .vertical{
+  .vertical {
     position: absolute;
     right: 0;
     top: 50%;
-    transform: scaleY(0.40) scaleX(1.30) translateY(480px) translateX(-60px) rotate(90deg);
-    transform-origin: right center;
+    transform-origin: right top;
+    transform: scaleY(0.43) scaleX(1.30) rotate(90deg) translateX(50%);
+    pointer-events: none;
     white-space: nowrap;
-    opacity: 0.05;
-    font-size: 115px;
+    z-index: 1;
     font-family: "TheSignature";
   }
-  
-  @media (min-width: 1200px) {
+
+
+  @media (max-width: 700px) {
     display: flex;
-    flex-direction: row;
-    height: 500px;
-    // padding: 20px 0;
+    flex-direction: column;
 
     .naver-map {
-      width: calc(50% - 25px);
-      // max-width: 600px;
-      padding-right: 25px;
+      width: 100%;
+      aspect-ratio: 2;
+      position: relative;
+      z-index: 5;
+    }
+
+    .vertical{
+      font-size: calc(83px + 0.1vw);
+      opacity: 0.05;
     }
 
 
     .footer-info {
 
+      overflow: hidden;
+      padding: 40px 7vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .info-text-top {
+        font-size: calc(18px + 0.2vw);
+        font-weight: 400;
+        color: rgb(0,51,161);
+        margin: 0;
+      }
+
+      .info-text-top.last {
+        margin-top: 30px;
+      }
+
+      .info-text-phone > h4 {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 12px 0 30px 0;
+      }
+
+      .info-heading {
+        display: flex;
+        justify-content: space-between;
+        width: 70px;
+        padding: 3px 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+
+      .time-container {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: nowrap;
+        padding: 3px 0;
+      }
+      .time-container.first {
+        margin-top: 12px;
+      }
+      #time {
+        font-size: 16px;
+        font-weight: 600;
+      }
+      
+
+
+      #rest {
+        font-weight: 200;
+        font-size: 13px;
+        margin: 0;
+        padding-top: 8px;
+      }
+      #location {
+        font-size: 16px;
+        font-weight: 400;
+        margin: 12px 0 0 0;
+      }
+    }
+  }
+
+  @media (min-width: 700px) and (max-width: 1200px) {
+    display: flex;
+    flex-direction: row;
+
+    .naver-map {
+      width: 50%;
+      position: relative;
+      z-index: 5;
+    }
+
+    .vertical{
+      font-size: 86px;
+      opacity: 0.05;
+    }
+
+
+    .footer-info {
+      flex: 1;
+      overflow: hidden;
+      padding: 90px 7vw 90px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .info-text-top {
+        font-size: 20px;
+        font-weight: 400;
+        color: rgb(0,51,161);
+        margin: 0;
+      }
+
+      .info-text-top.last {
+        margin-top: 30px;
+      }
+
+      .info-text-phone > h4 {
+        font-size: 25px;
+        font-weight: 700;
+        margin: 12px 0 30px 0;
+      }
+
+      .info-heading {
+        display: flex;
+        justify-content: space-between;
+        width: 70px;
+        padding: 3px 0;
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+
+      .time-container {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+        flex-wrap: nowrap;
+        padding: 3px 0;
+      }
+      .time-container.first {
+        margin-top: 12px;
+      }
+      #time {
+        font-size: 17px;
+        font-weight: 600;
+      }
+      
+
+
+      #rest {
+        font-weight: 200;
+        font-size: 13.5px;
+        margin: 0;
+        padding-top: 8px;
+      }
+      #location {
+        font-size: 17px;
+        font-weight: 400;
+        margin: 12px 0 0 0;
+      }
+    }
+  }
+  
+  
+  @media (min-width: 1200px) {
+    display: flex;
+    flex-direction: row;
+    height: 600px;
+
+    .naver-map {
+      width: 50%;
+      padding-right: 25px;
+    }
+
+    .vertical {
+      opacity: 0.05;
+      font-size: 115px;
+    }
+
+
+    .footer-info {
+      flex: 1;
       padding-left: 25px;
       padding-top: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       .info-text-top {
         font-size: 24px;
@@ -89,7 +274,7 @@ const FooterInfo = styled.div`
       }
       #location {
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 400;
       }
     }
   }
@@ -99,14 +284,7 @@ const FooterInfo = styled.div`
 const HomeInfo = () => {
   return (
     <>
-    <div style={{
-      width: "100%",
-      textAlign: "center",
-      padding: "150px 0 35px 0",
-      letterSpacing: "0.2em",
-      fontSize: "2vw",
-      fontWeight: 200
-    }}>- INFORMATION -</div>
+    <Information>- INFORMATION -</Information>
     <FooterInfo>
 
       <div className="naver-map">
@@ -114,6 +292,9 @@ const HomeInfo = () => {
       </div>
 
       <div className="footer-info">
+        <div className="vertical">
+          Dr.Hong's Special Neurology Centre
+        </div>
         <p className="info-text-top">CONTACT</p>
         <div className="info-text-phone">
           {/* <img src="/icon/call_icon.png"/> */}
@@ -145,10 +326,6 @@ const HomeInfo = () => {
         <p id="rest">* 일요일 · 공휴일 휴진 (입원실은 휴무없이 운영합니다)</p>
         <p className="info-text-top last">LOCATION</p>
         <p id="location">수원시 팔달구 경수대로546 (인계동)</p>
-      </div>
-
-      <div className="vertical">
-        Dr.Hong's Special Neurology Centre.
       </div>
     </FooterInfo>
     </>
