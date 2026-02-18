@@ -16,7 +16,7 @@ export const isAllowedPath = (path) => {
   }
 
   if (segments[0] === "appointment") {
-    return segments.length === 2 && ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(segments[1]);
+    return segments.length === 2 && ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].includes(segments[1]);
   }
 
   if (segments[0] === "examination") {

@@ -723,7 +723,7 @@ const HomeCenter = () => {
       <h2 className="center2-h2"><span style={{
         color: 'rgb(0, 51, 161)',
         fontWeight: 800
-      }}>모 · 기 · 난</span>으로 힘든 당신을 위한 명답</h2>
+      }}>모 · 기 · 난 · 안</span>으로 힘든 당신을 위한 명답</h2>
       <div className="center2-container">
         <div className="center2-item" onClick={()=>window.open('appointment/0', '_self')}>
           <p><strong>모</strong>야모야병<br/>최소침습 치료</p>
@@ -738,7 +738,8 @@ const HomeCenter = () => {
           <p>어지럼증</p>
         </div>
         <div className="center2-item">
-          <p>안면마비</p>
+          <p><strong>안</strong>면마비</p>
+          <p>안면떨림</p>
         </div>
       </div>
 
