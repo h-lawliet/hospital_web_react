@@ -737,7 +737,7 @@ const HomeCenter = () => {
           <p><strong>난</strong>치성 두통</p>
           <p>어지럼증</p>
         </div>
-        <div className="center2-item">
+        <div className="center2-item" onClick={()=>window.open('appointment/10', '_self')}>
           <p><strong>안</strong>면마비</p>
           <p>안면떨림</p>
         </div>
