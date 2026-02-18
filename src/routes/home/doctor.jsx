@@ -360,7 +360,6 @@ const Doctor = () => {
           </ul>
           
           <ul className="doctor-list">
-            <li>아주대학교 신경과 의학박사 학위</li>
             <li>텍사스 메디컬센터 신경계 집중치료학 교환교수</li>
             <li>아주대학교병원 신경과 정년 보장교수(Tenure)</li>
             <li>前 아주대학교 의과대학 신경과학교실 주임교수 및 임상과장</li>
