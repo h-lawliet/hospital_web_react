@@ -209,7 +209,7 @@ export const Item = styled.div`
 `;
   
 export const SubMenuContainer = styled.div`
-  max-height: ${({ isSubOpen }) => (isSubOpen ? '550px' : '0')};
+  max-height: ${({ isSubOpen }) => (isSubOpen ? '610px' : '0')};
   overflow: hidden;
   transition: max-height 0.5s ease;
   background-color: rgb(0, 65, 200);

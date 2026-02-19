@@ -264,7 +264,7 @@ Error generating stack: `+A.message+`
     color: rgb(255, 255, 255);
   }
 `,v5=Y0.div`
-  max-height: ${({isSubOpen:e})=>e?"550px":"0"};
+  max-height: ${({isSubOpen:e})=>e?"610px":"0"};
   overflow: hidden;
   transition: max-height 0.5s ease;
   background-color: rgb(0, 65, 200);
