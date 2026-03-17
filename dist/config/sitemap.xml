@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	  xmlns:xhtml="http://www.w3.org/1999/xhtml"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">	  	  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">	  	  
 <!-- www.check-domains.com sitemap generator -->
 
 <url>
-   <loc>https://neurohong.com/</loc>
-   <lastmod>2026-02-19T01:47:03+00:00</lastmod>
-   <changefreq>monthly</changefreq>
-   <priority>1.0000</priority>
+	<loc>https://neurohong.com/</loc>
+	<lastmod>2026-02-19T01:47:03+00:00</lastmod>
+	<changefreq>monthly</changefreq>
+	<priority>1.0</priority>
 </url>
+
+<url>
+	<loc>https://neurohong.com/about/0</loc>
+	<priority>0.8</priority>
+</url>
+
+<url>
+	<loc>https://neurohong.com/center/0</loc>
+	<priority>0.8</priority>
+</url>
+
+<url>
+	<loc>https://neurohong.com/center/1</loc>
+	<priority>0.8</priority>
+</url>
+
+<url>
+	<loc>https://neurohong.com/appointment/0</loc>
+	<priority>0.8</priority>
+</url>
+
+<url>
+	<loc>https://neurohong.com/appointment/1</loc>
+	<priority>0.8</priority>
+</url>
+
+<url>
+	<loc>https://neurohong.com/community/0</loc>
+	<priority>0.8</priority>
+</url>
+
 </urlset>
