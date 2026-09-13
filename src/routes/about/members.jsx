@@ -190,7 +190,9 @@ function Members() {
         }}/>
         </div>
       </div>
+
       <hr/>
+
       <div className='member-container'>
         <div
           className='motion-member-img'
@@ -213,23 +215,25 @@ function Members() {
         </div>
       </div>
 
+      <hr/>
+
       <div className='member-container'>
-        <div
-          className='motion-member-img'
-        ><img className='member-image-1' src='/images/about/member4.jpg' style={{
-          width: "100%", height: "auto", borderRadius: "20px"
-        }}/>
-        </div>
         <div
           className='motion-member-text'
         >
         <h3 className='member-name'>이종우</h3><span className='member-name-2'>원장</span>
-        <div className='member-name-3'>영상의학과 전문의</div>
+        <div className='member-name-3'>말초질환 · 통증클리닉</div>
         <ul>
           <li>연세대학교 의과대학 졸업</li>
           <li>세브란스 기독병원 인턴, 레지던트</li>
           <li>前 더맑은신경과 부원장</li>
         </ul>
+        </div>
+        <div
+          className='motion-member-img'
+        ><img className='member-image-1' src='/images/about/member4.jpg' style={{
+          width: "100%", height: "auto", borderRadius: "20px"
+        }}/>
         </div>
       </div>
     </Styledmembers>
